@@ -3,9 +3,6 @@ include_once 'conexao.php';
 
 if(isset($_POST['mat']) && isset($_POST['senha']) && $conn != null) {
 
-
-
-    
     $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = ? AND senha = ?");
     $query->execute(array($_POST['mat'], $_POST['senha']));
 
