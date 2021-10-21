@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(114, 216, 207);
+}
+#dpc {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 1300px;
+    height: 650px;
+    margin-top: 120px;
+    margin-bottom: 200px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.616);
+}
+#bt {
+    margin-top: 260px;
+}

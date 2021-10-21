@@ -1,0 +1,33 @@
+body {
+    background-color: rgb(114, 216, 207);
+}
+#btsair {
+    margin-left: 5px;
+}
+#btconfg {
+    margin-left: 700px;
+}
+#sizefont {
+    font-size: 15px;
+    width: 200px;
+}
+#dpc {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    margin-top: 40px;
+    margin-bottom: 200px;
+    border-style: solid;
+}
+#listaUsuario {
+    height: 400px;
+    overflow: auto;
+}
+#bemv {
+    margin-top: 40px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: serif;
+}

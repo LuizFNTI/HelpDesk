@@ -1,0 +1,64 @@
+body {
+    background-color: rgb(114, 216, 207);
+}
+#btsair {
+    margin-left: 5px;
+}
+#btconfg {
+    margin-left: 700px;
+}
+#sizefont {
+    font-size: 15px;
+    width: 200px;
+}
+#dpc1 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    margin-top: 40px;
+    border-top-style: solid;
+    border-left-style: solid;
+    border-right-style: solid;
+}
+#dpc2 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    border-left-style: solid;
+    border-right-style: solid;
+}
+#dpc3 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    margin-bottom: 200px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+#tipodemanda {
+    height: 400px;
+    overflow: auto;
+}
+#status {
+    height: 400px;
+    overflow: auto;
+}
+#tipoatendimento {
+    height: 400px;
+    overflow: auto;
+}
+#bemv {
+    margin-top: 40px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 25px;
+    font-family: serif;
+}
+#titulo {
+    text-align: center;
+    border-style: solid;
+}

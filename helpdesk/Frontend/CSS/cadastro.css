@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(114, 216, 207);
+}
+#dp {
+    background-color: white;
+    padding: 15px;
+    width: 650px;
+    height: 620px;
+    margin: auto;
+    margin-bottom: 200px;
+    margin-top: 150px;
+    border-style: solid;
+}
+#df1 {
+    display: inline-block;
+}
+input {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.250);
+}

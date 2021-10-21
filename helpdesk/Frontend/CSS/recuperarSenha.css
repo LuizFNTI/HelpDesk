@@ -1,0 +1,15 @@
+body {
+    background-color: rgb(114, 216, 207);
+}
+#dpc {
+    background-color: white;
+    padding: 20px;
+    width: 300px;
+    height: 325px;
+    margin-top: 180px;
+    margin-left: 620px;
+    border-style: solid;
+}
+input {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.250);
+}
