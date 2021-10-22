@@ -3,7 +3,8 @@ include_once 'conexao.php';
 
 if(isset($_POST['mat']) && isset($_POST['senha']) && $conn != null) {
 
-    $pass_hash = password_hash($_POST['senha']);
+    $pass_hash = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+    $pass_verify = password_verify($_POST['senha'], $pass_hash);
 
     $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = ? AND senha = ?");
     $query->execute(array($_POST['mat'], $_POST['senha']));
