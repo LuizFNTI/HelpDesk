@@ -37,40 +37,39 @@
                         <tr>
                             <th>Matricula</th>
                             <th>Nome Usuário</th>
-                            <th>E-mail</th>
                             <th>Telefone</th>
+                            <th>E-mail</th>
                             <th>Departamento</th>
+                            <th>Senha</th>
                             <th>Nivel de Acesso</th>
                             <th>Status no Sistema</th>
                              <th>Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo@exemplo.com</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verUsuario.php">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo@exemplo.com</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verUsuario.php">Ver</a></td>
-                        </tr>
+                    <?php
+                        include_once '../Backend/buscarDadosUsuarios.php';
+
+                        if(count($dados) > 0) {
+                            for ($i=0; $i < count($dados); $i++) {
+                    
+                    echo "<tbody>";
+
+                        foreach ($dados[$i] as $k => $v) {
+                            echo "<th>".$v."</th>";
+                        }
+                    ?> 
+                    <th>
+                        <a href="verUsuario.php?matricula_up=<?php echo $dados[$i] ['matricula']; ?>">Editar</a> 
+                        <a href="inativarUsuario.php?matricula=<?php echo $dados[$i] ['matricula']; ?>">Excluir</a>
+                    </th>
+                    <?php
+                    }
+                }
+                ?>
                     </tbody>
                 </table>
             </div> <!--listaUsuarios-->
         </div> <!--dpc-->
-
     </main> 
 </body>
 </html>
