@@ -1,3 +1,13 @@
+<?php
+    include 'conexão.php';
+
+    $resultado = array();
+        
+    $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = :m");
+    $query->bindValue(":m",$matricula);
+    $query->execute();
+    $query = $cmd->fetch(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,26 +26,26 @@
         <div id="df1">
             <div class="form-group">
                 <label for="mat">Número Matricula:</label>
-                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required>
+                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required value="<?php if(isset($dados)) {echo $dados['matricula'];} ?>">
             </div>
             <div class="form-group">
                 <label for="email">Endereço de E-mail:</label>
-                <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="e-mail" required>
+                <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="e-mail" required value="<?php if(isset($dados)) {echo $dados['email'];} ?>">
             </div>
         </div>
         <div id="df1">
         <div class="form-group">
                 <label for="nome">Nome Completo::</label>
-                <input type="text" class="form-control" placeholder="Seu Nome:" name="nome" id="nme" required>
+                <input type="text" class="form-control" placeholder="Seu Nome:" name="nome" id="nme" required value="<?php if(isset($dados)) {echo $dados['nome'];} ?>">
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone:</label>
-                <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" required>
+                <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" required value="<?php if(isset($dados)) {echo $dados['telefone'];} ?>">
             </div>
         </div>
             <div class="form-group">
                 <label for="departamento">Departamento:</label>
-                <input type="text" class="form-control" placeholder="Seu Departamento:" name="departamento" id="dept" required>
+                <input type="text" class="form-control" placeholder="Seu Departamento:" name="departamento" id="dept" required value="<?php if(isset($dados)) {echo $dados['departamento'];} ?>">
             </div>
             <p>Nivel de Acesso:</p>
             <div class="form-check-inline">  
