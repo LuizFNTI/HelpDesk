@@ -60,7 +60,6 @@
                     ?> 
                     <th>
                         <a href="verUsuario.php?matricula_up=<?php echo $dados[$i] ['matricula']; ?>">Editar</a> 
-                        <a href="inativarUsuario.php?matricula=<?php echo $dados[$i] ['matricula']; ?>">Excluir</a>
                     </th>
                     <?php
                     }
