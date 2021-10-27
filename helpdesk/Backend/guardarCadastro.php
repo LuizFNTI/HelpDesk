@@ -10,7 +10,7 @@ if(isset($_POST['mat']) && isset($_POST['nome']) && isset($_POST['email']) && is
     $departamento = $_POST['departamento'];
     $senha = $_POST['senha'];
 
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+    //$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha) VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
     $query->bindValue(":matricula", $matricula);

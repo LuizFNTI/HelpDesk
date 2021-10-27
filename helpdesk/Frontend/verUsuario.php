@@ -1,6 +1,5 @@
 <?php
-    include '../Backend/buscarDadosUsuarios.php';
-    include '../Backend/atualizarDadosUsuarios.php';
+    include '../Backend/conexao.php';
 
     $resultado = array();
 
