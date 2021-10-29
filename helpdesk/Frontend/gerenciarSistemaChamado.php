@@ -61,7 +61,7 @@
                     </tbody>
                 </table>
             </div> <!--tipodemanda-->
-        </div> <!--dpc-->
+        </div> <!--dpc1-->
         <div class="row justify-content-center align-items-center">
         <div id="dpc2">
             <div id="status">
@@ -88,7 +88,7 @@
                     </tbody>
                 </table>
             </div> <!--status-->
-        </div> <!--dpc-->
+        </div> <!--dpc2-->
         <div class="row justify-content-center align-items-center">
         <div id="dpc3">
             <div id="tipoatendimento">
@@ -115,7 +115,35 @@
                     </tbody>
                 </table>
             </div> <!--tipoatendimento-->
-        </div> <!--dpc-->
+        </div> <!--dpc3-->
+        <div class="row justify-content-center align-items-center">
+        <div id="dpc4">
+            <div id="prioridade">
+                <div id="titulo"><h2>Gerenciar Prioridade</h2></div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Prioridade</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Exemplo</td>
+                            <td>Exemplo</td>
+                            <td><a href="verChamadoUsuario.php">Ver</a></td>
+                        </tr>
+                        <tr>
+                            <td>Exemplo</td>
+                            <td>Exemplo</td>
+                            <td><a href="verChamadoUsuario.php">Ver</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div> <!--Prioridade-->
+        </div> <!--dpc4-->
+    </div> 
     </div> 
 </body>
 </html>

@@ -34,6 +34,14 @@ body {
     padding: 20px;
     width: 1400px;
     height: 500px;
+    border-left-style: solid;
+    border-right-style: solid;
+}
+#dpc4 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
     margin-bottom: 200px;
     border-left-style: solid;
     border-right-style: solid;
@@ -48,6 +56,10 @@ body {
     overflow: auto;
 }
 #tipoatendimento {
+    height: 400px;
+    overflow: auto;
+}
+#prioridade {
     height: 400px;
     overflow: auto;
 }
