@@ -80,7 +80,7 @@
 
                         $dados = array();        
                     
-                        $query = $conn->query("SELECT * FROM status_chamados ORDER BY nome");
+                        $query = $conn->query("SELECT * FROM status_chamado ORDER BY nome_status");
                     
                         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -94,7 +94,7 @@
                         }
                     ?> 
                     <th>
-                        <a href="adicionarStatus.php?status_up=<?php echo $dados[$i] ['nome_status']; ?>">Editar</a> 
+                        <a href="verStatus.php?status_up=<?php echo $dados[$i] ['cod_status']; ?>">Ver</a> 
                     </th>
                     <?php
                     }
@@ -113,20 +113,35 @@
                         <tr>
                             <th>Codigo</th>
                             <th>Tipo Atendimento</th>
+                            <th>Ativo</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoUsuario.php">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoUsuario.php">Ver</a></td>
-                        </tr>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        $query = $conn->query("SELECT * FROM tipo_atendimento ORDER BY nome_tipo_atendimento");
+                    
+                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        if(count($dados) > 0) {
+                            for ($i=0; $i < count($dados); $i++) {
+                    
+                    echo "<tbody>";
+
+                        foreach ($dados[$i] as $k => $v) {
+                            echo "<th>".$v."</th>";
+                        }
+                    ?> 
+                    <th>
+                        <a href="adicionarStatus.php?status_up=<?php echo $dados[$i] ['nome_tipo_atendimento']; ?>">Editar</a> 
+                    </th>
+                    <?php
+                    }
+                }
+                ?>
                     </tbody>
                 </table>
             </div> <!--tipoatendimento-->
@@ -140,20 +155,35 @@
                         <tr>
                             <th>Codigo</th>
                             <th>Prioridade</th>
+                            <th>Ativo</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoUsuario.php">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoUsuario.php">Ver</a></td>
-                        </tr>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        $query = $conn->query("SELECT * FROM prioridade_chamado ORDER BY nome_prioridade");
+                    
+                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        if(count($dados) > 0) {
+                            for ($i=0; $i < count($dados); $i++) {
+                    
+                    echo "<tbody>";
+
+                        foreach ($dados[$i] as $k => $v) {
+                            echo "<th>".$v."</th>";
+                        }
+                    ?> 
+                    <th>
+                        <a href="adicionarStatus.php?status_up=<?php echo $dados[$i] ['nome_prioridade']; ?>">Editar</a> 
+                    </th>
+                    <?php
+                    }
+                }
+                ?>
                     </tbody>
                 </table>
             </div> <!--Prioridade-->
