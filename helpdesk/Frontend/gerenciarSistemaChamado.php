@@ -136,7 +136,7 @@
                         }
                     ?> 
                     <th>
-                        <a href="adicionarStatus.php?status_up=<?php echo $dados[$i] ['nome_tipo_atendimento']; ?>">Editar</a> 
+                        <a href="verTipoAtendimento.php?tipoa_up=<?php echo $dados[$i] ['cod_tipo_atendimento']; ?>">Ver</a> 
                     </th>
                     <?php
                     }
@@ -178,7 +178,7 @@
                         }
                     ?> 
                     <th>
-                        <a href="adicionarStatus.php?status_up=<?php echo $dados[$i] ['nome_prioridade']; ?>">Editar</a> 
+                        <a href="verPrioridade.php?prioridade_up=<?php echo $dados[$i] ['cod_prioridade']; ?>">Ver</a> 
                     </th>
                     <?php
                     }
