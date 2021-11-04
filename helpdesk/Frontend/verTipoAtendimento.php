@@ -24,11 +24,11 @@ DOCTYPE html>
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="Backend/validar_login.php" method="POST">
-        <h2>Cadastrar Novo Tipo Atendimento</h2>
+        <form action="#" method="POST">
+        <h2>Ver Tipo Atendimento</h2>
             <div class="form-group">
-                <label for="ntipoa">Digite o Novo Tipo Atendimento</label>
-                <input type="text" class="form-control" placeholder="Novo Tipo Atendimento:" name="novota" id="nta" required value="<?php if(isset($resultado)) {echo $resultado['nome_tipo_atendimento'];} ?>">
+                <label for="vtipoa">Tipo Atendimento</label>
+                <input type="text" class="form-control" placeholder="Tipo Atendimento:" name="novota" id="nta" required value="<?php if(isset($resultado)) {echo $resultado['nome_tipo_atendimento'];} ?>">
             </div>
             <p>Ativo: </p>
             <div class="form-check-inline">  

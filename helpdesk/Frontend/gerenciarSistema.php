@@ -37,6 +37,7 @@
         <p><a href="adicionarItem.php">Adicionar Novo Item</a></p>
         <p><a href="adicionarTipoAtendimento.php">Adicionar Novo Tipo Atendimento</a></p>
         <p><a href="adicionarStatus.php">Adicionar Novo Status</a></p>
+        <p><a href="adicionarPrioridade.php">Adicionar Nova Prioridade</a></p>
     </div> <!--d1-->
     </div> <!--dpc-->
     </main>
