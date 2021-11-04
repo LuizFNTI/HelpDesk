@@ -33,12 +33,13 @@
             <p>Ativo: </p>
             <div class="form-check-inline">  
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Sim
+                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 1) {echo "checked";}?>>Sim
             </label>
             </div>
             <div class="form-check-inline">
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Não
+                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 
+                0) {echo "checked";}?>>Não
             </label>
             </div><br><br>
             <button type="button" class="btn btn-success">Guardar</button>

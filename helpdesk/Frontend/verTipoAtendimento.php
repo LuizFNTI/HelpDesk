@@ -10,7 +10,7 @@
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 ?>
-DOCTYPE html>
+<DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -33,12 +33,12 @@ DOCTYPE html>
             <p>Ativo: </p>
             <div class="form-check-inline">  
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Sim
+                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 1) {echo "checked";}?>>Sim
             </label>
             </div>
             <div class="form-check-inline">
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Não
+                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 0) {echo "checked";}?>>Não
             </label>
             </div><br><br>
             <button type="button" class="btn btn-success">Guardar</button>

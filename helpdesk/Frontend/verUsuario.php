@@ -5,7 +5,7 @@
 
     $matricula = $_GET['matricula_up'];
         
-    $query = $conn->prepare("SELECT matricula, nome, telefone, email, departamento FROM usuarios WHERE matricula = :m");
+    $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = :m");
     $query->bindValue(":m",$matricula);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
@@ -48,34 +48,34 @@
             <div class="form-group">
                 <label for="departamento">Departamento:</label>
                 <input type="text" class="form-control" placeholder="Seu Departamento:" name="departamento" id="dept" required value="<?php if(isset($resultado)) {echo $resultado['departamento'];} ?>">
-            </div><!--
+            </div>
             <p>Nivel de Acesso:</p>
             <div class="form-check-inline">  
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="user">Usuário
+                <input type="radio" class="form-check-input" name="user" <?php if($resultado['nivel'] == 0) {echo "checked";}?>>Usuário
             </label>
             </div>
             <div class="form-check-inline">
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="analista">Analista
+                <input type="radio" class="form-check-input" name="analista" <?php if($resultado['nivel'] == 1) {echo "checked";}?>>Analista
             </label>
             </div>
             <div class="form-check-inline">
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="adm">Administrador
+                <input type="radio" class="form-check-input" name="adm" <?php if($resultado['nivel'] == 2) {echo "checked";}?>>Administrador
             </label>
             </div><br><br>
             <p>Ativo: </p>
             <div class="form-check-inline">  
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="ativo">Sim
+                <input type="radio" class="form-check-input" name="ativo" <?php if($resultado['ativo'] == 1) {echo "checked";}?>>Sim
             </label>
             </div>
             <div class="form-check-inline">
                 <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="nativo">Não
+                <input type="radio" class="form-check-input" name="nativo" <?php if($resultado['ativo'] == 0) {echo "checked";}?>>Não
             </label>
-            </div><br><br>-->
+            </div><br><br>
             <input type="submit" value="Guardar">
         </form>
     </div>
