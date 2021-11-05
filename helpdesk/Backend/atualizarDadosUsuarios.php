@@ -11,12 +11,12 @@ if(isset($_POST['nome'])) {
 
     $query = $conn->prepare("UPDATE usuarios SET nome = :n, telefone = :t, email = :e, departamento = :d, WHERE matricula = :m");
 
-    $query->bindValue(":n",$nome);
-    $query->bindValue(":t",$telefone);
-    $query->bindValue(":e",$email);
-    $query->bindValue(":d",$departamento);
-    $query->bindValue(":m", $matricula);
-    $query->execute();
+    //$query->bindValue(':n',$nome);
+    //$query->bindValue(':t',$telefone);
+    //$query->bindValue(':e',$email);
+    //$query->bindValue(':d',$departamento);
+    //$query->bindValue(':m', $matricula);
+    $query->execute(array(':n' => $nome, ':e' => $email, ':t' => $telefone, ':d' => $departamento, ':m' => $matricula));
 }
 
 
