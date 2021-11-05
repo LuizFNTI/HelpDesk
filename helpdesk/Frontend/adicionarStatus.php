@@ -1,3 +1,15 @@
+<?php
+include_once '../Backend/conexao.php';
+
+if(isset($_POST['novost'])) {
+
+    $status = $_POST['novost']; 
+
+    $query = $conn->prepare("INSERT INTO status_chamado (nome_status) VALUES (:novost)");
+    $query->bindValue(":novost",$status);
+    $query->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,13 +24,13 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="Backend/validar_login.php" method="POST">
+        <form action="adicionarStatus.php" method="POST">
         <h2>Cadastrar Novo Status</h2>
             <div class="form-group">
                 <label for="nstatus">Digite o Novo Status</label>
                 <input type="text" class="form-control" placeholder="Novo Status:" name="novost" id="nst" required>
             </div>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <input type="submit" value="Guardar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->

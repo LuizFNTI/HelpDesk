@@ -1,3 +1,15 @@
+<?php
+include_once '../Backend/conexao.php';
+
+if(isset($_POST['novop'])) {
+
+    $prioridade = $_POST['novop']; 
+
+    $query = $conn->prepare("INSERT INTO prioridade_chamado (nome_prioridade) VALUES (:novop)");
+    $query->bindValue(":novop",$prioridade);
+    $query->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,24 +24,13 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="#" method="POST">
+        <form action="adicionarPrioridade.php" method="POST">
         <h2>Adicionar Prioridade</h2>
             <div class="form-group">
                 <label for="nprioridade">Nova Prioridade</label>
-                <input type="text" class="form-control" placeholder="Prioridade:" name="novop" id="np" required value="<?php if(isset($resultado)) {echo $resultado['nome_prioridade'];} ?>">
+                <input type="text" class="form-control" placeholder="Prioridade:" name="novop" id="np" required>
             </div>
-            <p>Ativo: </p>
-            <div class="form-check-inline">  
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Sim
-            </label>
-            </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Não
-            </label>
-            </div><br><br>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <input type="submit" value="Guardar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->

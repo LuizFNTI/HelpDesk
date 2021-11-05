@@ -47,7 +47,14 @@
                         </tr>
                     </thead>
                     <?php
-                        include_once '../Backend/buscarDadosUsuarios.php';
+                        
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+
+                        $query = $conn->query("SELECT * FROM usuarios ORDER BY nome");
+
+                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
                         if(count($dados) > 0) {
                             for ($i=0; $i < count($dados); $i++) {

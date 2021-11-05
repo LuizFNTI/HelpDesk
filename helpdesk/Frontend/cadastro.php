@@ -1,3 +1,27 @@
+<?php
+include_once '../Backend/conexao.php';
+
+if(isset($_POST['nome'])) {
+
+    $matricula = $_POST['mat'];
+    $nome = $_POST['nome'];
+    $email = $_POST['email'];
+    $telefone = $_POST['telefone'];
+    $departamento = $_POST['departamento'];
+    $senha = $_POST['senha'];
+
+    //$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+
+    $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha) VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
+    $query->bindValue(":matricula", $matricula);
+    $query->bindValue(":nome",$nome);
+    $query->bindValue(":telefone",$telefone);
+    $query->bindValue(":email",$email);
+    $query->bindValue(":departamento",$departamento);
+    $query->bindValue(":senha",$senha);
+    $query->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,7 +34,7 @@
 </head>
 <body>
     <div class="row justify-content-center align-items-center" id="dp">
-        <form action="../Backend/guardarCadastro.php" method="POST">
+        <form action="cadastro.php" method="POST">
         <h2>Cadastro</h2>
         <div id="df1">
             <div class="form-group">
