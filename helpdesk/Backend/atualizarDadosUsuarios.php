@@ -9,14 +9,16 @@ if(isset($_POST['nome'])) {
     $telefone = $_POST['telefone'];
     $departamento = $_POST['departamento'];
 
-    $query = $conn->prepare("UPDATE usuarios SET nome = :n, telefone = :t, email = :e, departamento = :d, WHERE matricula = :m");
+    $query = $conn->prepare("UPDATE usuarios SET nome = ?, telefone = ?, email = ?, departamento = ? WHERE matricula = ?");
+    $query->execute(array($nome, $email, $telefone, $departamento, $matricula));
 
-    //$query->bindValue(':n',$nome);
-    //$query->bindValue(':t',$telefone);
-    //$query->bindValue(':e',$email);
-    //$query->bindValue(':d',$departamento);
-    //$query->bindValue(':m', $matricula);
-    $query->execute(array(':n' => $nome, ':e' => $email, ':t' => $telefone, ':d' => $departamento, ':m' => $matricula));
+    //$query->bindValue(":n",$nome);
+    //$query->bindValue(":t",$telefone);
+    //$query->bindValue(":e",$email);
+    //$query->bindValue(":d",$departamento);
+    //$query->bindValue(":m", $matricula);
+    //$query->execute();
+    //$query->execute(array(':n' => $nome, ':e' => $email, ':t' => $telefone, ':d' => $departamento, ':m' => $matricula));
 }
 
 
