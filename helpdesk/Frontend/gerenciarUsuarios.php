@@ -61,8 +61,8 @@
                     
                     echo "<tbody>";
 
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
+                        foreach ($dados[$i] as $k => $v) { 
+                            echo "<th>".$v."</th>";  
                         }
                     ?> 
                     <th>
