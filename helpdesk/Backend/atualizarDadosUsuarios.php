@@ -8,6 +8,7 @@ if(isset($_POST['nome'])) {
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
     $departamento = $_POST['departamento'];
+    
 
     $query = $conn->prepare("UPDATE usuarios SET nome = :n, telefone = :n, email = :e, departamento = :d WHERE matricula = :m");
 
