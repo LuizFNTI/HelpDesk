@@ -11,7 +11,7 @@ if(isset($_POST['nome'])) {
     $nivel = $_POST['nivel'];
     $ativo = $_POST['ativo'];
     
-    $query = $conn->prepare("UPDATE usuarios SET nome = :n, telefone = :n, email = :e, departamento = :d, nivel = :nv, ativo = :a WHERE matricula = :m");
+    $query = $conn->prepare("UPDATE usuarios SET nome = :n, telefone = :t, email = :e, departamento = :d, nivel = :nv, ativo = :a WHERE matricula = :m");
 
     $query->bindValue(":n",$nome);
     $query->bindValue(":t",$telefone);
