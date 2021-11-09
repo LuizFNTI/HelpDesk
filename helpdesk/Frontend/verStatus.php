@@ -3,12 +3,29 @@
 
     $resultado = array();
 
-    $cod_status = $_GET['status_up'];
+    $cod_status_up = $_GET['status_up'];
         
     $query = $conn->prepare("SELECT * FROM status_chamado WHERE cod_status = :cs");
-    $query->bindValue(":cs",$cod_status);
+    $query->bindValue(":cs",$cod_status_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
+
+    if(isset($_POST['verst'])) {
+
+        $cod_status = $_POST['vercs'];
+        $nome_status = $_POST['verst'];
+        $ativo = $_POST['ativo'];
+        
+        $query = $conn->prepare("UPDATE status_chamado SET nome_status = :ns,  ativo = :a WHERE cod_status = :cs");
+    
+        $query->bindValue(":ns",$nome_status);
+        $query->bindValue(":a",$ativo);
+        $query->bindValue(":cs",$cod_status);
+        $query->execute();
+    }
+    if($cod_status_up == null) {
+        header("location: gerenciarSistemaChamado.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,24 +41,23 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="#" method="POST">
+        <form action="verStatus.php" method="POST">
         <h2>Ver Status</h2>
             <div class="form-group">
+                <input type="hidden" class="form-control" placeholder="Prioridade:" name="vercs" id="vcs" required value="<?php if(isset($resultado)) {echo $resultado['cod_status'];} ?>">
+            </div>
+            <div class="form-group">
                 <label for="nstatus">Status</label>
-                <input type="text" class="form-control" placeholder="Status:" name="novost" id="nst" required value="<?php if(isset($resultado)) {echo $resultado['nome_status'];} ?>">
+                <input type="text" class="form-control" placeholder="Status:" name="verst" id="vst" required value="<?php if(isset($resultado)) {echo $resultado['nome_status'];} ?>">
             </div>
-            <p>Ativo: </p>
-            <div class="form-check-inline">  
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 1) {echo "checked";}?>>Sim
-            </label>
+            <div class="form-group">
+                <label for="ativo">Ativo:</label><br>
+                <select class="form-control" id="atv" name="ativo">
+                    <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
+                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
+                </select>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 0) {echo "checked";}?>>Não
-            </label>
-            </div><br><br>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <input type="submit" value="Guardar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->
