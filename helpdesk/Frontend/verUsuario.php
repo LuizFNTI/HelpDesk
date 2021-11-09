@@ -3,12 +3,37 @@
 
     $resultado = array();
 
-    $matricula = $_GET['matricula_up'];
+    $matricula_up = $_GET['matricula_up'];
         
     $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = :m");
-    $query->bindValue(":m",$matricula);
+    $query->bindValue(":m",$matricula_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
+
+    if(isset($_POST['nome'])) {
+
+        $matricula = $_POST['mat'];
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        $departamento = $_POST['departamento'];
+        $nivel = $_POST['nivel'];
+        $ativo = $_POST['ativo'];
+        
+        $query = $conn->prepare("UPDATE usuarios SET nome = :n, telefone = :t, email = :e, departamento = :d, nivel = :nv, ativo = :a WHERE matricula = :m");
+    
+        $query->bindValue(":n",$nome);
+        $query->bindValue(":t",$telefone);
+        $query->bindValue(":e",$email);
+        $query->bindValue(":d",$departamento);
+        $query->bindValue(":m",$matricula);
+        $query->bindValue(":nv",$nivel);
+        $query->bindValue(":a",$ativo);
+        $query->execute();
+    }
+    if($matricula_up == null) {
+        header("location: gerenciarUsuarios.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,7 +48,7 @@
 </head>
 <body>
     <div class="row justify-content-center align-items-center" id="dp">
-        <form method="POST" action="../Backend/atualizarDadosUsuarios.php">
+        <form method="POST" action="verUsuario.php">
         <h2>Editar Usuário</h2>
         <div id="df1">
             <div class="form-group">
