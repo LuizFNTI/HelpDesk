@@ -44,7 +44,7 @@
         <form action="verStatus.php" method="POST">
         <h2>Ver Status</h2>
             <div class="form-group">
-                <input type="hidden" class="form-control" placeholder="Prioridade:" name="vercs" id="vcs" required value="<?php if(isset($resultado)) {echo $resultado['cod_status'];} ?>">
+                <input type="hidden" class="form-control" name="vercs" id="vcs" required value="<?php if(isset($resultado)) {echo $resultado['cod_status'];} ?>">
             </div>
             <div class="form-group">
                 <label for="nstatus">Status</label>

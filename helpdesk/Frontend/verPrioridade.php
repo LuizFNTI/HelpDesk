@@ -44,7 +44,7 @@
         <form action="verPrioridade.php" method="POST">
         <h2>Ver Prioridade</h2>
             <div class="form-group">
-                <input type="hidden" class="form-control" placeholder="Prioridade:" name="vercp" id="vcp" required value="<?php if(isset($resultado)) {echo $resultado['cod_prioridade'];} ?>">
+                <input type="hidden" class="form-control" name="vercp" id="vcp" required value="<?php if(isset($resultado)) {echo $resultado['cod_prioridade'];} ?>">
             </div>
             <div class="form-group">
                 <label for="vprioridade">Prioridade</label>

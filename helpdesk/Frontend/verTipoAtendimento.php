@@ -3,12 +3,29 @@
 
     $resultado = array();
 
-    $cod_tipoa = $_GET['tipoa_up'];
+    $cod_tipoa_up = $_GET['tipoa_up'];
         
     $query = $conn->prepare("SELECT * FROM tipo_atendimento WHERE cod_tipo_atendimento = :cta");
-    $query->bindValue(":cta",$cod_tipoa);
+    $query->bindValue(":cta",$cod_tipoa_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
+
+    if(isset($_POST['verta'])) {
+
+        $cod_tipo_atendimento = $_POST['vercta'];
+        $nome_tipo_atendimento = $_POST['verta'];
+        $ativo = $_POST['ativo'];
+        
+        $query = $conn->prepare("UPDATE tipo_atendimento SET nome_tipo_atendimento = :nta,  ativo = :a WHERE cod_tipo_atendimento = :cta");
+    
+        $query->bindValue(":nta",$nome_tipo_atendimento);
+        $query->bindValue(":a",$ativo);
+        $query->bindValue(":cta",$cod_tipo_atendimento);
+        $query->execute();
+    }
+    if($cod_tipoa_up == null) {
+        header("location: gerenciarSistemaChamado.php");
+    }
 ?>
 <DOCTYPE html>
 <html lang="pt-br">
@@ -24,24 +41,23 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="#" method="POST">
+        <form action="verTipoAtendimento.php" method="POST">
         <h2>Ver Tipo Atendimento</h2>
             <div class="form-group">
+                <input type="hidden" class="form-control" name="vercta" id="vcta" required value="<?php if(isset($resultado)) {echo $resultado['cod_tipo_atendimento'];} ?>">
+            </div>
+            <div class="form-group">
                 <label for="vtipoa">Tipo Atendimento</label>
-                <input type="text" class="form-control" placeholder="Tipo Atendimento:" name="novota" id="nta" required value="<?php if(isset($resultado)) {echo $resultado['nome_tipo_atendimento'];} ?>">
+                <input type="text" class="form-control" placeholder="Tipo Atendimento:" name="verta" id="vta" required value="<?php if(isset($resultado)) {echo $resultado['nome_tipo_atendimento'];} ?>">
             </div>
-            <p>Ativo: </p>
-            <div class="form-check-inline">  
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 1) {echo "checked";}?>>Sim
-            </label>
+            <div class="form-group">
+                <label for="ativo">Ativo:</label><br>
+                <select class="form-control" id="atv" name="ativo">
+                    <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
+                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
+                </select>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio" <?php if($resultado['ativo'] == 0) {echo "checked";}?>>Não
-            </label>
-            </div><br><br>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <input type="submit" value="Guardar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->
