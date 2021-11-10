@@ -1,0 +1,26 @@
+SELECT tipo.nome_tipo, categoria.nome_categoria
+FROM categoria
+INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo;
+
+
+
+SELECT `tipo`.`nome_tipo`, `categoria`.`nome_categoria`, `subcategoria`.`nome_subcategoria` 
+FROM `subcategoria` 
+INNER JOIN `categoria` ON `categoria`.`cod_categoria` = `subcategoria`.`categoria_cod_categoria` 
+INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo
+
+
+
+SELECT
+    `tipo`.`nome_tipo`,
+    `categoria`.`nome_categoria`,
+    `subcategoria`.`nome_subcategoria`,
+    `item`.`nome_item`
+FROM
+    `item`
+INNER JOIN `subcategoria` ON `subcategoria`.`cod_subcategoria` = `item`.`subcategoria_cod_subcategoria`
+INNER JOIN `categoria` ON `categoria`.`cod_categoria` = `subcategoria`.`categoria_cod_categoria`
+INNER JOIN `tipo` ON `tipo`.`cod_tipo` = `categoria`.`tipo_cod_tipo`;
+
+
+
