@@ -40,24 +40,33 @@
                             <th>Categoria</th>
                             <th>SubCategoria</th>
                             <th>Item</th>
-                            <th>Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoUsuario.php">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoUsuario.php">Ver</a></td>
-                        </tr>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        $query = $conn->query("SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria, item.nome_item FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
+                    
+                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        if(count($dados) > 0) {
+                            for ($i=0; $i < count($dados); $i++) {
+                    
+                    echo "<tbody>";
+
+                        foreach ($dados[$i] as $k => $v) {
+                            echo "<th>".$v."</th>";
+                        }
+                    ?> 
+                    <!--<th>
+                        <a href="verStatus.php?status_up=<?php echo $dados[$i] ['cod_status']; ?>">Ver</a> 
+                    </th>-->
+                    <?php
+                    }
+                }
+                ?>
                     </tbody>
                 </table>
             </div> <!--tipodemanda-->
