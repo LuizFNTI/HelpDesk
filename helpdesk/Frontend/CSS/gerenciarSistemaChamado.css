@@ -42,6 +42,15 @@ body {
     padding: 20px;
     width: 1400px;
     height: 500px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+#dpc5 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
     margin-bottom: 200px;
     border-left-style: solid;
     border-right-style: solid;
@@ -60,6 +69,10 @@ body {
     overflow: auto;
 }
 #prioridade {
+    height: 400px;
+    overflow: auto;
+}
+#Gerenciaritenschamado {
     height: 400px;
     overflow: auto;
 }

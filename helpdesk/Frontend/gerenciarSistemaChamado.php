@@ -197,6 +197,48 @@
                 </table>
             </div> <!--Prioridade-->
         </div> <!--dpc4-->
+        <div class="row justify-content-center align-items-center">
+        <div id="dpc5">
+            <div id="Gerenciaritenschamado">
+                <div id="titulo"><h2>Gerenciar itens chamado</h2></div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Categoria</th>
+                            <th>SubCategoria</th>
+                            <th>Item</th>
+                        </tr>
+                    </thead>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        $query = $conn->query("SELECT * FROM prioridade_chamado ORDER BY nome_prioridade");
+                    
+                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        if(count($dados) > 0) {
+                            for ($i=0; $i < count($dados); $i++) {
+                    
+                    echo "<tbody>";
+
+                        foreach ($dados[$i] as $k => $v) {
+                            echo "<th>".$v."</th>";
+                        }
+                    ?> 
+                    <th>
+                        <a href="verPrioridade.php?prioridade_up=<?php echo $dados[$i] ['cod_prioridade']; ?>">Ver</a> 
+                    </th>
+                    <?php
+                    }
+                }
+                ?>
+                    </tbody>
+                </table>
+            </div> <!--Gerenciar itens chamado-->
+        </div> <!--dpc5-->
     </div> 
     </div> 
 </body>
