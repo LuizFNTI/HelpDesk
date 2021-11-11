@@ -42,11 +42,39 @@ body {
     padding: 20px;
     width: 1400px;
     height: 500px;
+    margin-bottom: 200px;
     border-left-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
 }
 #dpc5 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+#dpc6 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+#dpc7 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+#dpc8 {
     background-color: white;
     padding: 20px;
     width: 1400px;
@@ -72,7 +100,19 @@ body {
     height: 400px;
     overflow: auto;
 }
-#Gerenciaritenschamado {
+#gerenciarTipo {
+    height: 400px;
+    overflow: auto;
+}
+#gerenciarCategoria {
+    height: 400px;
+    overflow: auto;
+}
+#gerenciarSubCategoria {
+    height: 400px;
+    overflow: auto;
+}
+#gerenciarItem {
     height: 400px;
     overflow: auto;
 }

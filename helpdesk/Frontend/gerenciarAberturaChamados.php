@@ -11,10 +11,10 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
-        <li class="nav-item active" id="sizefont">
+        <li class="nav-item" id="sizefont">
         <a class="nav-link" href="gerenciarSistemaChamado.php">Gerenciar Sistema de Chamados</a>
         </li>
-        <li class="nav-item" id="sizefont">
+        <li class="nav-item active" id="sizefont">
         <a class="nav-link" href="gerenciarAberturaChamados.php">Gerenciar Abertura de Chamados</a>
         </li>
         <li class="nav-item" id="sizefont">
@@ -33,56 +33,14 @@
     </nav>
     <div id="bemv"><p>Olá, nomeUsuario</p></div>
     <div class="row justify-content-center align-items-center">
-        <div id="dpc1">
-            <div id="tipodemanda">
-                <div id="titulo"><h2>Gerenciar Abertura de Chamados</h2></div>
+        <div id="dpc5">
+            <div id="gerenciarTipo">
+                <div id="titulo"><h2>Gerenciar Tipo chamado</h2></div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Tipo</th>
-                            <th>Categoria</th>
-                            <th>SubCategoria</th>
-                            <th>Item</th>
-                        </tr>
-                    </thead>
-                    <?php
-                        include '../Backend/conexao.php';
-
-                        $dados = array();        
-                    
-                        $query = $conn->query("SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria, item.nome_item FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
-                    
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
-                    echo "<tbody>";
-
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
-                        }
-                    ?> 
-                    <!--<th>
-                        <a href="verStatus.php?status_up=<?php echo $dados[$i] ['cod_status']; ?>">Ver</a> 
-                    </th>-->
-                    <?php
-                    }
-                }
-                ?>
-                    </tbody>
-                </table>
-            </div> <!--tipodemanda-->
-        </div> <!--dpc1-->
-        <div class="row justify-content-center align-items-center">
-        <div id="dpc2">
-            <div id="status">
-                <div id="titulo"><h2>Gerenciar Status</h2></div>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Codigo</th>
-                            <th>Status</th>
+                            <th>Codigo Tipo</th>
+                            <th>Nome Tipo</th>
                             <th>Ativo</th>
                             <th>Ação</th>
                         </tr>
@@ -92,7 +50,7 @@
 
                         $dados = array();        
                     
-                        $query = $conn->query("SELECT * FROM status_chamado ORDER BY nome_status");
+                        $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
                     
                         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -106,7 +64,7 @@
                         }
                     ?> 
                     <th>
-                        <a href="verStatus.php?status_up=<?php echo $dados[$i] ['cod_status']; ?>">Ver</a> 
+                        <a href="verTipo.php?tipo_up=<?php echo $dados[$i] ['cod_tipo']; ?>">Ver</a> 
                     </th>
                     <?php
                     }
@@ -114,18 +72,19 @@
                 ?>
                     </tbody>
                 </table>
-            </div> <!--status-->
-        </div> <!--dpc2-->
+            </div> <!--Gerenciar Tipo chamado-->
+        </div> <!--dpc5-->
         <div class="row justify-content-center align-items-center">
-        <div id="dpc3">
-            <div id="tipoatendimento">
-                <div id="titulo"><h2>Gerenciar Tipo Atendimento</h2></div>
+        <div id="dpc6">
+            <div id="gerenciarCategoria">
+                <div id="titulo"><h2>Gerenciar Categoria Chamado</h2></div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Tipo Atendimento</th>
+                            <th>Codigo Categoria</th>
+                            <th>Nome Categoria</th>
                             <th>Ativo</th>
+                            <th>Tipo Associado</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -134,7 +93,7 @@
 
                         $dados = array();        
                     
-                        $query = $conn->query("SELECT * FROM tipo_atendimento ORDER BY nome_tipo_atendimento");
+                        $query = $conn->query("SELECT * FROM categoria ORDER BY nome_categoria");
                     
                         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -148,7 +107,7 @@
                         }
                     ?> 
                     <th>
-                        <a href="verTipoAtendimento.php?tipoa_up=<?php echo $dados[$i] ['cod_tipo_atendimento']; ?>">Ver</a> 
+                        <a href="verCategoria.php?categoria_up=<?php echo $dados[$i] ['cod_categoria'];?>">Ver</a> 
                     </th>
                     <?php
                     }
@@ -156,18 +115,19 @@
                 ?>
                     </tbody>
                 </table>
-            </div> <!--tipoatendimento-->
-        </div> <!--dpc3-->
+            </div> <!--Gerenciar Categoria chamado-->
+        </div> <!--dpc6-->
         <div class="row justify-content-center align-items-center">
-        <div id="dpc4">
-            <div id="prioridade">
-                <div id="titulo"><h2>Gerenciar Prioridade</h2></div>
+        <div id="dpc7">
+            <div id="gerenciarSubCategoria">
+                <div id="titulo"><h2>Gerenciar SubCategoria Chamado</h2></div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Codigo</th>
-                            <th>Prioridade</th>
+                            <th>Codigo SubCategoria</th>
+                            <th>Nome SubCategoria</th>
                             <th>Ativo</th>
+                            <th>Categoria Associada</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -176,7 +136,7 @@
 
                         $dados = array();        
                     
-                        $query = $conn->query("SELECT * FROM prioridade_chamado ORDER BY nome_prioridade");
+                        $query = $conn->query("SELECT * FROM subcategoria ORDER BY nome_subcategoria");
                     
                         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -190,7 +150,7 @@
                         }
                     ?> 
                     <th>
-                        <a href="verPrioridade.php?prioridade_up=<?php echo $dados[$i] ['cod_prioridade']; ?>">Ver</a> 
+                        <a href="verSubCategoria.php?subcategoria_up=<?php echo $dados[$i] ['cod_subcategoria'];?>">Ver</a> 
                     </th>
                     <?php
                     }
@@ -198,9 +158,50 @@
                 ?>
                     </tbody>
                 </table>
-            </div> <!--Prioridade-->
-        </div> <!--dpc4-->
-    </div> 
-    </div> 
+            </div> <!--Gerenciar SubCategoria chamado-->
+        </div> <!--dpc7-->
+        <div class="row justify-content-center align-items-center">
+        <div id="dpc8">
+            <div id="gerenciarItem">
+                <div id="titulo"><h2>Gerenciar Item Chamado</h2></div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Codigo Item</th>
+                            <th>Nome Item</th>
+                            <th>Ativo</th>
+                            <th>SubCategoria Associada</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        $query = $conn->query("SELECT * FROM item ORDER BY nome_item");
+                    
+                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        if(count($dados) > 0) {
+                            for ($i=0; $i < count($dados); $i++) {
+                    
+                    echo "<tbody>";
+
+                        foreach ($dados[$i] as $k => $v) {
+                            echo "<th>".$v."</th>";
+                        }
+                    ?> 
+                    <th>
+                        <a href="verItem.php?item_up=<?php echo $dados[$i] ['cod_item'];?>">Ver</a> 
+                    </th>
+                    <?php
+                    }
+                }
+                ?>
+                    </tbody>
+                </table>
+            </div> <!--Gerenciar Item chamado-->
+        </div> <!--dpc7-->
 </body>
 </html>
