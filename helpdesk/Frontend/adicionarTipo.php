@@ -18,17 +18,13 @@
                 <label for="ntipo">Digite o Novo Tipo</label>
                 <input type="text" class="form-control" placeholder="Novo Tipo:" name="novot" id="nt" required>
             </div>
-            <p>Ativo: </p>
-            <div class="form-check-inline">  
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Sim
-            </label>
+            <div class="form-group">
+                <label for="ativo">Ativo:</label><br>
+                <select class="form-control" id="atv" name="ativo">
+                    <option>Inativo</option>
+                    <option>Ativo</option>
+                </select>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Não
-            </label>
-            </div><br><br>
             <button type="button" class="btn btn-success">Guardar</button>
         </form>
     </div> <!--form1-->
