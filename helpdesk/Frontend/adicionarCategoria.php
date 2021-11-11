@@ -1,3 +1,15 @@
+<?php
+include_once '../Backend/conexao.php';
+
+if(isset($_POST['novoc'])) {
+
+    $categoria = $_POST['novoc']; 
+
+    $query = $conn->prepare("INSERT INTO categoria (nome_categoria) VALUES (:novot)");
+    $query->bindValue(":novot",$tipo);
+    $query->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -16,29 +28,39 @@
         <h2>Cadastrar Nova Categoria</h2>
         <div class="form-group">
                 <label for="tipodemanda">Selrcione o Tipo de Demanda que Deseja Vincular a Esta Categoria</label>
-                <select class="form-control" placeholder="Tipo" id="tipod" name="tipo">
-                    <option>Nenhum</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <select class="form-control" id="cdt" name="ctipo">
+                <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        $query = $conn->query("SELECT cod_tipo FROM tipo ORDER BY nome_tipo");
+                    
+                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        if(count($dados) > 0) {
+                            for ($i=0; $i < count($dados); $i++) {
+
+                        foreach ($dados[$i] as $k => $v) {
+                            echo "<option value=$v>".$v."</option>";
+                        }
+                    }
+                }
+                ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="ncat">Digite a Nova Categoria</label>
                 <input type="text" class="form-control" placeholder="Nova Categoria:" name="novacat" id="nc" required>
             </div>
-            <p>Ativo: </p>
-            <div class="form-check-inline">  
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Sim
-            </label>
+            <div class="form-group">
+                <label for="ativo">Ativo:</label><br>
+                <select class="form-control" id="atv" name="ativo">
+                    <option>Inativo</option>
+                    <option>Ativo</option>
+                </select>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Não
-            </label>
-            </div><br><br>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <input type="submit" value="Guardar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->

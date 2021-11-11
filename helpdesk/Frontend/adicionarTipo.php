@@ -1,3 +1,15 @@
+<?php
+include_once '../Backend/conexao.php';
+
+if(isset($_POST['novot'])) {
+
+    $tipo = $_POST['novot']; 
+
+    $query = $conn->prepare("INSERT INTO tipo (nome_tipo) VALUES (:novot)");
+    $query->bindValue(":novot",$tipo);
+    $query->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,7 +24,7 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="Backend/validar_login.php" method="POST">
+        <form action="adicionarTipo.php" method="POST">
         <h2>Cadastrar Novo Tipo</h2>
             <div class="form-group">
                 <label for="ntipo">Digite o Novo Tipo</label>
@@ -25,7 +37,7 @@
                     <option>Ativo</option>
                 </select>
             </div>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <input type="submit" value="Guardar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->
