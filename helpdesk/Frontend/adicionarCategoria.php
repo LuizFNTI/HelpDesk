@@ -38,7 +38,7 @@ if(isset($_POST['novacat'])) {
 
                     $dados = array();        
                     
-                    $query = $conn->query("SELECT nome_tipo FROM tipo ORDER BY nome_tipo");
+                    $query = $conn->query("SELECT cod_tipo, nome_tipo FROM tipo ORDER BY nome_tipo");
                     
                     $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
