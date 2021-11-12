@@ -14,50 +14,81 @@
         <div id="form1">
         <form action="Backend/validar_login.php" method="POST">
         <h2>Cadastrar Novo Item</h2>
-
         <div class="form-group">
                 <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
-                <select class="form-control" placeholder="Tipo" id="tipod" name="tipo">
-                    <option>Nenhum</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <select class="form-control" id="cdt" name="ctipo">
+                <?php
+                    include '../Backend/conexao.php';
+
+                    $dados = array();        
+                    
+                    $query = $conn->query("SELECT nome_tipo FROM tipo ORDER BY nome_tipo");
+                    
+                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        for ($i=0; $i < count($dados); $i++) {
+
+                            foreach ($dados[$i] as $v) {
+                                echo "<option value=$v>".$v."</option>";
+                            }
+                        }
+                ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="categoria">Selecione a Categoria:</label>
-                <select class="form-control" id="catg" name="cat">
-                    <option>Nenhum</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <select class="form-control" id="ccatg" name="ccat">
+                <?php
+                    include '../Backend/conexao.php';
+
+                    $dados = array();        
+                    
+                    $query = $conn->query("SELECT nome_categoria FROM categoria ORDER BY nome_categoria");
+                    
+                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        for ($i=0; $i < count($dados); $i++) {
+
+                            foreach ($dados[$i] as $v) {
+                                echo "<option value=$v>".$v."</option>";
+                            }
+                        }
+                ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="subcat">Selecione a SubCategoria:</label>
-                <select class="form-control" id="scatg" name="scat">
-                    <option>Nenhum</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <select class="form-control" id="cscatg" name="cscat">
+                <?php
+                    include '../Backend/conexao.php';
+
+                    $dados = array();        
+                    
+                    $query = $conn->query("SELECT nome_subcategoria FROM subcategoria ORDER BY nome_subcategoria");
+                    
+                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                        for ($i=0; $i < count($dados); $i++) {
+
+                            foreach ($dados[$i] as $v) {
+                                echo "<option value=$v>".$v."</option>";
+                            }
+                        }
+                ?>
                 </select>
                 </div>
                 <div class="form-group">
                 <label for="nitem">Digite o Novo Item</label>
                 <input type="text" class="form-control" placeholder="Novo Item:" name="novoi" id="ni" required>
             </div>
-            <p>Ativo: </p>
-            <div class="form-check-inline">  
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Sim
-            </label>
+            <div class="form-group">
+                <label for="ativo">Ativo:</label><br>
+                <select class="form-control" id="atv" name="ativo">
+                    <option value="0">Inativo</option>
+                    <option value="1">Ativo</option>
+                </select>
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Não
-            </label>
-            </div><br><br>
-            <button type="button" class="btn btn-success">Guardar</button>
+            <input type="submit" value="Guardar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->
