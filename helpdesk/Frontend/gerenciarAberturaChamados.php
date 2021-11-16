@@ -83,8 +83,8 @@
                         <tr>
                             <th>Codigo Categoria</th>
                             <th>Nome Categoria</th>
-                            <th>Ativo</th>
                             <th>Tipo Associado</th>
+                            <th>Ativo</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -93,7 +93,7 @@
 
                         $dados = array();        
                     
-                        $query = $conn->query("SELECT * FROM categoria ORDER BY nome_categoria");
+                        $query = $conn->query("SELECT categoria.cod_categoria, categoria.nome_categoria, tipo.nome_tipo, categoria.ativo FROM categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
                         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -126,8 +126,9 @@
                         <tr>
                             <th>Codigo SubCategoria</th>
                             <th>Nome SubCategoria</th>
-                            <th>Ativo</th>
                             <th>Categoria Associada</th>
+                            <th>Tipo Associado</th>
+                            <th>Ativo</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -136,7 +137,7 @@
 
                         $dados = array();        
                     
-                        $query = $conn->query("SELECT * FROM subcategoria ORDER BY nome_subcategoria");
+                        $query = $conn->query("SELECT subcategoria.cod_subcategoria, subcategoria.nome_subcategoria, categoria.nome_categoria, tipo.nome_tipo, subcategoria.ativo FROM subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
                         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -169,8 +170,10 @@
                         <tr>
                             <th>Codigo Item</th>
                             <th>Nome Item</th>
-                            <th>Ativo</th>
                             <th>SubCategoria Associada</th>
+                            <th>Categoria Associada</th>
+                            <th>Tipo Associado</th>
+                            <th>Ativo</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -179,7 +182,7 @@
 
                         $dados = array();        
                     
-                        $query = $conn->query("SELECT * FROM item ORDER BY nome_item");
+                        $query = $conn->query("SELECT item.cod_item, item.nome_item, subcategoria.nome_subcategoria, categoria.nome_categoria, tipo.nome_tipo, item.ativo FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo;");
                     
                         $dados = $query->fetchAll(PDO::FETCH_ASSOC);
 

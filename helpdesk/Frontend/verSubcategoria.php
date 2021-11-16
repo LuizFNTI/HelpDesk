@@ -3,27 +3,27 @@
 
     $resultado = array();
 
-    $cod_tipo_up = $_GET['tipo_up'];
+    $cod_subcategoria_up = $_GET['subcategoria_up'];
         
-    $query = $conn->prepare("SELECT * FROM tipo WHERE cod_tipo = :ct");
-    $query->bindValue(":ct",$cod_tipo_up);
+    $query = $conn->prepare("SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.cod_subcategoria subcategoria.nome_subcategoria, subcategoria.ativo FROM subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo WHERE cod_subcategoria = :csc");
+    $query->bindValue(":csc",$cod_subcategoria_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
-    if(isset($_POST['vert'])) {
+    if(isset($_POST['vercat'])) {
 
-        $cod_tipo = $_POST['verct'];
-        $nome_tipo = $_POST['vert'];
+        $cod_categoria = $_POST['vercc'];
+        $nome_categoria = $_POST['vercat'];
         $ativo = $_POST['ativo'];
         
-        $query = $conn->prepare("UPDATE tipo SET nome_tipo = :nt, ativo = :a WHERE cod_tipo = :ct");
+        $query = $conn->prepare("UPDATE categoria SET nome_categoria = :nc, ativo = :a WHERE cod_categoria = :cc");
     
-        $query->bindValue(":nt",$nome_tipo);
+        $query->bindValue(":nc",$nome_categoria);
         $query->bindValue(":a",$ativo);
-        $query->bindValue(":ct",$cod_tipo);
+        $query->bindValue(":cc",$cod_categoria);
         $query->execute();
     }
-    if($cod_tipo_up == null) {
+    if($cod_categoria_up == null) {
         header("location: gerenciarAberturaChamados.php");
     }
 ?>
@@ -33,7 +33,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Tipo Demanda</title>
+    <title>Ver Categoria</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/adicionarTipo.css">
 </head>
@@ -41,15 +41,15 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="verTipo.php" method="POST">
-        <h2>Ver Tipo</h2>
+        <form action="verCategoria.php" method="POST">
+        <h2>Cadastrar Novo Tipo</h2>
+        <?php echo "Tipo Associado: ".$resultado['nome_tipo'];?>
             <div class="form-group">
-                <label for="vctipo">Codigo Tipo</label>
-                <input type="hidden" class="form-control" name="verct" id="vct" required value="<?php if(isset($resultado)) {echo $resultado['cod_tipo'];} ?>">
+                <input type="hidden" class="form-control" name="vercc" id="vcc" required value="<?php if(isset($resultado)) {echo $resultado['cod_categoria'];} ?>">
             </div>
             <div class="form-group">
-                <label for="vtipo">Tipo</label>
-                <input type="text" class="form-control" name="vert" id="vt" required value="<?php if(isset($resultado)) {echo $resultado['nome_tipo'];} ?>">
+                <label for="vcat">Categoria</label>
+                <input type="text" class="form-control" name="vercat" id="vc" required value="<?php if(isset($resultado)) {echo $resultado['nome_categoria'];} ?>">
             </div>
             <div class="form-group">
                 <label for="ativo">Ativo:</label><br>
