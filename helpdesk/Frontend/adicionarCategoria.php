@@ -40,14 +40,9 @@ if(isset($_POST['novacat'])) {
                     
                     $query = $conn->query("SELECT cod_tipo, nome_tipo FROM tipo ORDER BY nome_tipo");
                     
-                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                        for ($i=0; $i < count($dados); $i++) {
-
-                            foreach ($dados[$i] as $v) {
-                                echo "<option value=$v>".$v."</option>";
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_tipo'].">".$dados['nome_tipo']."</option>";
                             }
-                        }
                 ?>
                 </select>
             </div>
