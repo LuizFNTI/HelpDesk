@@ -42,7 +42,7 @@
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
         <form action="verCategoria.php" method="POST">
-        <h2>Cadastrar Novo Tipo</h2>
+        <h2>Ver Categoria</h2>
         <?php echo "Tipo Associado: ".$resultado['nome_tipo'];?>
             <div class="form-group">
                 <input type="hidden" class="form-control" name="vercc" id="vcc" required value="<?php if(isset($resultado)) {echo $resultado['cod_categoria'];} ?>">
