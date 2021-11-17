@@ -6,7 +6,6 @@ if(isset($_POST['novacat'])) {
     $subcategoria = $_POST['novasub'];
     $ativo = $_POST['ativo'];
     $cod_categoria = $_POST['ccat'];
-     
 
     $query = $conn->prepare("INSERT INTO subcategoria (nome_subcategoria, ativo, categoria_cod_categoria) VALUES (:novasc, :atv, :cdc)");
     $query->bindValue(":novasc",$subcategoria);
@@ -47,9 +46,6 @@ if(isset($_POST['novacat'])) {
                 ?>
                 </select>
             </div>
-            <input type="submit" value="Selecionar Tipo">
-            </form>
-            <form action="adicionarSubCat.php" method="POST">
             <div class="form-group">
                 <label for="categoria">Selecione a Categoria que deseja vincular a Esta SubCategoria:</label>
                 <select class="form-control" id="ccatg" name="ccat">

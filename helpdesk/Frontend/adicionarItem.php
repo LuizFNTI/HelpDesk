@@ -30,9 +30,6 @@
                 ?>
                 </select>
             </div>
-            <input type="submit" value="Guardar">
-            </form>
-            <form action="adicionarItem.php" method="POST">
             <div class="form-group">
                 <label for="categoria">Selecione a Categoria:</label>
                 <select class="form-control" id="ccatg" name="ccat">
@@ -52,9 +49,6 @@
                 ?>
                 </select>
             </div>
-            <input type="submit" value="Guardar">
-            </form>
-            <form action="adicionarItem.php" method="POST">
             <div class="form-group">
                 <label for="subcat">Selecione a SubCategoria:</label>
                 <select class="form-control" id="cscatg" name="cscat">
@@ -74,9 +68,6 @@
                 ?>
                 </select>
                 </div>
-                <input type="submit" value="Guardar">
-                </form>
-                <form action="adicionarItem.php" method="POST">
                 <div class="form-group">
                 <label for="nitem">Digite o Novo Item</label>
                 <input type="text" class="form-control" placeholder="Novo Item:" name="novoi" id="ni" required>
