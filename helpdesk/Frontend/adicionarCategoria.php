@@ -42,7 +42,7 @@ if(isset($_POST['novacat'])) {
                     
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                         echo "<option value=".$dados['cod_tipo'].">".$dados['nome_tipo']."</option>";
-                            }
+                    }
                 ?>
                 </select>
             </div>

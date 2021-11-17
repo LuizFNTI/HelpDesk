@@ -5,7 +5,8 @@ if(isset($_POST['novacat'])) {
 
     $subcategoria = $_POST['novasub'];
     $ativo = $_POST['ativo'];
-    $cod_categoria = $_POST['ccat']; 
+    $cod_categoria = $_POST['ccat'];
+     
 
     $query = $conn->prepare("INSERT INTO subcategoria (nome_subcategoria, ativo, categoria_cod_categoria) VALUES (:novasc, :atv, :cdc)");
     $query->bindValue(":novasc",$subcategoria);
@@ -28,7 +29,7 @@ if(isset($_POST['novacat'])) {
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="Backend/validar_login.php" method="POST">
+        <form action="adicionarSubCat.php" method="POST">
         <h2>Cadastrar Nova SubCategoria</h2>
         <div class="form-group">
                 <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
@@ -38,37 +39,33 @@ if(isset($_POST['novacat'])) {
 
                     $dados = array();        
                     
-                    $query = $conn->query("SELECT nome_tipo FROM tipo ORDER BY nome_tipo");
+                    $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
                     
-                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                        for ($i=0; $i < count($dados); $i++) {
-
-                            foreach ($dados[$i] as $v) {
-                                echo "<option value=$v>".$v."</option>";
-                            }
-                        }
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_tipo'].">".$dados['nome_tipo']."</option>";
+                    }
                 ?>
                 </select>
             </div>
+            <input type="submit" value="Selecionar Tipo">
+            </form>
+            <form action="adicionarSubCat.php" method="POST">
             <div class="form-group">
                 <label for="categoria">Selecione a Categoria que deseja vincular a Esta SubCategoria:</label>
                 <select class="form-control" id="ccatg" name="ccat">
                 <?php
                     include '../Backend/conexao.php';
 
+                    $cod_tipo = $_POST['ctipo'];
+
                     $dados = array();        
                     
-                    $query = $conn->query("SELECT nome_categoria FROM categoria ORDER BY nome_categoria");
-                    
-                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
+                    $query->execute(array($cod_tipo));
 
-                        for ($i=0; $i < count($dados); $i++) {
-
-                            foreach ($dados[$i] as $v) {
-                                echo "<option value=$v>".$v."</option>";
-                            }
-                        }
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
+                    }
                 ?>
                 </select>
             </div>

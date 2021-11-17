@@ -12,7 +12,7 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="Backend/validar_login.php" method="POST">
+        <form action="adicionarItem.php" method="POST">
         <h2>Cadastrar Novo Item</h2>
         <div class="form-group">
                 <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
@@ -22,61 +22,61 @@
 
                     $dados = array();        
                     
-                    $query = $conn->query("SELECT nome_tipo FROM tipo ORDER BY nome_tipo");
+                    $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
                     
-                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                        for ($i=0; $i < count($dados); $i++) {
-
-                            foreach ($dados[$i] as $v) {
-                                echo "<option value=$v>".$v."</option>";
-                            }
-                        }
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_tipo'].">".$dados['nome_tipo']."</option>";
+                    }
                 ?>
                 </select>
             </div>
+            <input type="submit" value="Guardar">
+            </form>
+            <form action="adicionarItem.php" method="POST">
             <div class="form-group">
                 <label for="categoria">Selecione a Categoria:</label>
                 <select class="form-control" id="ccatg" name="ccat">
                 <?php
                     include '../Backend/conexao.php';
 
+                    $cod_tipo = $_POST['ctipo'];
+
                     $dados = array();        
                     
-                    $query = $conn->query("SELECT nome_categoria FROM categoria ORDER BY nome_categoria");
-                    
-                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                    $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
+                    $query->execute(array($cod_tipo));
 
-                        for ($i=0; $i < count($dados); $i++) {
-
-                            foreach ($dados[$i] as $v) {
-                                echo "<option value=$v>".$v."</option>";
-                            }
-                        }
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
+                    }
                 ?>
                 </select>
             </div>
+            <input type="submit" value="Guardar">
+            </form>
+            <form action="adicionarItem.php" method="POST">
             <div class="form-group">
                 <label for="subcat">Selecione a SubCategoria:</label>
                 <select class="form-control" id="cscatg" name="cscat">
                 <?php
                     include '../Backend/conexao.php';
 
+                    $cod_categoria = $_POST['ccat'];
+
                     $dados = array();        
                     
-                    $query = $conn->query("SELECT nome_subcategoria FROM subcategoria ORDER BY nome_subcategoria");
+                    $query = $conn->prepare("SELECT * FROM subcategoria WHERE categoria_cod_categoria = ?");
+                    $query->execute(array($cod_categoria));
                     
-                    $dados = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                        for ($i=0; $i < count($dados); $i++) {
-
-                            foreach ($dados[$i] as $v) {
-                                echo "<option value=$v>".$v."</option>";
-                            }
-                        }
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
+                    }
                 ?>
                 </select>
                 </div>
+                <input type="submit" value="Guardar">
+                </form>
+                <form action="adicionarItem.php" method="POST">
                 <div class="form-group">
                 <label for="nitem">Digite o Novo Item</label>
                 <input type="text" class="form-control" placeholder="Novo Item:" name="novoi" id="ni" required>
