@@ -1,12 +1,14 @@
 <?php
 include_once '../Backend/conexao.php';
 
+//Verifica se existe POST
 if(isset($_POST['novacat'])) {
-
+    //Pega os POSTs do form e atribui a variaveis
     $subcategoria = $_POST['novasub'];
     $ativo = $_POST['ativo'];
     $cod_categoria = $_POST['ccat'];
 
+    //faz a consulta no banco
     $query = $conn->prepare("INSERT INTO subcategoria (nome_subcategoria, ativo, categoria_cod_categoria) VALUES (:novasc, :atv, :cdc)");
     $query->bindValue(":novasc",$subcategoria);
     $query->bindValue(":atv",$ativo);
@@ -38,8 +40,10 @@ if(isset($_POST['novacat'])) {
 
                     $dados = array();        
                     
+                    //faz a consulta no banco
                     $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
                     
+                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                         echo "<option value=".$dados['cod_tipo'].">".$dados['nome_tipo']."</option>";
                     }
@@ -52,10 +56,12 @@ if(isset($_POST['novacat'])) {
                 <?php
                     include '../Backend/conexao.php';
 
+                    //Usa o POST para atribuir o valor a condição WHERE
                     $cod_tipo = $_POST['ctipo'];
 
                     $dados = array();        
                     
+                    //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
                     $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
                     $query->execute(array($cod_tipo));
 
