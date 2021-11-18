@@ -31,17 +31,26 @@
     <main class="row justify-content-center align-items-center">
     <div class="row justify-content-center align-items-center" id="dpc">
         <div id="form1">
-        <form action="Backend/validar_login.php" method="POST">
+        <form action="abrirChamado.php" method="POST">
         <h2>Abrir Novo Chamado</h2>
     <div class="row">
         <div class="col">
             <div class="form-group">
                 <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
                 <select class="form-control" placeholder="Tipo" id="tipod" name="tipo">
-                    <option>Nenhum</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <?php
+                    include '../Backend/conexao.php';
+
+                    $dados = array();        
+                    
+                    //faz a consulta no banco
+                    $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
+                    
+                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_tipo'].">".$dados['nome_tipo']."</option>";
+                    }
+                ?>
                 </select>
             </div>
         </div> <!--col1-->
@@ -49,10 +58,22 @@
             <div class="form-group">
                 <label for="categoria">Selecione a Categoria:</label>
                 <select class="form-control" id="catg" name="cat">
-                    <option>Nenhum</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                <?php
+                    include '../Backend/conexao.php';
+
+                    //Usa o POST para atribuir o valor a condição WHERE
+                    $cod_tipo = $_POST['ctipo'];
+
+                    $dados = array();        
+                    
+                    //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
+                    $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
+                    $query->execute(array($cod_tipo));
+
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
+                    }
+                ?>
                 </select>
             </div>
         </div> <!--col2-->
@@ -62,10 +83,20 @@
                 <div class="form-group">
                     <label for="subcat">Selecione a SubCategoria:</label>
                     <select class="form-control" id="scatg" name="scat">
-                        <option>Nenhum</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <?php
+                    include '../Backend/conexao.php';
+
+                    $cod_categoria = $_POST['ccat'];
+
+                    $dados = array();        
+                    
+                    $query = $conn->prepare("SELECT * FROM subcategoria WHERE categoria_cod_categoria = ?");
+                    $query->execute(array($cod_categoria));
+                    
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_subcategoria'].">".$dados['nome_subcategoria']."</option>";
+                    }
+                ?>
                     </select>
                 </div>
             </div> <!--col3-->
@@ -73,10 +104,7 @@
                 <div class="form-group">
                     <label for="item">Selecione o Item:</label>
                     <select class="form-control" id="items" name="item">
-                        <option>Nenhum</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                        
                     </select>
                 </div>
             </div> <!--col4-->

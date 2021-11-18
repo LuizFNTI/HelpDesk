@@ -63,7 +63,7 @@
                     $query->execute(array($cod_categoria));
                     
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                        echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
+                        echo "<option value=".$dados['cod_subcategoria'].">".$dados['nome_subcategoria']."</option>";
                     }
                 ?>
                 </select>
