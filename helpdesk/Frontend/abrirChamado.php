@@ -1,3 +1,24 @@
+<?php
+include_once '../Backend/conexao.php';
+
+//Verifica se existe POST
+if(isset($_POST['descricao'])) {
+
+    //Pega os POSTs do form e atribui a variaveis
+    $tipo = $_POST['tipo'];
+    $categoria = $_POST['cat'];
+    $subcategoria = $_POST['scat'];
+    $item = $_POST['item']; 
+
+    //faz a consulta no banco
+    $query = $conn->prepare("INSERT INTO chamados (tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:tipo, :categoria, :subcat, :item)");
+    $query->bindValue(":tipo",$tipo);
+    $query->bindValue(":categoria",$categoria);
+    $query->bindValue(":subcat",$subcategoria);
+    $query->bindValue(":item",$item);
+    $query->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -104,7 +125,20 @@
                 <div class="form-group">
                     <label for="item">Selecione o Item:</label>
                     <select class="form-control" id="items" name="item">
-                        
+                    <?php
+                    include '../Backend/conexao.php';
+
+                    $cod_subcategoria = $_POST['scat'];
+
+                    $dados = array();        
+                    
+                    $query = $conn->prepare("SELECT * FROM item WHERE subcategoria_cod_subcategoria = ?");
+                    $query->execute(array($cod_subcategoria));
+                    
+                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                        echo "<option value=".$dados['cod_item'].">".$dados['nome_item']."</option>";
+                    }
+                ?>
                     </select>
                 </div>
             </div> <!--col4-->

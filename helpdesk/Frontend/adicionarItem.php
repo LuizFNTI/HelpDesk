@@ -1,3 +1,21 @@
+<?php
+include_once '../Backend/conexao.php';
+
+//Verifica se existe POST
+if(isset($_POST['novoi'])) {
+    //Pega os POSTs do form e atribui a variaveis
+    $item = $_POST['novoi'];
+    $ativo = $_POST['ativo'];
+    $cod_subcategoria = $_POST['cscat'];
+
+    //faz a consulta no banco
+    $query = $conn->prepare("INSERT INTO item (nome_item, ativo, subcategoria_cod_subcategoria) VALUES (:novoi, :atv, :cdsc)");
+    $query->bindValue(":novoi",$item);
+    $query->bindValue(":atv",$ativo);
+    $query->bindValue(":cdsc",$cod_subcategoria);
+    $query->execute();
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,7 +33,7 @@
         <form action="adicionarItem.php" method="POST">
         <h2>Cadastrar Novo Item</h2>
         <div class="form-group">
-                <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
+                <label for="tipodemanda">Selecione o Tipo de Demanda</label>
                 <select class="form-control" id="cdt" name="ctipo">
                 <?php
                     include '../Backend/conexao.php';
