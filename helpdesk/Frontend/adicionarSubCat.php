@@ -57,13 +57,15 @@ if(isset($_POST['novacat'])) {
                     include '../Backend/conexao.php';
 
                     //Usa o POST para atribuir o valor a condição WHERE
-                    $cod_tipo = $_POST['ctipo'];
-
-                    $dados = array();        
+                    
+                    
+                    $dados = array(); 
+                    
+                    $cd_tipo = $_POST['cod_tipo'] ;
                     
                     //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
                     $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
-                    $query->execute(array($cod_tipo));
+                    $query->execute(array($cd_tipo));
 
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                         echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
@@ -90,13 +92,12 @@ if(isset($_POST['novacat'])) {
     <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
     <script>
         $("#cdt") .on("change", function() {
-            var cod_tipo = $("#cdt").val();
-            alert(cod_tipo);
+            var codi_tipo = $("#cdt").val();
 
             $.ajax({
                 url: 'adicionarSubCat.php',
                 type: 'POST',
-                data: {cod_tipo:cod_tipo};
+                data: {cod_tipo: codi_tipo}
             });
         });
     </script>
