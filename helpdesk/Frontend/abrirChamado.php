@@ -152,5 +152,6 @@ if(isset($_POST['descricao'])) {
     </div> <!--form1-->
     </div> <!--dpc-->
     </main>
+    <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
 </body>
 </html>

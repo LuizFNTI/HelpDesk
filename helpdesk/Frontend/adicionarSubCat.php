@@ -87,5 +87,18 @@ if(isset($_POST['novacat'])) {
     </div> <!--form1-->
     </div> <!--dpc-->
     </main>
+    <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
+    <script>
+        $("#cdt") .on("change", function() {
+            var cod_tipo = $("#cdt").val();
+            alert(cod_tipo);
+
+            $.ajax({
+                url: 'adicionarSubCat.php',
+                type: 'POST',
+                data: {cod_tipo:cod_tipo};
+            });
+        });
+    </script>
 </body>
 </html>
