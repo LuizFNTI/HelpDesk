@@ -91,6 +91,7 @@ if(isset($_POST['descricao'])) {
                     $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
                     $query->execute(array($cod_tipo));
 
+                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                         echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
                     }
@@ -107,13 +108,16 @@ if(isset($_POST['descricao'])) {
                     <?php
                     include '../Backend/conexao.php';
 
+                    //Usa o POST para atribuir o valor a condição WHERE
                     $cod_categoria = $_POST['ccat'];
 
                     $dados = array();        
                     
+                    //Faz a consulta e verifica qual categoria as subcategorias pertence atraves do cod_categoria passado pelo POST
                     $query = $conn->prepare("SELECT * FROM subcategoria WHERE categoria_cod_categoria = ?");
                     $query->execute(array($cod_categoria));
                     
+                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                         echo "<option value=".$dados['cod_subcategoria'].">".$dados['nome_subcategoria']."</option>";
                     }
@@ -128,13 +132,16 @@ if(isset($_POST['descricao'])) {
                     <?php
                     include '../Backend/conexao.php';
 
+                    //Usa o POST para atribuir o valor a condição WHERE
                     $cod_subcategoria = $_POST['scat'];
 
                     $dados = array();        
                     
+                    //Faz a consulta e verifica qual subcategoria as item pertence atraves do cod_subcategoria passado pelo POST
                     $query = $conn->prepare("SELECT * FROM item WHERE subcategoria_cod_subcategoria = ?");
                     $query->execute(array($cod_subcategoria));
                     
+                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                         echo "<option value=".$dados['cod_item'].">".$dados['nome_item']."</option>";
                     }

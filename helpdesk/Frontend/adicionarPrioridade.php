@@ -1,10 +1,13 @@
 <?php
 include_once '../Backend/conexao.php';
 
+//Verifica se existe POST
 if(isset($_POST['novop'])) {
 
+    //Pega os POSTs do form e atribui a variaveis
     $prioridade = $_POST['novop']; 
 
+    //faz a consulta no banco
     $query = $conn->prepare("INSERT INTO prioridade_chamado (nome_prioridade) VALUES (:novop)");
     $query->bindValue(":novop",$prioridade);
     $query->execute();

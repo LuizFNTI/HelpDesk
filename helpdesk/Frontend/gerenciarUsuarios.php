@@ -40,7 +40,6 @@
                             <th>Telefone</th>
                             <th>E-mail</th>
                             <th>Departamento</th>
-                            <th>Senha</th>
                             <th>Nivel de Acesso</th>
                             <th>Status no Sistema</th>
                              <th>Ação</th>
@@ -54,24 +53,22 @@
 
                         $query = $conn->query("SELECT * FROM usuarios ORDER BY nome");
 
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
                     echo "<tbody>";
 
-                        foreach ($dados[$i] as $k => $v) { 
-                            echo "<th>".$v."</th>";  
+                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['matricula']."</th>";
+                                echo "<th>".$dados['nome']."</th>";
+                                echo "<th>".$dados['telefone']."</th>";
+                                echo "<th>".$dados['email']."</th>";
+                                echo "<th>".$dados['departamento']."</th>";
+                                if($dados['nivel'] == 0) {echo "<th>Usuário</th>";} else if($dados['nivel'] == 1) {echo "<th>Analista</th>";} else {echo "<th>Administrador</th>";}
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";
+                            echo "</tr>";
                         }
-                    ?> 
-                    <th>
-                        <a href="verUsuario.php?matricula_up=<?php echo $dados[$i] ['matricula']; ?>">Editar</a> 
-                    </th>
-                    <?php
-                    }
-                }
-                ?>
+                    ?>
                     </tbody>
                 </table>
             </div> <!--listaUsuarios-->

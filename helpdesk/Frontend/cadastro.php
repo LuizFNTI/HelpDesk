@@ -1,8 +1,10 @@
 <?php
 include_once '../Backend/conexao.php';
 
+//Verifica se existe POST
 if(isset($_POST['nome'])) {
 
+    //Pega os POSTs do form e atribui a variaveis
     $matricula = $_POST['mat'];
     $nome = $_POST['nome'];
     $email = $_POST['email'];
@@ -12,6 +14,7 @@ if(isset($_POST['nome'])) {
 
     //$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
+    //Insere os dados no banco
     $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha) VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
     $query->bindValue(":matricula", $matricula);
     $query->bindValue(":nome",$nome);

@@ -1,10 +1,13 @@
 <?php
 include_once '../Backend/conexao.php';
 
+//Verifica se existe POST
 if(isset($_POST['novot'])) {
 
+    //Pega os POSTs do form e atribui a variaveis
     $tipo = $_POST['novot']; 
 
+    //faz a consulta no banco
     $query = $conn->prepare("INSERT INTO tipo (nome_tipo) VALUES (:novot)");
     $query->bindValue(":novot",$tipo);
     $query->execute();

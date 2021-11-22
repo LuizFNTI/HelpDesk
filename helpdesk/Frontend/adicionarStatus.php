@@ -1,10 +1,12 @@
 <?php
 include_once '../Backend/conexao.php';
 
+//Verifica se existe POST
 if(isset($_POST['novost'])) {
-
+    //Pega os POSTs do form e atribui a variaveis
     $status = $_POST['novost']; 
 
+    //faz a consulta no banco
     $query = $conn->prepare("INSERT INTO status_chamado (nome_status) VALUES (:novost)");
     $query->bindValue(":novost",$status);
     $query->execute();
