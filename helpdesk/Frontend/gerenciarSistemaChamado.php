@@ -50,6 +50,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria, item.nome_item FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
                         echo "<tbody>";
@@ -86,6 +87,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT * FROM status_chamado ORDER BY nome_status");
                     
                         echo "<tbody>";
@@ -122,6 +124,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT * FROM tipo_atendimento ORDER BY nome_tipo_atendimento");
                     
                         echo "<tbody>";
@@ -158,6 +161,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT * FROM prioridade_chamado ORDER BY nome_prioridade");
                     
                         echo "<tbody>";

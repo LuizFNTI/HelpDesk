@@ -14,7 +14,7 @@ if(isset($_POST['nome'])) {
 
     //$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    //Insere os dados no banco
+    //Pega os POSTs das variaveis e insere os dados no banco
     $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha) VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
     $query->bindValue(":matricula", $matricula);
     $query->bindValue(":nome",$nome);

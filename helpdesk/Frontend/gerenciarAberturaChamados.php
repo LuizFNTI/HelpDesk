@@ -50,6 +50,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
                     
                         echo "<tbody>";
@@ -87,6 +88,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT categoria.cod_categoria, categoria.nome_categoria, tipo.nome_tipo, categoria.ativo FROM categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
                         echo "<tbody>";
@@ -126,6 +128,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT subcategoria.cod_subcategoria, subcategoria.nome_subcategoria, categoria.nome_categoria, tipo.nome_tipo, subcategoria.ativo FROM subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
                         echo "<tbody>";
@@ -167,6 +170,7 @@
 
                         $dados = array();        
                     
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT item.cod_item, item.nome_item, subcategoria.nome_subcategoria, categoria.nome_categoria, tipo.nome_tipo, item.ativo FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
                         echo "<tbody>";

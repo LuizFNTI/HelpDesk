@@ -3,26 +3,31 @@
 
     $resultado = array();
 
+    //pega o codigo passado pela outra página via URL e atribui a uma variavel
     $cod_categoria_up = $_GET['categoria_up'];
         
+    //Faz a consulta no banco de acordo com o codigo passado via URL
     $query = $conn->prepare("SELECT tipo.nome_tipo, categoria.cod_categoria, categoria.nome_categoria, categoria.ativo FROM categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo WHERE cod_categoria = :cc");
     $query->bindValue(":cc",$cod_categoria_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
+    //Verifica se existe POST
     if(isset($_POST['vercat'])) {
 
+        //Pega os POSTs do formularios e atribue a variaveis
         $cod_categoria = $_POST['vercc'];
         $nome_categoria = $_POST['vercat'];
         $ativo = $_POST['ativo'];
         
+        //Faz o update no banco de acordo com o codigo passado via URL
         $query = $conn->prepare("UPDATE categoria SET nome_categoria = :nc, ativo = :a WHERE cod_categoria = :cc");
-    
         $query->bindValue(":nc",$nome_categoria);
         $query->bindValue(":a",$ativo);
         $query->bindValue(":cc",$cod_categoria);
         $query->execute();
     }
+    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($cod_categoria_up == null) {
         header("location: gerenciarAberturaChamados.php");
     }
@@ -43,9 +48,10 @@
         <div id="form1">
         <form action="verCategoria.php" method="POST">
         <h2>Ver Categoria</h2>
-        <?php echo "Tipo Associado: ".$resultado['nome_tipo'];?>
+        <?php echo "Tipo Associado: ".$resultado['nome_tipo'];?><!--Informa o Tipo associado-->
             <div class="form-group">
-                <input type="hidden" class="form-control" name="vercc" id="vcc" required value="<?php if(isset($resultado)) {echo $resultado['cod_categoria'];} ?>">
+                <!--Passa o codigo para ser possivel realizar o update-->
+                <input type="hidden" class="form-control" name="vercc" id="vcc" required value="<?php if(isset($resultado)) {echo $resultado['cod_categoria'];} ?>"><!--passa o valor para o formulario-->
             </div>
             <div class="form-group">
                 <label for="vcat">Categoria</label>
