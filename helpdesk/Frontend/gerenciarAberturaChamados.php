@@ -41,7 +41,7 @@
                         <tr>
                             <th>Codigo Tipo</th>
                             <th>Nome Tipo</th>
-                            <th>Ativo</th>
+                            <th>Ativo/Iativo</th>
                             <th>Ação</th>
                         </tr>
                     </thead>
@@ -52,24 +52,18 @@
                     
                         $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
                     
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                        echo "<tbody>";
 
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
-                    echo "<tbody>";
-
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_tipo']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_tipo']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verTipo.php?tipo_up=".$dados['cod_tipo'].">Ver</a></th>";
+                            echo "</tr>";
                         }
-                    ?> 
-                    <th>
-                        <a href="verTipo.php?tipo_up=<?php echo $dados[$i] ['cod_tipo']; ?>">Ver</a> 
-                    </th>
-                    <?php
-                    }
-                }
-                ?>
+                    ?>
                     </tbody>
                 </table>
             </div> <!--Gerenciar Tipo chamado-->
@@ -95,24 +89,20 @@
                     
                         $query = $conn->query("SELECT categoria.cod_categoria, categoria.nome_categoria, tipo.nome_tipo, categoria.ativo FROM categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                        echo "<tbody>";
 
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
-                    echo "<tbody>";
-
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_categoria']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_categoria']."</th>";
+                                echo "<th>".$dados['nome_tipo']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verCategoria.php?categoria_up=".$dados['cod_categoria'].">Ver</a></th>";
+                            echo "</tr>";
                         }
-                    ?> 
-                    <th>
-                        <a href="verCategoria.php?categoria_up=<?php echo $dados[$i] ['cod_categoria'];?>">Ver</a> 
-                    </th>
-                    <?php
-                    }
-                }
-                ?>
+                        
+                    ?>
                     </tbody>
                 </table>
             </div> <!--Gerenciar Categoria chamado-->

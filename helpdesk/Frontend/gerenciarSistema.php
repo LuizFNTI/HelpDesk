@@ -15,6 +15,9 @@
         <a class="nav-link" href="gerenciarSistemaChamado.php">Gerenciar Sistema de Chamados</a>
         </li>
         <li class="nav-item" id="sizefont">
+        <a class="nav-link" href="gerenciarAberturaChamados.php">Gerenciar Abertura de Chamados</a>
+        </li>
+        <li class="nav-item" id="sizefont">
         <a class="nav-link" href="gerenciarUsuarios.php">Gerenciar Usuários</a>
         </li>
         <li class="nav-item" id="sizefont">

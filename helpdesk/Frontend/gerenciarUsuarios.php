@@ -16,6 +16,9 @@
         <a class="nav-link" href="gerenciarSistemaChamado.php">Gerenciar Sistema de Chamados</a>
         </li>
         <li class="nav-item" id="sizefont">
+        <a class="nav-link" href="gerenciarAberturaChamados.php">Gerenciar Abertura de Chamados</a>
+        </li>
+        <li class="nav-item" id="sizefont">
         <a class="nav-link active" href="gerenciarUsuarios.php">Gerenciar Usuários</a>
         </li>
         <li class="nav-item" id="sizefont">
@@ -51,14 +54,15 @@
 
                         $dados = array();        
 
+                        //Faz a consulta no banco
                         $query = $conn->query("SELECT * FROM usuarios ORDER BY nome");
 
                     echo "<tbody>";
 
-                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                             echo "<tr>";
-                                echo "<th>".$dados['matricula']."</th>";
+                                echo "<th>".$dados['matricula']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['telefone']."</th>";
                                 echo "<th>".$dados['email']."</th>";
