@@ -35,7 +35,7 @@
     <div class="row justify-content-center align-items-center">
         <div id="dpc1">
             <div id="tipodemanda">
-                <div id="titulo"><h2>Gerenciar Abertura de Chamados</h2></div>
+                <div id="titulo"><h2>Visão Geral</h2></div>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -52,24 +52,18 @@
                     
                         $query = $conn->query("SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria, item.nome_item FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
                     
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                        echo "<tbody>";
 
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
-                    echo "<tbody>";
-
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['nome_tipo']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_categoria']."</th>";
+                                echo "<th>".$dados['nome_subcategoria']."</th>";
+                                echo "<th>".$dados['nome_item']."</th>";
+                            echo "</tr>";
                         }
-                    ?> 
-                    <!--<th>
-                        <a href="verStatus.php?status_up=<?php echo $dados[$i] ['cod_status']; ?>">Ver</a> 
-                    </th>-->
-                    <?php
-                    }
-                }
-                ?>
+                    ?>
                     </tbody>
                 </table>
             </div> <!--tipodemanda-->
@@ -94,24 +88,18 @@
                     
                         $query = $conn->query("SELECT * FROM status_chamado ORDER BY nome_status");
                     
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                        echo "<tbody>";
 
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
-                    echo "<tbody>";
-
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_status']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_status']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verStatus.php?status_up=".$dados['cod_status'].">Ver</a></th>";
+                            echo "</tr>";
                         }
-                    ?> 
-                    <th>
-                        <a href="verStatus.php?status_up=<?php echo $dados[$i] ['cod_status']; ?>">Ver</a> 
-                    </th>
-                    <?php
-                    }
-                }
-                ?>
+                    ?>
                     </tbody>
                 </table>
             </div> <!--status-->
@@ -136,24 +124,18 @@
                     
                         $query = $conn->query("SELECT * FROM tipo_atendimento ORDER BY nome_tipo_atendimento");
                     
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                        echo "<tbody>";
 
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
-                    echo "<tbody>";
-
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_tipo_atendimento']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_tipo_atendimento']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verTipoAtendimento.php?tipoa_up=".$dados['cod_tipo_atendimento'].">Ver</a></th>";
+                            echo "</tr>";
                         }
-                    ?> 
-                    <th>
-                        <a href="verTipoAtendimento.php?tipoa_up=<?php echo $dados[$i] ['cod_tipo_atendimento']; ?>">Ver</a> 
-                    </th>
-                    <?php
-                    }
-                }
-                ?>
+                    ?>
                     </tbody>
                 </table>
             </div> <!--tipoatendimento-->
@@ -178,24 +160,18 @@
                     
                         $query = $conn->query("SELECT * FROM prioridade_chamado ORDER BY nome_prioridade");
                     
-                        $dados = $query->fetchAll(PDO::FETCH_ASSOC);
+                        echo "<tbody>";
 
-                        if(count($dados) > 0) {
-                            for ($i=0; $i < count($dados); $i++) {
-                    
-                    echo "<tbody>";
-
-                        foreach ($dados[$i] as $k => $v) {
-                            echo "<th>".$v."</th>";
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_prioridade']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_prioridade']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verPrioridade.php?prioridade_up=".$dados['cod_prioridade'].">Ver</a></th>";
+                            echo "</tr>";
                         }
-                    ?> 
-                    <th>
-                        <a href="verPrioridade.php?prioridade_up=<?php echo $dados[$i] ['cod_prioridade']; ?>">Ver</a> 
-                    </th>
-                    <?php
-                    }
-                }
-                ?>
+                    ?>
                     </tbody>
                 </table>
             </div> <!--Prioridade-->
