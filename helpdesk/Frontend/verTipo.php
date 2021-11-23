@@ -12,15 +12,16 @@
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
+    //Verifica se existe POST
     if(isset($_POST['vert'])) {
 
+        //Pega os POSTs do formularios e atribue a variaveis
         $cod_tipo = $_POST['verct'];
         $nome_tipo = $_POST['vert'];
         $ativo = $_POST['ativo'];
         
         //Faz o update 
         $query = $conn->prepare("UPDATE tipo SET nome_tipo = :nt, ativo = :a WHERE cod_tipo = :ct");
-    
         $query->bindValue(":nt",$nome_tipo);
         $query->bindValue(":a",$ativo);
         $query->bindValue(":ct",$cod_tipo);
