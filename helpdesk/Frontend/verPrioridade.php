@@ -3,26 +3,31 @@
 
     $resultado = array();
 
+    //pega o codigo passado pela outra página via URL e atribui a uma variavel
     $cod_prioridade_up = $_GET['prioridade_up'];
         
+    //Faz a consulta no banco de acordo com o codigo passado via URL
     $query = $conn->prepare("SELECT * FROM prioridade_chamado WHERE cod_prioridade = :cp");
     $query->bindValue(":cp",$cod_prioridade_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
+    //Verifica se existe POST
     if(isset($_POST['verp'])) {
 
+        //Pega os POSTs do formularios e atribue a variaveis
         $cod_prioridade = $_POST['vercp'];
         $nome_prioridade = $_POST['verp'];
         $ativo = $_POST['ativo'];
         
+        //Faz o update no banco de acordo com o codigo passado via URL
         $query = $conn->prepare("UPDATE prioridade_chamado SET nome_prioridade = :np,  ativo = :a WHERE cod_prioridade = :cp");
-    
         $query->bindValue(":np",$nome_prioridade);
         $query->bindValue(":a",$ativo);
         $query->bindValue(":cp",$cod_prioridade);
         $query->execute();
     }
+    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($cod_prioridade_up == null) {
         header("location: gerenciarSistemaChamado.php");
     }

@@ -50,18 +50,18 @@
         <h2>Ver Categoria</h2>
         <?php echo "Tipo Associado: ".$resultado['nome_tipo'];?><!--Informa o Tipo associado-->
             <div class="form-group">
-                <!--Passa o codigo para ser possivel realizar o update-->
+                <!--Passa o codigo via POST para ser possivel realizar o update-->
                 <input type="hidden" class="form-control" name="vercc" id="vcc" required value="<?php if(isset($resultado)) {echo $resultado['cod_categoria'];} ?>"><!--passa o valor para o formulario-->
             </div>
             <div class="form-group">
                 <label for="vcat">Categoria</label>
-                <input type="text" class="form-control" name="vercat" id="vc" required value="<?php if(isset($resultado)) {echo $resultado['nome_categoria'];} ?>">
+                <input type="text" class="form-control" name="vercat" id="vc" required value="<?php if(isset($resultado)) {echo $resultado['nome_categoria'];}//passa o valor para o formulario ?>">
             </div>
             <div class="form-group">
                 <label for="ativo">Ativo:</label><br>
                 <select class="form-control" id="atv" name="ativo">
                     <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
-                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
+                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                 </select>
             </div>
             <input type="submit" value="Guardar">

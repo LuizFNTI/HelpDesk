@@ -22,7 +22,7 @@ if(isset($_POST['novacat'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar SubCategoria</title>
+    <title><?php echo $_GET['tipo']; ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/adicionarSubCat.css">
 </head>
@@ -57,16 +57,15 @@ if(isset($_POST['novacat'])) {
                     include '../Backend/conexao.php';
 
                     //Usa o POST para atribuir o valor a condição WHERE
-                    
+                    $cd_tipo = $_GET['tipo'];
                     
                     $dados = array(); 
-                    
-                    $cd_tipo = $_POST['cod_tipo'] ;
                     
                     //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
                     $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
                     $query->execute(array($cd_tipo));
 
+                    //Carrega os dados do array no option
                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                         echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
                     }
@@ -96,8 +95,9 @@ if(isset($_POST['novacat'])) {
 
             $.ajax({
                 url: 'adicionarSubCat.php',
-                type: 'POST',
-                data: {cod_tipo: codi_tipo}
+                dataType: "HTML",
+                type: 'GET',
+                data: {tipo: codi_tipo}
             });
         });
     </script>
