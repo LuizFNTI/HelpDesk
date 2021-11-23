@@ -5,10 +5,15 @@ include_once '../Backend/conexao.php';
 if(isset($_POST['descricao'])) {
 
     //Pega os POSTs do form e atribui a variaveis
+    
     $tipo = $_POST['tipo'];
     $categoria = $_POST['cat'];
     $subcategoria = $_POST['scat'];
     $item = $_POST['item']; 
+    $descricao = $_POST['descricao'];
+    $status = $_POST['status'];
+    $prioridade = $_POST['prioridade'];
+    $tipo_atendimento = $_POST['tipoa'];
 
     //faz a consulta no banco
     $query = $conn->prepare("INSERT INTO chamados (tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:tipo, :categoria, :subcat, :item)");
