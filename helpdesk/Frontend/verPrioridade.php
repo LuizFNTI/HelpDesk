@@ -49,17 +49,18 @@
         <form action="verPrioridade.php" method="POST">
         <h2>Ver Prioridade</h2>
             <div class="form-group">
+                <!--Passa o codigo via POST para ser possivel realizar o update-->
                 <input type="hidden" class="form-control" name="vercp" id="vcp" required value="<?php if(isset($resultado)) {echo $resultado['cod_prioridade'];} ?>">
             </div>
             <div class="form-group">
                 <label for="vprioridade">Prioridade</label>
-                <input type="text" class="form-control" placeholder="Prioridade:" name="verp" id="vp" required value="<?php if(isset($resultado)) {echo $resultado['nome_prioridade'];} ?>">
+                <input type="text" class="form-control" placeholder="Prioridade:" name="verp" id="vp" required value="<?php if(isset($resultado)) {echo $resultado['nome_prioridade'];}//passa o valor para o formulario ?>">
             </div>
             <div class="form-group">
                 <label for="ativo">Ativo:</label><br>
                 <select class="form-control" id="atv" name="ativo">
                     <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
-                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
+                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                 </select>
             </div>
             <input type="submit" value="Guardar">
