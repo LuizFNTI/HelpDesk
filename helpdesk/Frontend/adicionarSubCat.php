@@ -1,4 +1,4 @@
-<?php
+o<?php
 include_once '../Backend/conexao.php';
 
 //Verifica se existe POST
