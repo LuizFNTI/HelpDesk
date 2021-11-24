@@ -1,11 +1,18 @@
 <?php
 include_once '../Backend/conexao.php';
 
+    session_start();
+
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+        $matricula = $_SESSION['usuario'][0];
+    } else {
+        header("location: ../index.php");
+    }
+
 //Verifica se existe POST
 if(isset($_POST['descricao'])) {
 
     //Pega os POSTs do form e atribui a variaveis
-    
     $tipo = $_POST['tipo'];
     $categoria = $_POST['cat'];
     $subcategoria = $_POST['scat'];
@@ -15,13 +22,17 @@ if(isset($_POST['descricao'])) {
     $prioridade = $_POST['prioridade'];
     $tipo_atendimento = $_POST['tipoa'];
     $data_abertura = date('d/m/Y');
-    $data_prazo = date('d/m/Y');
-    $data_fechamento = date('d/m/Y');
+    //$data_prazo = date('d/m/Y');
+    //$data_fechamento = date('d/m/Y');
     $hora_abertura = date('H:i');
-    $hora_fechamento = date('H:i');
+    //$hora_fechamento = date('H:i');
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:tipo, :categoria, :subcat, :item)");
+    $query = $conn->prepare("INSERT INTO chamados (descricao, data_abertura, hora_abertura, usuario_matricula, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:descr, :da, :ha, :mat, :tipo, :categoria, :subcat, :item)");
+    $query->bindValue(":descr",$descricao);
+    $query->bindValue(":da",$data_abertura);
+    $query->bindValue(":ha",$hora_abertura);
+    $query->bindValue("mat",$matricula);
     $query->bindValue(":tipo",$tipo);
     $query->bindValue(":categoria",$categoria);
     $query->bindValue(":subcat",$subcategoria);

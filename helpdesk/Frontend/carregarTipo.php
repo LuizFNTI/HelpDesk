@@ -1,6 +1,7 @@
 <div class="form-group">
     <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
     <select class="form-control" id="cdt" name="ctipo">
+        <option>Selecione</option>
     <?php
         include '../Backend/conexao.php';
 

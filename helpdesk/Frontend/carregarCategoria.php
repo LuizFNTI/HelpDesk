@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="categoria">Selecione a Categoria que deseja vincular a Esta SubCategoria:</label>
+    <label for="categoria">Selecione a Categoria:</label>
     <select class="form-control" id="ccatg" name="ccat">
     <?php
         include '../Backend/conexao.php';
