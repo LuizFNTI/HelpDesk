@@ -3,15 +3,19 @@
 
     $resultado = array();
 
+    //pega o codigo passado pela outra página via URL e atribui a uma variavel
     $matricula_up = $_GET['matricula_up'];
         
+    //Faz a consulta no banco de acordo com o codigo passado via URL
     $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = :m");
     $query->bindValue(":m",$matricula_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
+    //Verifica se existe POST
     if(isset($_POST['nome'])) {
 
+        //Pega os POSTs do formularios e atribue a variaveis
         $matricula = $_POST['mat'];
         $nome = $_POST['nome'];
         $email = $_POST['email'];
@@ -20,8 +24,8 @@
         $nivel = $_POST['nivel'];
         $ativo = $_POST['ativo'];
         
+        //Faz o update no banco de acordo com o codigo passado via URL
         $query = $conn->prepare("UPDATE usuarios SET nome = :n, telefone = :t, email = :e, departamento = :d, nivel = :nv, ativo = :a WHERE matricula = :m");
-    
         $query->bindValue(":n",$nome);
         $query->bindValue(":t",$telefone);
         $query->bindValue(":e",$email);
@@ -31,6 +35,7 @@
         $query->bindValue(":a",$ativo);
         $query->execute();
     }
+    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($matricula_up == null) {
         header("location: gerenciarUsuarios.php");
     }
@@ -53,7 +58,7 @@
         <div id="df1">
             <div class="form-group">
                 <label for="mat">Número Matricula:</label>
-                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required value="<?php if(isset($resultado)) {echo $resultado['matricula'];} ?>">
+                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required value="<?php if(isset($resultado)) {echo $resultado['matricula'];}//passa o valor para o formulario ?>">
             </div>
             <div class="form-group">
                 <label for="email">Endereço de E-mail:</label>
@@ -79,14 +84,14 @@
                 <select class="form-control" id="nv" name="nivel">
                     <option value="0" <?php if($resultado['nivel'] == 0) {echo "selected";}?>>Usuário</option>
                     <option value="1" <?php if($resultado['nivel'] == 1) {echo "selected";}?>>Analista</option>
-                    <option value="2" <?php if($resultado['nivel'] == 2) {echo "selected";}?>>Administrador</option>
+                    <option value="2" <?php if($resultado['nivel'] == 2) {echo "selected";}?>>Administrador</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                 </select>
             </div>
             <div class="form-group">
                 <label for="ativo">Ativo:</label><br>
                 <select class="form-control" id="atv" name="ativo">
                     <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
-                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
+                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                 </select>
             </div>
             <input type="submit" value="Guardar">

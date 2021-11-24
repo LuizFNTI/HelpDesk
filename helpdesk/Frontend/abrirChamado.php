@@ -1,6 +1,14 @@
 <?php
 include_once '../Backend/conexao.php';
 
+    session_start();
+
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+        $matricula = $_SESSION['usuario'][0];
+    } else {
+        header("location: ../index.php");
+    }
+
 //Verifica se existe POST
 if(isset($_POST['descricao'])) {
 
@@ -9,9 +17,22 @@ if(isset($_POST['descricao'])) {
     $categoria = $_POST['cat'];
     $subcategoria = $_POST['scat'];
     $item = $_POST['item']; 
+    $descricao = $_POST['descricao'];
+    $status = $_POST['status'];
+    $prioridade = $_POST['prioridade'];
+    $tipo_atendimento = $_POST['tipoa'];
+    $data_abertura = date('d/m/Y');
+    //$data_prazo = date('d/m/Y');
+    //$data_fechamento = date('d/m/Y');
+    $hora_abertura = date('H:i');
+    //$hora_fechamento = date('H:i');
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:tipo, :categoria, :subcat, :item)");
+    $query = $conn->prepare("INSERT INTO chamados (descricao, data_abertura, hora_abertura, usuario_matricula, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:descr, :da, :ha, :mat, :tipo, :categoria, :subcat, :item)");
+    $query->bindValue(":descr",$descricao);
+    $query->bindValue(":da",$data_abertura);
+    $query->bindValue(":ha",$hora_abertura);
+    $query->bindValue("mat",$matricula);
     $query->bindValue(":tipo",$tipo);
     $query->bindValue(":categoria",$categoria);
     $query->bindValue(":subcat",$subcategoria);
@@ -56,100 +77,20 @@ if(isset($_POST['descricao'])) {
         <h2>Abrir Novo Chamado</h2>
     <div class="row">
         <div class="col">
-            <div class="form-group">
-                <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
-                <select class="form-control" placeholder="Tipo" id="tipod" name="tipo">
-                <?php
-                    include '../Backend/conexao.php';
-
-                    $dados = array();        
-                    
-                    //faz a consulta no banco
-                    $query = $conn->query("SELECT * FROM tipo ORDER BY nome_tipo");
-                    
-                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                        echo "<option value=".$dados['cod_tipo'].">".$dados['nome_tipo']."</option>";
-                    }
-                ?>
-                </select>
-            </div>
+            <?php include_once 'carregarTipo.php'; ?>
         </div> <!--col1-->
         <div class="col">
-            <div class="form-group">
-                <label for="categoria">Selecione a Categoria:</label>
-                <select class="form-control" id="catg" name="cat">
-                <?php
-                    include '../Backend/conexao.php';
-
-                    //Usa o POST para atribuir o valor a condição WHERE
-                    $cod_tipo = $_POST['ctipo'];
-
-                    $dados = array();        
-                    
-                    //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
-                    $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
-                    $query->execute(array($cod_tipo));
-
-                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                        echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
-                    }
-                ?>
-                </select>
-            </div>
+            <?php include_once 'carregarCategoria.php'; ?>
         </div> <!--col2-->
         </div> <!--row 1-->
         <div class="row">
             <div class="col">
-                <div class="form-group">
-                    <label for="subcat">Selecione a SubCategoria:</label>
-                    <select class="form-control" id="scatg" name="scat">
-                    <?php
-                    include '../Backend/conexao.php';
-
-                    //Usa o POST para atribuir o valor a condição WHERE
-                    $cod_categoria = $_POST['ccat'];
-
-                    $dados = array();        
-                    
-                    //Faz a consulta e verifica qual categoria as subcategorias pertence atraves do cod_categoria passado pelo POST
-                    $query = $conn->prepare("SELECT * FROM subcategoria WHERE categoria_cod_categoria = ?");
-                    $query->execute(array($cod_categoria));
-                    
-                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                        echo "<option value=".$dados['cod_subcategoria'].">".$dados['nome_subcategoria']."</option>";
-                    }
-                ?>
-                    </select>
-                </div>
+                <?php include_once 'carregarSubCat.php'; ?>
             </div> <!--col3-->
             <div class="col">
-                <div class="form-group">
-                    <label for="item">Selecione o Item:</label>
-                    <select class="form-control" id="items" name="item">
-                    <?php
-                    include '../Backend/conexao.php';
-
-                    //Usa o POST para atribuir o valor a condição WHERE
-                    $cod_subcategoria = $_POST['scat'];
-
-                    $dados = array();        
-                    
-                    //Faz a consulta e verifica qual subcategoria as item pertence atraves do cod_subcategoria passado pelo POST
-                    $query = $conn->prepare("SELECT * FROM item WHERE subcategoria_cod_subcategoria = ?");
-                    $query->execute(array($cod_subcategoria));
-                    
-                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                        echo "<option value=".$dados['cod_item'].">".$dados['nome_item']."</option>";
-                    }
-                ?>
-                    </select>
-                </div>
+                <?php include_once 'carregarItem.php'; ?>
             </div> <!--col4-->
-        </div> <!--row 2-->
+            </div> <!--row 2-->
             <div class="form-group">
                 <label for="descricao">Faça uma breve descrição da sua solicitação:</label>
                 <textarea class="form-control" rows="5" placeholder="Descrição:" id="descr" name="descricao"></textarea>
@@ -160,5 +101,8 @@ if(isset($_POST['descricao'])) {
     </div> <!--dpc-->
     </main>
     <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
+    <script src="JS/ajaxCategoria.js"></script>
+    <script src="JS/ajaxSubCat.js"></script>
+    <script src="JS/ajaxItem.js"></script>
 </body>
 </html>

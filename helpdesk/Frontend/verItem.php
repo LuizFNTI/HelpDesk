@@ -3,19 +3,24 @@
 
     $resultado = array();
 
+    //pega o codigo passado pela outra página via URL e atribui a uma variavel
     $cod_item_up = $_GET['item_up'];
         
+    //Faz a consulta no banco de acordo com o codigo passado via URL
     $query = $conn->prepare("SELECT item.cod_item, item.nome_item, subcategoria.nome_subcategoria, categoria.nome_categoria, tipo.nome_tipo, item.ativo FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo WHERE cod_item = :ci");
     $query->bindValue(":ci",$cod_item_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
+    //Verifica se existe POST
     if(isset($_POST['veritem'])) {
 
+        //Pega os POSTs do formularios e atribue a variaveis
         $cod_item = $_POST['verci'];
         $nome_categoria = $_POST['veritem'];
         $ativo = $_POST['ativo'];
         
+        //Faz o update no banco de acordo com o codigo passado via URL
         $query = $conn->prepare("UPDATE item SET nome_item = :ni, ativo = :a WHERE cod_item = :ci");
     
         $query->bindValue(":ni",$nome_item);
@@ -23,6 +28,7 @@
         $query->bindValue(":ci",$cod_item);
         $query->execute();
     }
+    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($cod_item_up == null) {
         header("location: gerenciarAberturaChamados.php");
     }
@@ -43,21 +49,22 @@
         <div id="form1">
         <form action="verItem.php" method="POST">
         <h2>Ver Item</h2>
-        <?php echo "Tipo Associado: ".$resultado['nome_tipo']."<br>";?>
-        <?php echo "Categoria Associado: ".$resultado['nome_categoria']."<br>";?>
-        <?php echo "Subcategoria Associado: ".$resultado['nome_subcategoria'];?>
+        <?php echo "Tipo Associado: ".$resultado['nome_tipo']."<br>";?><!--Informa o Tipo associado-->
+        <?php echo "Categoria Associado: ".$resultado['nome_categoria']."<br>";?><!--Informa a categoria associado-->
+        <?php echo "Subcategoria Associado: ".$resultado['nome_subcategoria'];?><!--Informa a subcategoria associado-->
             <div class="form-group">
-                <input type="hidden" class="form-control" name="verci" id="vci" required value="<?php if(isset($resultado)) {echo $resultado['cod_item'];} ?>">
+                <!--Passa o codigo via POST para ser possivel realizar o update-->
+                <input type="hidden" class="form-control" name="verci" id="vci" required value="<?php if(isset($resultado)) {echo $resultado['cod_item'];}//passa o valor para o formulario ?>">
             </div>
             <div class="form-group">
                 <label for="vcat">Categoria</label>
-                <input type="text" class="form-control" name="veritem" id="vitem" required value="<?php if(isset($resultado)) {echo $resultado['nome_item'];} ?>">
+                <input type="text" class="form-control" name="veritem" id="vitem" required value="<?php if(isset($resultado)) {echo $resultado['nome_item'];}//passa o valor para o formulario ?>">
             </div>
             <div class="form-group">
                 <label for="ativo">Ativo:</label><br>
                 <select class="form-control" id="atv" name="ativo">
                     <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
-                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
+                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                 </select>
             </div>
             <input type="submit" value="Guardar">

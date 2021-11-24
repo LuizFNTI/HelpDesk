@@ -22,7 +22,7 @@ if(isset($_POST['novacat'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar SubCategoria</title>
+    <title><?php echo $_POST['tipo']; ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/adicionarSubCat.css">
 </head>
@@ -50,29 +50,8 @@ if(isset($_POST['novacat'])) {
                 ?>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="categoria">Selecione a Categoria que deseja vincular a Esta SubCategoria:</label>
-                <select class="form-control" id="ccatg" name="ccat">
-                <?php
-                    include '../Backend/conexao.php';
-
-                    //Usa o POST para atribuir o valor a condição WHERE
-                    
-                    
-                    $dados = array(); 
-                    
-                    $cd_tipo = $_POST['cod_tipo'] ;
-                    
-                    //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
-                    $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
-                    $query->execute(array($cd_tipo));
-
-                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                        echo "<option value=".$dados['cod_categoria'].">".$dados['nome_categoria']."</option>";
-                    }
-                ?>
-                </select>
-            </div>
+            <!--Inclui o select da categoria-->
+            <?php include_once 'carregarCategoria.php'; ?>
             <div class="form-group">
                 <label for="ncat">Digite a Nova SubCategoria</label>
                 <input type="text" class="form-control" placeholder="Nova SubCategoria:" name="novasub" id="nsc" required>
@@ -89,17 +68,8 @@ if(isset($_POST['novacat'])) {
     </div> <!--form1-->
     </div> <!--dpc-->
     </main>
+    <!--Chama o script do Ajax-->
     <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
-    <script>
-        $("#cdt") .on("change", function() {
-            var codi_tipo = $("#cdt").val();
-
-            $.ajax({
-                url: 'adicionarSubCat.php',
-                type: 'POST',
-                data: {cod_tipo: codi_tipo}
-            });
-        });
-    </script>
+    <script src="JS/ajaxCategoria.js"></script>
 </body>
 </html>
