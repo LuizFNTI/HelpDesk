@@ -68,20 +68,6 @@ if(isset($_POST['novacat'])) {
     </div> <!--dpc-->
     </main>
     <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
-    <script>
-        $("#cdt") .on("change", function() {
-            var codi_tipo = $("#cdt").val();
-
-            $.ajax({
-                url: 'carregarCategoria.php',
-                dataType: "HTML",
-                type: 'POST',
-                data: {tipo: codi_tipo},
-                success: function(data) {
-                    $("#ccatg") .html(data);
-                }
-            });
-        });
-    </script>
+    <script src="JS/ajaxCategoria.js"></script>
 </body>
 </html>
