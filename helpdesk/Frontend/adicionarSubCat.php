@@ -50,6 +50,7 @@ if(isset($_POST['novacat'])) {
                 ?>
                 </select>
             </div>
+            <!--Inclui o select da categoria-->
             <?php include_once 'carregarCategoria.php'; ?>
             <div class="form-group">
                 <label for="ncat">Digite a Nova SubCategoria</label>
@@ -67,6 +68,7 @@ if(isset($_POST['novacat'])) {
     </div> <!--form1-->
     </div> <!--dpc-->
     </main>
+    <!--Chama o script do Ajax-->
     <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
     <script src="JS/ajaxCategoria.js"></script>
 </body>
