@@ -14,6 +14,11 @@ if(isset($_POST['descricao'])) {
     $status = $_POST['status'];
     $prioridade = $_POST['prioridade'];
     $tipo_atendimento = $_POST['tipoa'];
+    $data_abertura = date('d/m/Y');
+    $data_prazo = date('d/m/Y');
+    $data_fechamento = date('d/m/Y');
+    $hora_abertura = date('H:i');
+    $hora_fechamento = date('H:i');
 
     //faz a consulta no banco
     $query = $conn->prepare("INSERT INTO chamados (tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:tipo, :categoria, :subcat, :item)");
