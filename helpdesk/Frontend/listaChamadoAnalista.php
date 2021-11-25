@@ -36,7 +36,6 @@
                     <thead>
                         <tr>
                             <th>Chamado</th>
-                            <th>Usuário</th>
                             <th>Tipo</th> 
                             <th>Categoria</th>
                             <th>Sub Categoria</th>
@@ -44,6 +43,8 @@
                             <th>Descrição</th>
                             <th>Data Inicio</th>
                             <th>Data Prazo</th>
+                            <th>Usuário</th>
+                            <th>Prioridade</th>
                             <th>Status</th>
                              <th>Ação</th>
                         </tr>
@@ -84,7 +85,6 @@
                     <thead>
                         <tr>
                             <th>Chamado</th>
-                            <th>Usuário</th>
                             <th>Tipo</th> 
                             <th>Categoria</th>
                             <th>Sub Categoria</th>
@@ -92,6 +92,8 @@
                             <th>Descrição</th>
                             <th>Data Inicio</th>
                             <th>Data Prazo</th>
+                            <th>Usuário</th>
+                            <th>Prioridade</th>
                             <th>Status</th>
                              <th>Ação</th>
                         </tr>

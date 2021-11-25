@@ -21,17 +21,10 @@ if(isset($_POST['descricao'])) {
     $status = $_POST['status'];
     $prioridade = $_POST['prioridade'];
     $tipo_atendimento = $_POST['tipoa'];
-    $data_abertura = date('d/m/Y');
-    //$data_prazo = date('d/m/Y');
-    //$data_fechamento = date('d/m/Y');
-    $hora_abertura = date('H:i');
-    //$hora_fechamento = date('H:i');
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (descricao, data_abertura, hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:descr, :da, :ha, :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item)");
+    $query = $conn->prepare("INSERT INTO chamados (descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item)");
     $query->bindValue(":descr",$descricao);
-    $query->bindValue(":da",$data_abertura);
-    $query->bindValue(":ha",$hora_abertura);
     $query->bindValue("mat",$matricula);
     $query->bindValue(":sts",$status);
     $query->bindValue(":pri",$prioridade);

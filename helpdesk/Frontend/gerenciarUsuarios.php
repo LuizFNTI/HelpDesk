@@ -45,7 +45,7 @@
                             <th>Departamento</th>
                             <th>Nivel de Acesso</th>
                             <th>Status no Sistema</th>
-                             <th>Ação</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <?php
