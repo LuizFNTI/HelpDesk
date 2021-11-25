@@ -13,9 +13,9 @@ include_once '../Backend/conexao.php';
 if(isset($_POST['descricao'])) {
 
     //Pega os POSTs do form e atribui a variaveis
-    $tipo = $_POST['tipo'];
-    $categoria = $_POST['cat'];
-    $subcategoria = $_POST['scat'];
+    $tipo = $_POST['ctipo'];
+    $categoria = $_POST['ccat'];
+    $subcategoria = $_POST['cscat'];
     $item = $_POST['item']; 
     $descricao = $_POST['descricao'];
     $status = $_POST['status'];
@@ -28,11 +28,14 @@ if(isset($_POST['descricao'])) {
     //$hora_fechamento = date('H:i');
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (descricao, data_abertura, hora_abertura, usuario_matricula, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:descr, :da, :ha, :mat, :tipo, :categoria, :subcat, :item)");
+    $query = $conn->prepare("INSERT INTO chamados (descricao, data_abertura, hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:descr, :da, :ha, :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item)");
     $query->bindValue(":descr",$descricao);
     $query->bindValue(":da",$data_abertura);
     $query->bindValue(":ha",$hora_abertura);
     $query->bindValue("mat",$matricula);
+    $query->bindValue(":sts",$status);
+    $query->bindValue(":pri",$prioridade);
+    $query->bindValue(":tpa",$tipo_atendimento);
     $query->bindValue(":tipo",$tipo);
     $query->bindValue(":categoria",$categoria);
     $query->bindValue(":subcat",$subcategoria);
@@ -46,7 +49,7 @@ if(isset($_POST['descricao'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abrir Chamado</title>
+    <title><?php echo $data_abertura; ?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/abrirChamado.css">                         
 </head>
@@ -75,6 +78,9 @@ if(isset($_POST['descricao'])) {
         <div id="form1">
         <form action="abrirChamado.php" method="POST">
         <h2>Abrir Novo Chamado</h2>
+        <input type="hidden" name="status" value="1">
+        <input type="hidden" name="prioridade" value="1">
+        <input type="hidden" name="tipoa" value="1">
     <div class="row">
         <div class="col">
             <?php include_once 'carregarTipo.php'; ?>
@@ -95,7 +101,7 @@ if(isset($_POST['descricao'])) {
                 <label for="descricao">Faça uma breve descrição da sua solicitação:</label>
                 <textarea class="form-control" rows="5" placeholder="Descrição:" id="descr" name="descricao"></textarea>
             </div>
-            <button type="button" class="btn btn-success">Enviar</button>
+            <input type="submit" value="Enviar">
         </form>
     </div> <!--form1-->
     </div> <!--dpc-->

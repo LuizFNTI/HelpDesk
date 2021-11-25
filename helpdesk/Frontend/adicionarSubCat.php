@@ -2,7 +2,7 @@ o<?php
 include_once '../Backend/conexao.php';
 
 //Verifica se existe POST
-if(isset($_POST['novacat'])) {
+if(isset($_POST['novasub'])) {
     //Pega os POSTs do form e atribui a variaveis
     $subcategoria = $_POST['novasub'];
     $ativo = $_POST['ativo'];
