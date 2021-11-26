@@ -65,7 +65,7 @@
                         $dados = array();        
 
                         //Faz a consulta no banco
-                        $query = $conn->prepare("SELECT
+                        $query = $conn->query("SELECT
                         chamados.numero_chamado,
                         tipo.nome_tipo,
                         categoria.nome_categoria,
@@ -78,7 +78,8 @@
                         prioridade_chamado.nome_prioridade,
                         status_chamado.nome_status,
                         chamados.fila_geral,
-                        usuarios.matricula
+                        usuarios.matricula,
+                        chamados.analista
                     FROM
                         chamados
                     INNER JOIN item ON item.cod_item = chamados.item_cod_item
@@ -87,8 +88,7 @@
                     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 0 AND matricula = ?");
-                    $query->execute(array($matricula));
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 0");
 
                     echo "<tbody>";
 

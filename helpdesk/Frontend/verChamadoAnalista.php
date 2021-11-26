@@ -1,3 +1,13 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+        $matricula = $_SESSION['usuario'][0];
+        $nome_analista = $_SESSION['usuario'][2];
+    } else {
+        header("location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
