@@ -11,17 +11,24 @@ SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria 
 SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria, item.nome_item FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo;
 
 SELECT
-    usuarios.nome,
     tipo.nome_tipo,
     categoria.nome_categoria,
     subcategoria.nome_subcategoria,
-    item.nome_item
+    item.nome_item,
+    chamados.descricao,
+    chamados.data_hora_abertura,
+    chamados.data_hora_prazo,
+    usuarios.nome,
+    prioridade_chamado.nome_prioridade,
+    status_chamado.nome_status
 FROM
     chamados
 INNER JOIN item ON item.cod_item = chamados.item_cod_item
 INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
 INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
 INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
-INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula;
+INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status;
 
 

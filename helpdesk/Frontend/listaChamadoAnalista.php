@@ -1,3 +1,12 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+        $matricula = $_SESSION['usuario'][0];
+    } else {
+        header("location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -49,33 +58,58 @@
                              <th>Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoAnalista.php">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoAnalista.php">Ver</a></td>
-                        </tr>
+                    <?php
+                        
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+
+                        //Faz a consulta no banco
+                        $query = $conn->prepare("SELECT
+                        chamados.numero_chamado,
+                        tipo.nome_tipo,
+                        categoria.nome_categoria,
+                        subcategoria.nome_subcategoria,
+                        item.nome_item,
+                        chamados.descricao,
+                        chamados.data_hora_abertura,
+                        chamados.data_hora_prazo,
+                        usuarios.nome,
+                        prioridade_chamado.nome_prioridade,
+                        status_chamado.nome_status,
+                        chamados.fila_geral,
+                        usuarios.matricula
+                    FROM
+                        chamados
+                    INNER JOIN item ON item.cod_item = chamados.item_cod_item
+                    INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
+                    INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
+                    INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
+                    INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+                    INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 0 AND matricula = ?");
+                    $query->execute(array($matricula));
+
+                    echo "<tbody>";
+
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_tipo']."</th>";
+                                echo "<th>".$dados['nome_categoria']."</th>";
+                                echo "<th>".$dados['nome_subcategoria']."</th>";
+                                echo "<th>".$dados['nome_item']."</th>";
+                                echo "<th>".$dados['descricao']."</th>";
+                                echo "<th>".$dados['data_hora_abertura']."</th>";
+                                echo "<th>".$dados['data_hora_prazo']."</th>";
+                                echo "<th>".$dados['nome']."</th>";
+                                echo "<th>".$dados['nome_prioridade']."</th>";
+                                echo "<th>".$dados['nome_status']."</th>";
+                                //echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";
+                            echo "</tr>";
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div> <!--filanalista-->
@@ -98,33 +132,55 @@
                              <th>Ação</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoAnalista.php">Ver</a></td>
-                        </tr>
-                        <tr>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td>Exemplo</td>
-                            <td><a href="verChamadoAnalista.php">Ver</a></td>
-                        </tr>
+                    <?php
+                        
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT
+                        chamados.numero_chamado,
+                        tipo.nome_tipo,
+                        categoria.nome_categoria,
+                        subcategoria.nome_subcategoria,
+                        item.nome_item,
+                        chamados.descricao,
+                        chamados.data_hora_abertura,
+                        chamados.data_hora_prazo,
+                        usuarios.nome,
+                        prioridade_chamado.nome_prioridade,
+                        status_chamado.nome_status
+                    FROM
+                        chamados
+                    INNER JOIN item ON item.cod_item = chamados.item_cod_item
+                    INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
+                    INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
+                    INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
+                    INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+                    INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 1");
+
+                    echo "<tbody>";
+
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['numero_chamado']."</th>";
+                                echo "<th>".$dados['nome_tipo']."</th>";
+                                echo "<th>".$dados['nome_categoria']."</th>";
+                                echo "<th>".$dados['nome_subcategoria']."</th>";
+                                echo "<th>".$dados['nome_item']."</th>";
+                                echo "<th>".$dados['descricao']."</th>";
+                                echo "<th>".$dados['data_hora_abertura']."</th>";
+                                echo "<th>".$dados['data_hora_prazo']."</th>";
+                                echo "<th>".$dados['nome']."</th>";
+                                echo "<th>".$dados['nome_prioridade']."</th>";
+                                echo "<th>".$dados['nome_status']."</th>";
+                                //echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";
+                            echo "</tr>";
+                        }
+                    ?>
                     </tbody>
                 </table>
             </div> <!--filageral-->
