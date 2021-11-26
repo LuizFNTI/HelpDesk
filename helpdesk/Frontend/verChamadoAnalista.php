@@ -7,6 +7,39 @@
     } else {
         header("location: ../index.php");
     }
+
+    include '../Backend/conexao.php';
+
+    $resultado = array();
+
+    //Pega o codigo tipo pela URL
+    $numero_chamado_up = $_GET['nc_up'];
+        
+    //Faz o select para passar os valores para o form
+    $query = $conn->prepare("SELECT
+        chamados.numero_chamado,
+        tipo.nome_tipo,
+        categoria.nome_categoria,
+        subcategoria.nome_subcategoria,
+        item.nome_item,
+        chamados.descricao,
+        chamados.data_hora_abertura,
+        chamados.data_hora_prazo,
+        usuarios.nome,
+        prioridade_chamado.nome_prioridade,
+        status_chamado.nome_status
+    FROM
+        chamados
+    INNER JOIN item ON item.cod_item = chamados.item_cod_item
+    INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
+    INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
+    INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
+    INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+    INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE numero_chamado = :nc");
+    $query->bindValue(":nc",$numero_chamado_up);
+    $query->execute();
+    $resultado = $query->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

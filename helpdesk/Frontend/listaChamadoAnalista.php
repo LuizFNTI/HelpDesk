@@ -177,7 +177,7 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                //echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";
+                                echo "<th><a href=verChamadoAnalista.php?nc_up=".$dados['numero_chamado'].">Ver</a></th>";
                             echo "</tr>";
                         }
                     ?>
