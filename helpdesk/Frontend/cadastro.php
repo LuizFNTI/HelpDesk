@@ -12,7 +12,7 @@ if(isset($_POST['nome'])) {
     $departamento = $_POST['departamento'];
     $senha = $_POST['senha'];
 
-    //$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     //Pega os POSTs das variaveis e insere os dados no banco
     $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha) VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
@@ -21,7 +21,7 @@ if(isset($_POST['nome'])) {
     $query->bindValue(":telefone",$telefone);
     $query->bindValue(":email",$email);
     $query->bindValue(":departamento",$departamento);
-    $query->bindValue(":senha",$senha);
+    $query->bindValue(":senha",$senha_hash);
     $query->execute();
 }
 ?>
