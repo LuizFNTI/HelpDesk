@@ -40,6 +40,25 @@
     $query->bindValue(":nc",$numero_chamado_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
+
+    //Verifica se existe POST
+    if(isset($_POST['status'])) {
+
+        //Pega os POSTs do formularios e atribue a variaveis
+        $descricao_analista = $_POST['descanalista'];
+        $data_hora_prazo = $_POST['dhprazo'];
+        $status = $_POST['status'];
+        $prioridade = $_POST['prioridade'];
+        $tipo_atendimento = $_POST['tipoa'];
+        $fila_geral = $_POST['fgeral'];
+
+        //Faz o update 
+        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_hora_prazo = :dhp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, aberto = :aberto, fila_geral = :fgeral WHERE cod_tipo = :ct");
+        $query->bindValue(":dn",$descricao_analista);
+        $query->bindValue(":dhp",$data_hora_prazo);
+        $query->bindValue(":analista",$nome_analista);
+        $query->execute();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

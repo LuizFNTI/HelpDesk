@@ -21,9 +21,11 @@ if(isset($_POST['descricao'])) {
     $status = $_POST['status'];
     $prioridade = $_POST['prioridade'];
     $tipo_atendimento = $_POST['tipoa'];
+    $aberto = $_POST['aberto'];
+    $fila_geral = $_POST['fgeral'];
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item)");
+    $query = $conn->prepare("INSERT INTO chamados (descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item, aberto, fila_geral) VALUES (:descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item, :aberto, :fgeral)");
     $query->bindValue(":descr",$descricao);
     $query->bindValue("mat",$matricula);
     $query->bindValue(":sts",$status);
@@ -33,6 +35,8 @@ if(isset($_POST['descricao'])) {
     $query->bindValue(":categoria",$categoria);
     $query->bindValue(":subcat",$subcategoria);
     $query->bindValue(":item",$item);
+    $query->bindValue(":aberto",$aberto);
+    $query->bindValue(":fgeral",$fila_geral);
     $query->execute();
 }
 ?>
@@ -74,6 +78,8 @@ if(isset($_POST['descricao'])) {
         <input type="hidden" name="status" value="1">
         <input type="hidden" name="prioridade" value="1">
         <input type="hidden" name="tipoa" value="1">
+        <input type="hidden" name="aberto" value="1">
+        <input type="hidden" name="fgeral" value="1">
     <div class="row">
         <div class="col">
             <?php include_once 'carregarTipo.php'; ?>

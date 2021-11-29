@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="Frontend/CSS/login.css">
     <title>Login</title>
 </head>
-<body>
-    
+<body>  
 <div id="dpc">
     <div class="row">
         <div class="col">
@@ -18,7 +17,7 @@
             <div id="lrs"><a href="Frontend/recuperarSenha.php">Recuperar minha senha</a></div>
         </div>
     <div class="col">
-        <form action="Backend/validar_login.php" method="POST">
+        <form action="Backend/validarLogin.php" method="POST">
         <h2>Entrar</h2>
             <div class="form-group">
                 <label for="mat">Número Matricula:</label>

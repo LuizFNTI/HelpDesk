@@ -12,6 +12,7 @@ if(isset($_POST['nome'])) {
     $departamento = $_POST['departamento'];
     $senha = $_POST['senha'];
 
+    //Criptografa a senha usando om password_hash
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     //Pega os POSTs das variaveis e insere os dados no banco
