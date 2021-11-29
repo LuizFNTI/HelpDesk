@@ -25,7 +25,11 @@
         chamados.descricao,
         chamados.data_hora_abertura,
         chamados.data_hora_prazo,
+        usuarios.matricula,
         usuarios.nome,
+        usuarios.telefone,
+        usuarios.email,
+        usuarios.departamento,
         prioridade_chamado.nome_prioridade,
         status_chamado.nome_status
     FROM
@@ -36,7 +40,8 @@
     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE numero_chamado = :nc");
+    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status 
+    WHERE numero_chamado = :nc");
     $query->bindValue(":nc",$numero_chamado_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
@@ -53,11 +58,20 @@
         $fila_geral = $_POST['fgeral'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_hora_prazo = :dhp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, aberto = :aberto, fila_geral = :fgeral WHERE cod_tipo = :ct");
+        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_hora_prazo = :dhp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
         $query->bindValue(":dn",$descricao_analista);
         $query->bindValue(":dhp",$data_hora_prazo);
         $query->bindValue(":analista",$nome_analista);
+        $query->bindValue(":cs",$status);
+        $query->bindValue(":cp",$prioridade);
+        $query->bindValue(":cta",$tipo_atendimento);
+        $query->bindValue(":fgeral",$fila_geral);
+        $query->bindValue(":nc",$numero_chamado_up);
         $query->execute();
+    }
+    //caso a variavel seja nula, volta para a tela de gerenciamento
+    if($numero_chamado_up == null) {
+        header("location: listaChamadoAnalista.php");
     }
 ?>
 <!DOCTYPE html>
@@ -76,25 +90,30 @@
             <div class="row">
                 <div class="col">
                     <div id="numchamado">
-                        Aqui Ficara o Número do Chamado
+                        <p>Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
                     </div><br>
                     <div id= "infodemanda">
                         <div class="row">
-                        <p>Tipo</p>>
-                        <p>Categoria</p>>
-                        <p>SubCategoria</p>>
-                        <p>Item</p>
+                        <p><?php echo $resultado['nome_tipo']; ?></p>>
+                        <p><?php echo $resultado['nome_categoria']; ?></p>>
+                        <p><?php echo $resultado['nome_subcategoria']; ?></p>>
+                        <p><?php echo $resultado['nome_item']; ?></p>
                         </div> <!--row-->
                     </div>
                     <div id="usuario">
-                        Aqui ficara as informações do Usuário
+                        <p>Numero Matricula: <?php echo $resultado['matricula']; ?></p>
+                        <p>Nome: <?php echo $resultado['nome']; ?></p>
+                        <p>Departamento: <?php echo $resultado['departamento']; ?>
+                        <p>Telefone: <?php echo $resultado['telefone']; ?></p>
+                        <p>E-Mail: <?php echo $resultado['email']; ?></p>
                     </div><br><br><br><br>
                     <div id="descricao">
-                        Aqui ficara a descrição do Usuário
+                        Descrição <br>
+                        <?php echo $resultado['descricao']; ?>
                     </div>
                 </div> <!--col-->
                 <div class="col">
-                    <p>Data e Hora abertura</p>
+                    <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
                     <p>Data prazo</p>
                     <p>Alterar Prioridade</p>
                     <p>Selecionar Tipo Atendimento</p>
