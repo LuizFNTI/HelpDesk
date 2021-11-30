@@ -16,23 +16,7 @@
     $numero_chamado_up = $_GET['nc_up'];
         
     //Faz o select para passar os valores para o form
-    $query = $conn->prepare("SELECT
-        chamados.numero_chamado,
-        tipo.nome_tipo,
-        categoria.nome_categoria,
-        subcategoria.nome_subcategoria,
-        item.nome_item,
-        chamados.descricao,
-        chamados.data_hora_abertura,
-        usuarios.matricula,
-        usuarios.nome,
-        usuarios.telefone,
-        usuarios.email,
-        usuarios.departamento,
-        prioridade_chamado.nome_prioridade,
-        status_chamado.nome_status
-    FROM
-        chamados
+    $query = $conn->prepare("SELECT * FROM chamados
     INNER JOIN item ON item.cod_item = chamados.item_cod_item
     INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
     INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
@@ -116,18 +100,16 @@
                 </div> <!--col-->
                 <div class="col">
                     <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
-                    <form action="verChamadoAnalista.php" method="POST">
+                    <form action="fecharChamado.php" method="POST">
                     <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                     <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                    <input type="hidden" name="aberto" value="0">
                     <div class="form-group">
-                        <label for="dprazo">Informe a Data Prazo</label>
+                        <label for="dprazo" value="<?php echo $resultado['data_prazo'] ?>">Informe a Data Prazo</label>
                         <input type="date" name="dprazo" id="dp">
                     </div>
                     <div class="form-group">
                         <label for="status">Selrcione o status</label>
                         <select class="form-control" id="cds" name="status">
-                        <option>Selecione</option>
                     <?php
                         include '../Backend/conexao.php';
 
@@ -146,7 +128,6 @@
                     <div class="form-group">
                         <label for="status">Selrcione a Prioridade</label>
                         <select class="form-control" id="cdp" name="prioridade">
-                        <option>Selecione</option>
                     <?php
                         include '../Backend/conexao.php';
 
@@ -165,7 +146,6 @@
                     <div class="form-group">
                         <label for="status">Selrcione o Tipo Atendimento</label>
                         <select class="form-control" id="cds" name="tipoa">
-                        <option>Selecione</option>
                     <?php
                         include '../Backend/conexao.php';
 
@@ -185,6 +165,13 @@
                         <label for="descricao">Faça uma breve descrição da sua resposta:</label>
                         <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="situacao">Situação Chamado:</label><br>
+                        <select class="form-control" id="ab" name="aberto">
+                            <option value="0" <?php if($resultado['aberto'] == 0) {echo "selected";}?>>Fechado</option>
+                            <option value="1" <?php if($resultado['aberto'] == 1) {echo "selected";}?>>Aberto</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
+                </select>
+            </div>
                     <input type="submit" value="fechar Chamado">
                     </form>
                 </div>

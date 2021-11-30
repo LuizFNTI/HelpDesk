@@ -66,23 +66,7 @@
                         $dados = array();        
 
                         //Faz a consulta no banco
-                        $query = $conn->prepare("SELECT
-                        chamados.numero_chamado,
-                        tipo.nome_tipo,
-                        categoria.nome_categoria,
-                        subcategoria.nome_subcategoria,
-                        item.nome_item,
-                        chamados.descricao,
-                        chamados.data_hora_abertura,
-                        chamados.data_prazo,
-                        usuarios.nome,
-                        prioridade_chamado.nome_prioridade,
-                        status_chamado.nome_status,
-                        chamados.fila_geral,
-                        usuarios.matricula,
-                        chamados.analista
-                    FROM
-                        chamados
+                        $query = $conn->prepare("SELECT * FROM chamados
                     INNER JOIN item ON item.cod_item = chamados.item_cod_item
                     INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
                     INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
@@ -108,7 +92,7 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                //echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";
+                                echo "<th><a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Ver</a></th>";
                             echo "</tr>";
                         }
                     ?>
@@ -141,20 +125,7 @@
                         $dados = array();        
 
                         //Faz a consulta no banco
-                        $query = $conn->query("SELECT
-                        chamados.numero_chamado,
-                        tipo.nome_tipo,
-                        categoria.nome_categoria,
-                        subcategoria.nome_subcategoria,
-                        item.nome_item,
-                        chamados.descricao,
-                        chamados.data_hora_abertura,
-                        chamados.data_prazo,
-                        usuarios.nome,
-                        prioridade_chamado.nome_prioridade,
-                        status_chamado.nome_status
-                    FROM
-                        chamados
+                        $query = $conn->query("SELECT * FROM chamados
                     INNER JOIN item ON item.cod_item = chamados.item_cod_item
                     INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
                     INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
