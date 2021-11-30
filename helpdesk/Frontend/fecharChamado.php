@@ -55,17 +55,16 @@
         $status = $_POST['status'];
         $prioridade = $_POST['prioridade'];
         $tipo_atendimento = $_POST['tipoa'];
-        $fila_geral = $_POST['fgeral'];
+        $aberto = $_POST['aberto'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
+        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_prazo = :dp, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, aberto = :aberto WHERE numero_chamado = :nc");
         $query->bindValue(":dn",$descricao_analista);
         $query->bindValue(":dp",$data_prazo);
-        $query->bindValue(":analista",$nome_analista);
         $query->bindValue(":cs",$status);
         $query->bindValue(":cp",$prioridade);
         $query->bindValue(":cta",$tipo_atendimento);
-        $query->bindValue(":fgeral",$fila_geral);
+        $query->bindValue(":aberto",$aberto);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
     }
@@ -120,7 +119,7 @@
                     <form action="verChamadoAnalista.php" method="POST">
                     <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                     <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                    <input type="hidden" name="fgeral" value="0">
+                    <input type="hidden" name="aberto" value="0">
                     <div class="form-group">
                         <label for="dprazo">Informe a Data Prazo</label>
                         <input type="date" name="dprazo" id="dp">
@@ -182,7 +181,11 @@
                     ?>
                         </select>
                     </div>
-                    <input type="submit" value="Mover para sua fila">
+                    <div class="form-group">
+                        <label for="descricao">Faça uma breve descrição da sua resposta:</label>
+                        <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
+                    </div>
+                    <input type="submit" value="fechar Chamado">
                     </form>
                 </div>
             </div> <!--row-->

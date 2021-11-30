@@ -84,7 +84,7 @@
                     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE matricula = ?");
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE aberto = 1 AND matricula = ?");
                     $query->execute(array($matricula));
 
                     echo "<tbody>";
