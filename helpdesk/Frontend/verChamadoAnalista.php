@@ -24,7 +24,6 @@
         item.nome_item,
         chamados.descricao,
         chamados.data_hora_abertura,
-        chamados.data_hora_prazo,
         usuarios.matricula,
         usuarios.nome,
         usuarios.telefone,
@@ -50,23 +49,24 @@
     if(isset($_POST['status'])) {
 
         //Pega os POSTs do formularios e atribue a variaveis
+        $numero_chamado = $_POST["vnc"];
         $descricao_analista = $_POST['descanalista'];
-        $data_hora_prazo = $_POST['dhprazo'];
+        $data_prazo = $_POST['dprazo'];
         $status = $_POST['status'];
         $prioridade = $_POST['prioridade'];
         $tipo_atendimento = $_POST['tipoa'];
         $fila_geral = $_POST['fgeral'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_hora_prazo = :dhp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
+        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
         $query->bindValue(":dn",$descricao_analista);
-        $query->bindValue(":dhp",$data_hora_prazo);
+        $query->bindValue(":dp",$data_prazo);
         $query->bindValue(":analista",$nome_analista);
         $query->bindValue(":cs",$status);
         $query->bindValue(":cp",$prioridade);
         $query->bindValue(":cta",$tipo_atendimento);
         $query->bindValue(":fgeral",$fila_geral);
-        $query->bindValue(":nc",$numero_chamado_up);
+        $query->bindValue(":nc",$numero_chamado);
         $query->execute();
     }
     //caso a variavel seja nula, volta para a tela de gerenciamento
@@ -114,14 +114,78 @@
                 </div> <!--col-->
                 <div class="col">
                     <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
-                    <p>Data prazo</p>
-                    <p>Alterar Prioridade</p>
-                    <p>Selecionar Tipo Atendimento</p>
-                    <p>Selecionar Status</p><br><br><br>
-                    <div>Descrição Analista</div>
+                    <form action="verChamadoAnalista.php" method="POST">
+                    <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
+                    <input type="hidden" name="fgeral" value="0">
+                    <div class="form-group">
+                        <label for="dprazo">Informe a Data Prazo</label>
+                        <input type="date" name="dprazo" id="dp">
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Selrcione o status</label>
+                        <select class="form-control" id="cds" name="status">
+                        <option>Selecione</option>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM status_chamado");
+                    
+                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
+                        }
+                    ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Selrcione a Prioridade</label>
+                        <select class="form-control" id="cdp" name="prioridade">
+                        <option>Selecione</option>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM prioridade_chamado");
+                    
+                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
+                        }
+                    ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Selrcione o Tipo Atendimento</label>
+                        <select class="form-control" id="cds" name="tipoa">
+                        <option>Selecione</option>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM tipo_atendimento");
+                    
+                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
+                        }
+                    ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Faça uma breve descrição da sua resposta:</label>
+                        <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
+                    </div>
+                    <input type="submit" value="Mover para sua fila">
+                    </form>
                 </div>
             </div> <!--row-->
-            <div id="bt"><button type="button" class="btn btn-success">Salvar Alterações</button></div>
         </div> <!--dpc-->
     </main>
 </body>

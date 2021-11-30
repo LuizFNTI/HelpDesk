@@ -72,7 +72,7 @@
                         item.nome_item,
                         chamados.descricao,
                         chamados.data_hora_abertura,
-                        chamados.data_hora_prazo,
+                        chamados.data_prazo,
                         chamados.analista,
                         status_chamado.nome_status,
                         usuarios.matricula
@@ -99,7 +99,7 @@
                                 echo "<th>".$dados['nome_item']."</th>";
                                 echo "<th>".$dados['descricao']."</th>";
                                 echo "<th>".$dados['data_hora_abertura']."</th>";
-                                echo "<th>".$dados['data_hora_prazo']."</th>";
+                                echo "<th>".$dados['data_prazo']."</th>";
                                 echo "<th>".$dados['analista']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
                                 //echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";

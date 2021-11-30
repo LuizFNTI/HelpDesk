@@ -3,6 +3,7 @@
 
     if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
         $matricula = $_SESSION['usuario'][0];
+        $nome_analista = $_SESSION['usuario'][2]; 
     } else {
         header("location: ../index.php");
     }
@@ -65,7 +66,7 @@
                         $dados = array();        
 
                         //Faz a consulta no banco
-                        $query = $conn->query("SELECT
+                        $query = $conn->prepare("SELECT
                         chamados.numero_chamado,
                         tipo.nome_tipo,
                         categoria.nome_categoria,
@@ -73,7 +74,7 @@
                         item.nome_item,
                         chamados.descricao,
                         chamados.data_hora_abertura,
-                        chamados.data_hora_prazo,
+                        chamados.data_prazo,
                         usuarios.nome,
                         prioridade_chamado.nome_prioridade,
                         status_chamado.nome_status,
@@ -88,7 +89,8 @@
                     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 0");
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 0 AND analista = ?");
+                    $query->execute(array($nome_analista));
 
                     echo "<tbody>";
 
@@ -102,7 +104,7 @@
                                 echo "<th>".$dados['nome_item']."</th>";
                                 echo "<th>".$dados['descricao']."</th>";
                                 echo "<th>".$dados['data_hora_abertura']."</th>";
-                                echo "<th>".$dados['data_hora_prazo']."</th>";
+                                echo "<th>".$dados['data_prazo']."</th>";
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
@@ -147,7 +149,7 @@
                         item.nome_item,
                         chamados.descricao,
                         chamados.data_hora_abertura,
-                        chamados.data_hora_prazo,
+                        chamados.data_prazo,
                         usuarios.nome,
                         prioridade_chamado.nome_prioridade,
                         status_chamado.nome_status
@@ -173,7 +175,7 @@
                                 echo "<th>".$dados['nome_item']."</th>";
                                 echo "<th>".$dados['descricao']."</th>";
                                 echo "<th>".$dados['data_hora_abertura']."</th>";
-                                echo "<th>".$dados['data_hora_prazo']."</th>";
+                                echo "<th>".$dados['data_prazo']."</th>";
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
