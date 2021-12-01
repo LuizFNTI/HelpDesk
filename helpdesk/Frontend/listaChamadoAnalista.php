@@ -92,7 +92,8 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Ver</a></th>";
+                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado'].">Editar<br></a>";
+                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
                             echo "</tr>";
                         }
                     ?>
