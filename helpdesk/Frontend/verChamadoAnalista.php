@@ -139,15 +139,8 @@
                         $query = $conn->query("SELECT * FROM status_chamado");
                     
                         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                        echo "<P> AAAAAAAAAAAAA";
-                        print_r($resultado);
-                        echo "</p>";
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            if($dados['cod_status'] == $resultado['cod_status']) {
-                                echo "<option selected value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
-                            } else {
                             echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
-                            }
                         }
                     ?>
                         </select>

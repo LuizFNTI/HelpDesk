@@ -104,8 +104,8 @@
                     <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                     <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                     <div class="form-group">
-                        <label for="dprazo" value="<?php echo $resultado['data_prazo'] ?>">Informe a Data Prazo</label>
-                        <input type="date" name="dprazo" id="dp">
+                        <label for="dprazo">Informe a Data Prazo</label>
+                        <input type="date" name="dprazo" id="dp" value="<?php echo $resultado['data_prazo'] ?>">
                     </div>
                     <div class="form-group">
                         <label for="status">Selrcione o status</label>
@@ -120,7 +120,11 @@
                     
                         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
+                            if($dados['cod_status'] == $resultado['cod_status']) {
+                                echo "<option selected value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
+                            } else {
+                                echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
+                            }
                         }
                     ?>
                         </select>
@@ -138,7 +142,11 @@
                     
                         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
+                            if($dados['cod_prioridade'] == $resultado['cod_prioridade']) {
+                                echo "<option selected value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
+                            } else {
+                                echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
+                            }
                         }
                     ?>
                         </select>
@@ -156,7 +164,11 @@
                     
                         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
+                            if($dados['cod_tipo_atendimento'] == $resultado['cod_tipo_atendimento']) {
+                                echo "<option selected value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
+                            } else {
+                                echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
+                            }
                         }
                     ?>
                         </select>
@@ -172,7 +184,7 @@
                             <option value="1" <?php if($resultado['aberto'] == 1) {echo "selected";}?>>Aberto</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                 </select>
             </div>
-                    <input type="submit" value="fechar Chamado">
+                    <input type="submit" value="Alterar Chamado">
                     </form>
                 </div>
             </div> <!--row-->
