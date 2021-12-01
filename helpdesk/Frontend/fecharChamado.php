@@ -180,7 +180,7 @@
                     <div class="form-group">
                         <label for="situacao">Situação Chamado:</label><br>
                         <select class="form-control" id="ab" name="aberto">
-                            <option value="0" <?php if($resultado['aberto'] == 0) {echo "selected";}?>>Fechado</option>
+                            <option value="0" <?php if($resultado['aberto'] == 0) {echo "selected"; $query = $conn->prepare("UPDATE chamados SET data_hora_fechamento = NOW()")}?>>Fechado</option>
                             <option value="1" <?php if($resultado['aberto'] == 1) {echo "selected";}?>>Aberto</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                 </select>
             </div>
