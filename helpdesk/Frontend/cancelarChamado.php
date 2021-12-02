@@ -22,17 +22,17 @@
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
     //Verifica se existe POST
-    if(isset($_POST['descanalista'])) {
+    if(isset($_POST['descricao'])) {
 
         //Pega os POSTs do formularios e atribue a variaveis
         $numero_chamado = $_POST["vnc"];
-        $descricao_analista = $_POST['descanalista'];
+        $descricao = $_POST['descricao'];
         $aberto = $_POST['aberto'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_hora_fechamento = NOW(), aberto = :stfinalizado WHERE numero_chamado = :nc");
-        $query->bindValue(":dn",$descricao_analista);
-        $query->bindValue(":stfinalizado",$aberto);
+        $query = $conn->prepare("UPDATE chamados SET descricao = :du, status_chamado_cod_status = :stcancelado WHERE numero_chamado = :nc");
+        $query->bindValue(":du",$descricao);
+        $query->bindValue(":stcancelado",$aberto);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
     }
@@ -56,12 +56,12 @@
         <div id="dpc">
             <form action="" method="POST">
                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                <input type="hidden" name="aberto" value="3">
+                <input type="hidden" name="aberto" value="4">
                 <div class="form-group">
-                    <label for="descricao">Faça uma breve descrição sobre o encerramento:</label>
-                    <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
+                    <label for="descricao">Faça uma breve descrição sobre o motivo do cancelamento:</label>
+                    <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descricao"></textarea>
                 </div>
-                <input type="submit" value="Encerrar">
+                <input type="submit" value="Cancelar">
             </form>
         </div> <!--dpc-->
     </main>

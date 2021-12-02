@@ -16,23 +16,7 @@
     $numero_chamado_up = $_GET['nc_up'];
         
     //Faz o select para passar os valores para o form
-    $query = $conn->prepare("SELECT
-        chamados.numero_chamado,
-        tipo.nome_tipo,
-        categoria.nome_categoria,
-        subcategoria.nome_subcategoria,
-        item.nome_item,
-        chamados.descricao,
-        chamados.data_hora_abertura,
-        usuarios.matricula,
-        usuarios.nome,
-        usuarios.telefone,
-        usuarios.email,
-        usuarios.departamento,
-        prioridade_chamado.nome_prioridade,
-        status_chamado.nome_status,
-        status_chamado.cod_status
-    FROM
+    $query = $conn->prepare("SELECT * FROM
         chamados
     INNER JOIN item ON item.cod_item = chamados.item_cod_item
     INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
