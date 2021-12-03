@@ -25,6 +25,7 @@
     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
     INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status 
+    INNER JOIN departamento ON departamento.cod_departamento = usuarios.departamento
     WHERE numero_chamado = :nc");
     $query->bindValue(":nc",$numero_chamado_up);
     $query->execute();
@@ -91,7 +92,7 @@
                         <!--Passa as informações para imprimir na tela-->
                         <p>Numero Matricula: <?php echo $resultado['matricula']; ?></p>
                         <p>Nome: <?php echo $resultado['nome']; ?></p>
-                        <p>Departamento: <?php echo $resultado['departamento']; ?>
+                        <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
                         <p>Telefone: <?php echo $resultado['telefone']; ?></p>
                         <p>E-Mail: <?php echo $resultado['email']; ?></p>
                     </div><br><br><br><br>
