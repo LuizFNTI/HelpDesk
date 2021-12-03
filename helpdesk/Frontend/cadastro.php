@@ -9,7 +9,7 @@ if(isset($_POST['nome'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
-    $departamento = $_POST['departamento'];
+    $departamento = $_POST['cdepartamento'];
     $senha = $_POST['senha'];
 
     //Criptografa a senha usando om password_hash
@@ -61,8 +61,23 @@ if(isset($_POST['nome'])) {
             </div>
         </div>
             <div class="form-group">
-                <label for="departamento">Departamento:</label>
-                <input type="text" class="form-control" placeholder="Seu Departamento:" name="departamento" id="dept" required>
+            <label for="tipodemanda">Selrcione o Seu Departamento</label>
+            <select class="form-control" id="cdd" name="cdepartamento">
+                <option>Selecione</option>
+        <?php
+            include '../Backend/conexao.php';
+
+            $dados = array();        
+                    
+            //Faz a consulta no banco
+            $query = $conn->query("SELECT * FROM departamento ORDER BY nome_departamento");
+                    
+            //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+            }
+        ?>
+            </select>
             </div>
             <div class="form-group">
                 <label for="senha">Senha:</label>

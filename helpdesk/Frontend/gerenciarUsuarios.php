@@ -55,7 +55,7 @@
                         $dados = array();        
 
                         //Faz a consulta no banco
-                        $query = $conn->query("SELECT * FROM usuarios ORDER BY nome");
+                        $query = $conn->query("SELECT * FROM usuarios INNER JOIN departamento ON departamento.cod_departamento = usuarios.departamento");
 
                     echo "<tbody>";
 
@@ -66,7 +66,7 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['telefone']."</th>";
                                 echo "<th>".$dados['email']."</th>";
-                                echo "<th>".$dados['departamento']."</th>";
+                                echo "<th>".$dados['nome_departamento']."</th>";
                                 if($dados['nivel'] == 0) {echo "<th>Usuário</th>";} else if($dados['nivel'] == 1) {echo "<th>Analista</th>";} else {echo "<th>Administrador</th>";}
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
                                 echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";

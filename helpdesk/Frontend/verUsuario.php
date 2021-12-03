@@ -75,10 +75,28 @@
                 <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" required value="<?php if(isset($resultado)) {echo $resultado['telefone'];} ?>">
             </div>
         </div>
-            <div class="form-group">
-                <label for="departamento">Departamento:</label>
-                <input type="text" class="form-control" placeholder="Seu Departamento:" name="departamento" id="dept" required value="<?php if(isset($resultado)) {echo $resultado['departamento'];} ?>">
-            </div>
+        <div class="form-group">
+            <label for="status">Selrcione o status</label>
+            <select class="form-control" id="cds" name="status">
+        <?php
+            include '../Backend/conexao.php';
+
+            $dados = array();        
+                    
+            //Faz a consulta no banco
+            $query = $conn->query("SELECT * FROM departamento");
+                    
+            //Joga os dados do banco num array e faz a leitura do array jogando as informações opition
+            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                if($dados['cod_departamento'] == $resultado['cod_departamento']) {
+                    echo "<option selected value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                } else {
+                    echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                }
+            }
+        ?>
+            </select>
+        </div>
             <div class="form-group">
                 <label for="Nivelac">Nivel Acesso:</label><br>
                 <select class="form-control" id="nv" name="nivel">
