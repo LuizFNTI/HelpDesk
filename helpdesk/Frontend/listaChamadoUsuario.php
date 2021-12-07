@@ -61,18 +61,12 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
-                </a>
-            </li>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="abrirChamado.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
+                    <i class="fas fa-fw fa-plus"></i>
+                    <span>Abrir Chamado</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -80,6 +74,13 @@
                 <a class="nav-link" href="listaChamadoUsuario.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Meus Chamados</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="pesquisarChamado.php">
+                    <i class="fas fa-fw fa-search"></i>
+                    <span>Pesquisar Chamado</span>
+                </a>
             </li>
 
             <!-- Divider -->
