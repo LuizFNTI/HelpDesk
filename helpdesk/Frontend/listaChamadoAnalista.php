@@ -73,7 +73,7 @@
                     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 0 AND aberto = 1 AND analista = ?");
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 0 AND status_chamado_cod_status != 3 AND analista = ?");
                     $query->execute(array($nome_analista));
 
                     echo "<tbody>";
@@ -92,7 +92,8 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Ver</a></th>";
+                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado'].">Editar<br></a>";
+                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
                             echo "</tr>";
                         }
                     ?>
@@ -132,7 +133,7 @@
                     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 1");
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 1 AND status_chamado_cod_status != 3");
 
                     echo "<tbody>";
 

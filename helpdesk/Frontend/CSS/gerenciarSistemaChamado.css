@@ -42,7 +42,6 @@ body {
     padding: 20px;
     width: 1400px;
     height: 500px;
-    margin-bottom: 200px;
     border-left-style: solid;
     border-right-style: solid;
     border-bottom-style: solid;
@@ -75,6 +74,16 @@ body {
     border-bottom-style: solid;
 }
 #dpc8 {
+    background-color: white;
+    padding: 20px;
+    width: 1400px;
+    height: 500px;
+    margin-bottom: 200px;
+    border-left-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+}
+#dpc9 {
     background-color: white;
     padding: 20px;
     width: 1400px;

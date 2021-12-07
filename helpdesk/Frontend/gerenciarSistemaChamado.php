@@ -1,3 +1,17 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+        if($_SESSION['usuario'][1] == 2) {
+            $matricula = $_SESSION['usuario'][0];
+            $nome_analista = $_SESSION['usuario'][2];
+        } else {
+            header("location: ../index.php");
+        }
+    } else {
+        header("location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -181,7 +195,45 @@
                 </table>
             </div> <!--Prioridade-->
         </div> <!--dpc4-->
-    </div> 
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <div id="dpc9">
+            <div id="departamento">
+                <div id="titulo"><h2>Gerenciar Departamento</h2></div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Departamento</th>
+                            <th>Ativo</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <?php
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+                    
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM departamento ORDER BY nome_departamento");
+                    
+                        echo "<tbody>";
+
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_departamento']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_departamento']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verDepartamento.php?departamento_up=".$dados['cod_departamento'].">Ver</a></th>";
+                            echo "</tr>";
+                        }
+                    ?>
+                    </tbody>
+                </table>
+            </div> <!--Prioridade-->
+        </div> <!--dpc4-->
+    </div>  
     </div> 
 </body>
 </html>

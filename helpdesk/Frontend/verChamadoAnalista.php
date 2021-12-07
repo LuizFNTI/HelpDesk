@@ -16,23 +16,7 @@
     $numero_chamado_up = $_GET['nc_up'];
         
     //Faz o select para passar os valores para o form
-    $query = $conn->prepare("SELECT
-        chamados.numero_chamado,
-        tipo.nome_tipo,
-        categoria.nome_categoria,
-        subcategoria.nome_subcategoria,
-        item.nome_item,
-        chamados.descricao,
-        chamados.data_hora_abertura,
-        usuarios.matricula,
-        usuarios.nome,
-        usuarios.telefone,
-        usuarios.email,
-        usuarios.departamento,
-        prioridade_chamado.nome_prioridade,
-        status_chamado.nome_status,
-        status_chamado.cod_status
-    FROM
+    $query = $conn->prepare("SELECT * FROM
         chamados
     INNER JOIN item ON item.cod_item = chamados.item_cod_item
     INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
@@ -41,6 +25,7 @@
     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
     INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status 
+    INNER JOIN departamento ON departamento.cod_departamento = usuarios.departamento
     WHERE numero_chamado = :nc");
     $query->bindValue(":nc",$numero_chamado_up);
     $query->execute();
@@ -107,7 +92,7 @@
                         <!--Passa as informações para imprimir na tela-->
                         <p>Numero Matricula: <?php echo $resultado['matricula']; ?></p>
                         <p>Nome: <?php echo $resultado['nome']; ?></p>
-                        <p>Departamento: <?php echo $resultado['departamento']; ?>
+                        <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
                         <p>Telefone: <?php echo $resultado['telefone']; ?></p>
                         <p>E-Mail: <?php echo $resultado['email']; ?></p>
                     </div><br><br><br><br>
@@ -139,15 +124,8 @@
                         $query = $conn->query("SELECT * FROM status_chamado");
                     
                         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                        echo "<P> AAAAAAAAAAAAA";
-                        print_r($resultado);
-                        echo "</p>";
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            if($dados['cod_status'] == $resultado['cod_status']) {
-                                echo "<option selected value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
-                            } else {
                             echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
-                            }
                         }
                     ?>
                         </select>

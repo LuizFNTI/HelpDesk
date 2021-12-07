@@ -1,3 +1,17 @@
+<?php
+    session_start();
+
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+        if($_SESSION['usuario'][1] == 2) {
+            $matricula = $_SESSION['usuario'][0];
+            $nome_analista = $_SESSION['usuario'][2];
+        } else {
+            header("location: ../index.php");
+        }
+    } else {
+        header("location: ../index.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -41,6 +55,7 @@
         <p><a href="adicionarTipoAtendimento.php">Adicionar Novo Tipo Atendimento</a></p>
         <p><a href="adicionarStatus.php">Adicionar Novo Status</a></p>
         <p><a href="adicionarPrioridade.php">Adicionar Nova Prioridade</a></p>
+        <p><a href="adicionarDepartamento.php">Adicionar Novo Departamento</a></p>
     </div> <!--d1-->
     </div> <!--dpc-->
     </main>
