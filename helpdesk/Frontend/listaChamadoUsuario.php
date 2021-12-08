@@ -57,7 +57,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                USUÁRIO
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->

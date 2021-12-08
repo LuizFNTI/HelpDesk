@@ -54,7 +54,7 @@
 <body>
     <main class="row justify-content-center align-items-center">
         <div id="dpc">
-            <form action="" method="POST">
+            <form action="fecharChamado.php" method="POST">
                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                 <input type="hidden" name="aberto" value="3">
                 <div class="form-group">
