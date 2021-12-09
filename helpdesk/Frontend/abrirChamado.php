@@ -86,12 +86,12 @@ if(isset($_POST['descricao'])) {
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                USUÁRIO
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
+
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
                 <a class="nav-link" href="abrirChamado.php">
@@ -114,13 +114,63 @@ if(isset($_POST['descricao'])) {
             </li>
 
             <div class="sidebar-heading">
-                Analista
+                ANALISTA
             </div>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="listaChamadoAnalista.php">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Atendimento Chamados</span>
+                </a>
+            </li>
+
+            <div class="sidebar-heading">
+                ADMINISTRADOR
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gerenciarUsuarios.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Gerenciar Usuários</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-plus"></i>
+                    <span>Adicionar Opções</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">ABERTURA DE CHAMADOS</h6>
+                        <a class="collapse-item" href="adicionarTipo.php">Adicionar Tipo</a>
+                        <a class="collapse-item" href="adicionarCategoria.php">Adicionar Categoria</a>
+                        <a class="collapse-item" href="adicionarSubCat.php">Adicionar Sub Categoria</a>
+                        <a class="collapse-item" href="adicionarItem.php">Adicionar Item</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">ATENDIMENTO</h6>
+                        <a class="collapse-item" href="adicionarStatus.php">Adicionar Status</a>
+                        <a class="collapse-item" href="adicionarPrioridade.php">Adicionar Prioridade</a>
+                        <a class="collapse-item" href="adicionarTipoAtendimento.php">Adicionar Tipo Atendimento</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">DEPARTAMENTO</h6>
+                        <a class="collapse-item" href="adicionarDepartamento.php">Adicionar Departamento</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gerenciarAberturaChamados.php">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Gerenciar Abertura</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gerenciarSistemaChamados.php">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Sistema de Chamados</span>
                 </a>
             </li>
 
@@ -177,7 +227,8 @@ if(isset($_POST['descricao'])) {
                         </li>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        
+                            <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nome_usuario; ?></span>
@@ -189,20 +240,16 @@ if(isset($_POST['descricao'])) {
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Perfil
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Configurações
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="../Backend/logout.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Sair
                                 </a>
                             </div>
                         </li>
@@ -267,21 +314,20 @@ if(isset($_POST['descricao'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Sair?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Tem Certeza que deseja sair?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="../Backend/logout.php">Logout</a>
                 </div>
             </div>
         </div>
