@@ -134,14 +134,14 @@
                 </div>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="gerenciarAberturaChamados.php">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Gerenciar Abertura</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="gerenciarSistemaChamados.php">
                     <i class="fas fa-fw fa-list"></i>
                     <span>Sistema de Chamados</span>
@@ -238,17 +238,17 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Tipo</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Visão Geral</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
-                                            <th>Codigo Tipo</th>
-                                            <th>Nome Tipo</th>
-                                            <th>Ativo/Inativo</th>
-                                            <th>Ação</th>
+                                            <th>Tipo</th>
+                                            <th>Categoria</th>
+                                            <th>SubCategoria</th>
+                                            <th>Item</th>
                                         </tr>
                                     </thead>
                     <?php
@@ -258,174 +258,162 @@
                         $dados = array();        
 
                         //Faz a consulta no banco
-                        $query = $conn->query("SELECT * FROM tipo");
+                        $query = $conn->query("SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria, item.nome_item FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
 
                     echo "<tbody>";
 
                         //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                             echo "<tr>";
-                                echo "<th>".$dados['cod_tipo']."</th>";//Busca os dados na posiçãom do vetor
-                                echo "<th>".$dados['nome_tipo']."</th>";
-                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verTipo.php?tipo_up=".$dados['cod_tipo'].">Ver</a></th>";
-                            echo "</tr>";
-                        }
-                    ?>
-                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Categoria</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
-                                    <thead>
-                                        <tr>
-                                            <th>Codigo Categoria</th>
-                                            <th>Nome Categoria</th>
-                                            <th>Tipo Associado</th>
-                                            <th>Ativo/Inativo</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                    <?php
-                        
-                        include '../Backend/conexao.php';
-
-                        $dados = array();        
-
-                        //Faz a consulta no banco
-                        $query = $conn->query("SELECT categoria.cod_categoria, categoria.nome_categoria, tipo.nome_tipo, categoria.ativo FROM categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
-
-                    echo "<tbody>";
-
-                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
-                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<tr>";
-                                echo "<th>".$dados['cod_categoria']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_tipo']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_categoria']."</th>";
-                                echo "<th>".$dados['nome_tipo']."</th>";
-                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verCategoria.php?categoria_up=".$dados['cod_categoria'].">Ver</a></th>";
-                            echo "</tr>";
-                        }
-                    ?>
-                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Tipo</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
-                                    <thead>
-                                        <tr>
-                                            <th>Codigo SubCategoria</th>
-                                            <th>Nome SubCategoria</th>
-                                            <th>Categoria Associada</th>
-                                            <th>Tipo Associado</th>
-                                            <th>Ativo/Inativo</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                    <?php
-                        
-                        include '../Backend/conexao.php';
-
-                        $dados = array();        
-
-                        //Faz a consulta no banco
-                        $query = $conn->query("SELECT subcategoria.cod_subcategoria, subcategoria.nome_subcategoria, categoria.nome_categoria, tipo.nome_tipo, subcategoria.ativo FROM subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
-
-                    echo "<tbody>";
-
-                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
-                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<tr>";
-                                echo "<th>".$dados['cod_subcategoria']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_subcategoria']."</th>";
-                                echo "<th>".$dados['nome_categoria']."</th>";
-                                echo "<th>".$dados['nome_tipo']."</th>";
-                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verSubcategoria.php?subcategoria_up=".$dados['cod_subcategoria'].">Ver</a></th>";
-                            echo "</tr>";
-                        }
-                    ?>
-                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Tipo</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
-                                    <thead>
-                                        <tr>
-                                            <th>Codigo Item</th>
-                                            <th>Nome Item</th>
-                                            <th>SubCategoria Associada</th>
-                                            <th>Categoria Associada</th>
-                                            <th>Tipo Associado</th>
-                                            <th>Ativo/Inativo</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                    <?php
-                        
-                        include '../Backend/conexao.php';
-
-                        $dados = array();        
-
-                        //Faz a consulta no banco
-                        $query = $conn->query("SELECT item.cod_item, item.nome_item, subcategoria.nome_subcategoria, categoria.nome_categoria, tipo.nome_tipo, item.ativo FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
-
-                    echo "<tbody>";
-
-                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
-                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<tr>";
-                                echo "<th>".$dados['cod_item']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_item']."</th>";
-                                echo "<th>".$dados['nome_subcategoria']."</th>";
-                                echo "<th>".$dados['nome_categoria']."</th>";
-                                echo "<th>".$dados['nome_tipo']."</th>";
+                            echo "</tr>";
+                        }
+                    ?>
+                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Status</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Status</th>
+                                            <th>Ativo</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                    <?php
+                        
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM status_chamado ORDER BY nome_status");
+
+                    echo "<tbody>";
+
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_status']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_status']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verItem.php?item_up=".$dados['cod_item'].">Ver</a></th>";
+                                echo "<th><a href=verStatus.php?status_up=".$dados['cod_status'].">Ver</a></th>";
+                            echo "</tr>";
+                        }
+                    ?>
+                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Tipo Atendimento</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Tipo Atendimento</th>
+                                            <th>Ativo</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                    <?php
+                        
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM tipo_atendimento ORDER BY nome_tipo_atendimento");
+
+                    echo "<tbody>";
+
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_tipo_atendimento']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_tipo_atendimento']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verTipoAtendimento.php?tipoa_up=".$dados['cod_tipo_atendimento'].">Ver</a></th>";
+                            echo "</tr>";
+                        }
+                    ?>
+                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Prioridade</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Codigo</th>
+                                            <th>Prioridade</th>
+                                            <th>Ativo</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                    <?php
+                        
+                        include '../Backend/conexao.php';
+
+                        $dados = array();        
+
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM prioridade_chamado ORDER BY nome_prioridade");
+
+                    echo "<tbody>";
+
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['cod_prioridade']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_prioridade']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th><a href=verPrioridade.php?prioridade_up=".$dados['cod_prioridade'].">Ver</a></th>";
                             echo "</tr>";
                         }
                     ?>
