@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 23/11/2021 às 12:34
+-- Tempo de geração: 10-Dez-2021 às 17:46
 -- Versão do servidor: 8.0.21
--- Versão do PHP: 7.3.21
+-- versão do PHP: 7.3.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,7 +26,7 @@ USE `db_helpdesk`;
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `categoria`
+-- Estrutura da tabela `categoria`
 --
 
 DROP TABLE IF EXISTS `categoria`;
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `categoria`
+-- Extraindo dados da tabela `categoria`
 --
 
 INSERT INTO `categoria` (`cod_categoria`, `nome_categoria`, `ativo`, `tipo_cod_tipo`) VALUES
@@ -60,19 +60,19 @@ INSERT INTO `categoria` (`cod_categoria`, `nome_categoria`, `ativo`, `tipo_cod_t
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `chamados`
+-- Estrutura da tabela `chamados`
 --
 
 DROP TABLE IF EXISTS `chamados`;
 CREATE TABLE IF NOT EXISTS `chamados` (
   `numero_chamado` int NOT NULL AUTO_INCREMENT,
-  `descricao` blob NOT NULL,
-  `data_abertura` date NOT NULL,
+  `descricao` varchar(3000) NOT NULL,
+  `descricao_analista` varchar(3000) NOT NULL,
+  `data_hora_abertura` datetime NOT NULL,
   `data_prazo` date DEFAULT NULL,
-  `data_fechamento` date DEFAULT NULL,
-  `hora_abertura` datetime(6) NOT NULL,
-  `hora_fechamento` datetime(6) DEFAULT NULL,
+  `data_hora_fechamento` datetime DEFAULT NULL,
   `usuarios_matricula` int NOT NULL,
+  `analista` varchar(45) NOT NULL,
   `status_chamado_cod_status` int NOT NULL,
   `prioridade_chamado_cod_prioridade` int NOT NULL,
   `tipo_atendimento_cod_tipo_atendimento` int NOT NULL,
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `chamados` (
   `categoria_cod_categoria` int NOT NULL,
   `subcategoria_cod_subcategoria` int NOT NULL,
   `item_cod_item` int NOT NULL,
-  `fechado` int NOT NULL,
+  `fila_geral` int NOT NULL,
   PRIMARY KEY (`numero_chamado`),
   KEY `fk_chamados_usuarios_idx` (`usuarios_matricula`),
   KEY `fk_chamados_item1_idx` (`item_cod_item`),
@@ -90,12 +90,45 @@ CREATE TABLE IF NOT EXISTS `chamados` (
   KEY `fk_chamados_tipo1_idx` (`tipo_cod_tipo`),
   KEY `fk_chamados_categoria1_idx` (`categoria_cod_categoria`),
   KEY `fk_chamados_subcategoria1_idx` (`subcategoria_cod_subcategoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `chamados`
+--
+
+INSERT INTO `chamados` (`numero_chamado`, `descricao`, `descricao_analista`, `data_hora_abertura`, `data_prazo`, `data_hora_fechamento`, `usuarios_matricula`, `analista`, `status_chamado_cod_status`, `prioridade_chamado_cod_prioridade`, `tipo_atendimento_cod_tipo_atendimento`, `tipo_cod_tipo`, `categoria_cod_categoria`, `subcategoria_cod_subcategoria`, `item_cod_item`, `fila_geral`) VALUES
+(8, 'Desktop novo', 'dfg', '2021-11-29 09:43:06', '2021-12-08', '2021-12-02 03:10:19', 1010, 'Analista', 2, 2, 1, 2, 7, 7, 5, 0),
+(9, 'Não abre não', '', '2021-11-29 09:44:04', '0000-00-00', NULL, 1010, 'analista2', 2, 2, 1, 1, 2, 13, 19, 0),
+(10, 'Instalar novo aparelho', '', '2021-11-29 09:46:04', '2021-12-31', NULL, 1010, '', 1, 1, 1, 2, 10, 35, 47, 1),
+(11, 'Cancela logo', '', '2021-11-29 09:46:59', '2021-11-10', NULL, 1010, 'analista2', 4, 2, 2, 1, 5, 39, 58, 0),
+(12, 'teste', '', '2021-11-30 10:45:45', '2022-01-26', NULL, 1111, 'Analista', 2, 2, 1, 2, 8, 22, 31, 0),
+(13, 'juhyhy', '', '2021-11-30 11:01:15', '2021-12-24', NULL, 1111, 'analista2', 1, 1, 1, 2, 12, 45, 63, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `item`
+-- Estrutura da tabela `departamento`
+--
+
+DROP TABLE IF EXISTS `departamento`;
+CREATE TABLE IF NOT EXISTS `departamento` (
+  `cod_departamento` int NOT NULL AUTO_INCREMENT,
+  `nome_departamento` varchar(45) NOT NULL,
+  `ativo` int NOT NULL,
+  PRIMARY KEY (`cod_departamento`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `departamento`
+--
+
+INSERT INTO `departamento` (`cod_departamento`, `nome_departamento`, `ativo`) VALUES
+(1, 'TI22', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `item`
 --
 
 DROP TABLE IF EXISTS `item`;
@@ -109,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `item` (
 ) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `item`
+-- Extraindo dados da tabela `item`
 --
 
 INSERT INTO `item` (`cod_item`, `nome_item`, `ativo`, `subcategoria_cod_subcategoria`) VALUES
@@ -183,7 +216,7 @@ INSERT INTO `item` (`cod_item`, `nome_item`, `ativo`, `subcategoria_cod_subcateg
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `prioridade_chamado`
+-- Estrutura da tabela `prioridade_chamado`
 --
 
 DROP TABLE IF EXISTS `prioridade_chamado`;
@@ -195,7 +228,7 @@ CREATE TABLE IF NOT EXISTS `prioridade_chamado` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `prioridade_chamado`
+-- Extraindo dados da tabela `prioridade_chamado`
 --
 
 INSERT INTO `prioridade_chamado` (`cod_prioridade`, `nome_prioridade`, `ativo`) VALUES
@@ -205,7 +238,7 @@ INSERT INTO `prioridade_chamado` (`cod_prioridade`, `nome_prioridade`, `ativo`) 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `status_chamado`
+-- Estrutura da tabela `status_chamado`
 --
 
 DROP TABLE IF EXISTS `status_chamado`;
@@ -214,21 +247,22 @@ CREATE TABLE IF NOT EXISTS `status_chamado` (
   `nome_status` varchar(45) NOT NULL,
   `ativo` int NOT NULL,
   PRIMARY KEY (`cod_status`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `status_chamado`
+-- Extraindo dados da tabela `status_chamado`
 --
 
 INSERT INTO `status_chamado` (`cod_status`, `nome_status`, `ativo`) VALUES
 (1, 'Pendente', 1),
 (2, 'Em Andamento', 1),
-(3, 'Finalizado', 0);
+(3, 'Finalizado', 0),
+(4, 'Cancelado', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `subcategoria`
+-- Estrutura da tabela `subcategoria`
 --
 
 DROP TABLE IF EXISTS `subcategoria`;
@@ -242,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `subcategoria` (
 ) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `subcategoria`
+-- Extraindo dados da tabela `subcategoria`
 --
 
 INSERT INTO `subcategoria` (`cod_subcategoria`, `nome_subcategoria`, `ativo`, `categoria_cod_categoria`) VALUES
@@ -296,7 +330,7 @@ INSERT INTO `subcategoria` (`cod_subcategoria`, `nome_subcategoria`, `ativo`, `c
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo`
+-- Estrutura da tabela `tipo`
 --
 
 DROP TABLE IF EXISTS `tipo`;
@@ -308,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `tipo` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `tipo`
+-- Extraindo dados da tabela `tipo`
 --
 
 INSERT INTO `tipo` (`cod_tipo`, `nome_tipo`, `ativo`) VALUES
@@ -318,7 +352,7 @@ INSERT INTO `tipo` (`cod_tipo`, `nome_tipo`, `ativo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tipo_atendimento`
+-- Estrutura da tabela `tipo_atendimento`
 --
 
 DROP TABLE IF EXISTS `tipo_atendimento`;
@@ -330,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `tipo_atendimento` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `tipo_atendimento`
+-- Extraindo dados da tabela `tipo_atendimento`
 --
 
 INSERT INTO `tipo_atendimento` (`cod_tipo_atendimento`, `nome_tipo_atendimento`, `ativo`) VALUES
@@ -340,7 +374,7 @@ INSERT INTO `tipo_atendimento` (`cod_tipo_atendimento`, `nome_tipo_atendimento`,
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -350,35 +384,37 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `telefone` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `departamento` varchar(45) NOT NULL,
-  `senha` varchar(45) NOT NULL,
+  `senha` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `nivel` int NOT NULL,
   `ativo` int NOT NULL,
-  PRIMARY KEY (`matricula`)
+  PRIMARY KEY (`matricula`),
+  KEY `fk_cod_departamento` (`departamento`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Despejando dados para a tabela `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`matricula`, `nome`, `telefone`, `email`, `departamento`, `senha`, `nivel`, `ativo`) VALUES
-(0, 'Usuário', '0000000', 'usuario@usuario.com', 'TI', '1234', 0, 1),
-(1, 'Analista', '11111111', 'analista@analista.com', 'TI2', '123', 1, 1),
-(2, 'Administrador', '22222222', 'adm@adm.com', 'TI', '12', 2, 1),
-(789, 'PHP', '15815', 'php@php.com', 'TI2234', '1234', 0, 1),
-(4880, 'Luizz', '999999999', '123@gmail.com', 'TI2', '1234', 2, 0);
+(100, 'tdep', '100100100', 'dep@dep.com', '1', '$2y$10$MXwizdKLcKXnbWvspo0gCeCd9ZnrPpExqE2JwzPCs/6VPh8KPR39q', 0, 0),
+(1010, 'Usuário', '11111111', 'usuario@user.com', '1', '$2y$10$6bomssBMoH.k4waht4WWGuoe6TuUJfbKD3E.gFlWzVrA.BVLhwpI2', 0, 1),
+(1111, 'usuário2', '45454545', 'usuario2@user.com', '1', '$2y$10$JsDr/BuzbjA.tXfjRs1ACejyxtPFITAMbz.W3X1xqMm7jvuDaDnL.', 0, 0),
+(2020, 'Analista', '22222222', 'analista@user.com', '1', '$2y$10$sar3A.VP0BnaoKM/1p3ENebP8PqNGYSGvlSTnCnvOGLNLnXnZFxY2', 1, 1),
+(2121, 'analista2', '21212121', 'analista2@user.com', '1', '$2y$10$5L9okLsYm6MpZg4KtDahyOXtpUUUlR0Acr38lVf83DFHYw5TIu.qm', 1, 1),
+(3030, 'Administrados', '33333333', 'adm@user.com', '1', '$2y$10$tkQ4P6VGONV29X48b6nzK.D3lYery2oe9MIzRQ5KV.O1tpnrs/CwC', 2, 1);
 
 --
--- Restrições para dumps de tabelas
+-- Restrições para despejos de tabelas
 --
 
 --
--- Restrições para tabelas `categoria`
+-- Limitadores para a tabela `categoria`
 --
 ALTER TABLE `categoria`
   ADD CONSTRAINT `fk_categoria_tipo1` FOREIGN KEY (`tipo_cod_tipo`) REFERENCES `tipo` (`cod_tipo`);
 
 --
--- Restrições para tabelas `chamados`
+-- Limitadores para a tabela `chamados`
 --
 ALTER TABLE `chamados`
   ADD CONSTRAINT `fk_chamados_categoria1` FOREIGN KEY (`categoria_cod_categoria`) REFERENCES `categoria` (`cod_categoria`),
@@ -391,13 +427,13 @@ ALTER TABLE `chamados`
   ADD CONSTRAINT `fk_chamados_usuarios` FOREIGN KEY (`usuarios_matricula`) REFERENCES `usuarios` (`matricula`);
 
 --
--- Restrições para tabelas `item`
+-- Limitadores para a tabela `item`
 --
 ALTER TABLE `item`
   ADD CONSTRAINT `fk_item_subcategoria1` FOREIGN KEY (`subcategoria_cod_subcategoria`) REFERENCES `subcategoria` (`cod_subcategoria`);
 
 --
--- Restrições para tabelas `subcategoria`
+-- Limitadores para a tabela `subcategoria`
 --
 ALTER TABLE `subcategoria`
   ADD CONSTRAINT `fk_subcategoria_categoria1` FOREIGN KEY (`categoria_cod_categoria`) REFERENCES `categoria` (`cod_categoria`);
