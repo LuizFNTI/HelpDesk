@@ -86,12 +86,12 @@ if(isset($_POST['descricao'])) {
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                USUÁRIO
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
+
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
                 <a class="nav-link" href="abrirChamado.php">
@@ -110,6 +110,67 @@ if(isset($_POST['descricao'])) {
                 <a class="nav-link collapsed" href="pesquisarChamado.php">
                     <i class="fas fa-fw fa-search"></i>
                     <span>Pesquisar Chamado</span>
+                </a>
+            </li>
+
+            <div class="sidebar-heading">
+                ANALISTA
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="listaChamadoAnalista.php">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Atendimento Chamados</span>
+                </a>
+            </li>
+
+            <div class="sidebar-heading">
+                ADMINISTRADOR
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gerenciarUsuarios.php">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>Gerenciar Usuários</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-plus"></i>
+                    <span>Adicionar Opções</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">ABERTURA DE CHAMADOS</h6>
+                        <a class="collapse-item" href="adicionarTipo.php">Adicionar Tipo</a>
+                        <a class="collapse-item" href="adicionarCategoria.php">Adicionar Categoria</a>
+                        <a class="collapse-item" href="adicionarSubCat.php">Adicionar Sub Categoria</a>
+                        <a class="collapse-item" href="adicionarItem.php">Adicionar Item</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">ATENDIMENTO</h6>
+                        <a class="collapse-item" href="adicionarStatus.php">Adicionar Status</a>
+                        <a class="collapse-item" href="adicionarPrioridade.php">Adicionar Prioridade</a>
+                        <a class="collapse-item" href="adicionarTipoAtendimento.php">Adicionar Tipo Atendimento</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">DEPARTAMENTO</h6>
+                        <a class="collapse-item" href="adicionarDepartamento.php">Adicionar Departamento</a>
+                    </div>
+                </div>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gerenciarAberturaChamados.php">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Gerenciar Abertura</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="gerenciarSistemaChamados.php">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Sistema de Chamados</span>
                 </a>
             </li>
 
@@ -165,61 +226,9 @@ if(isset($_POST['descricao'])) {
                             </a>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                            <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li>
-                        
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
+                        
+                            <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nome_usuario; ?></span>
@@ -231,20 +240,16 @@ if(isset($_POST['descricao'])) {
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Perfil
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Configurações
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="../Backend/logout.php" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Sair
                                 </a>
                             </div>
                         </li>
@@ -256,8 +261,8 @@ if(isset($_POST['descricao'])) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Chamados</h1>
-                    <p class="mb-4">Aqui estão localizados os chamados que estão abertos.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Abrir Novo Chamado</h1>
+                    <p class="mb-4">Selecione as opções que melhor se encaixão a sua solicitação</p>
 
                     <form action="abrirChamado.php" method="POST" class="user">
                     <div class="form-group row">
@@ -309,21 +314,20 @@ if(isset($_POST['descricao'])) {
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Sair?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Tem Certeza que deseja sair?</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a class="btn btn-primary" href="../Backend/logout.php">Logout</a>
                 </div>
             </div>
         </div>

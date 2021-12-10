@@ -40,16 +40,14 @@
         $status = $_POST['status'];
         $prioridade = $_POST['prioridade'];
         $tipo_atendimento = $_POST['tipoa'];
-        $aberto = $_POST['aberto'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_prazo = :dp, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, aberto = :aberto WHERE numero_chamado = :nc");
+        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_prazo = :dp, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta WHERE numero_chamado = :nc");
         $query->bindValue(":dn",$descricao_analista);
         $query->bindValue(":dp",$data_prazo);
         $query->bindValue(":cs",$status);
         $query->bindValue(":cp",$prioridade);
         $query->bindValue(":cta",$tipo_atendimento);
-        $query->bindValue(":aberto",$aberto);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
     }
@@ -101,7 +99,7 @@
                 </div> <!--col-->
                 <div class="col">
                     <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
-                    <form action="fecharChamado.php" method="POST">
+                    <form action="editarChamado.php" method="POST">
                     <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                     <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                     <div class="form-group">
@@ -116,8 +114,8 @@
 
                         $dados = array();        
                     
-                        //Faz a consulta no banco
-                        $query = $conn->query("SELECT * FROM status_chamado");
+                        //Faz a consulta no banco onde o status seja diferente de finalizado
+                        $query = $conn->query("SELECT * FROM status_chamado WHERE cod_status != 3");
                     
                         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
