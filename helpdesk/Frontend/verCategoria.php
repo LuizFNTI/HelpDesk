@@ -5,7 +5,7 @@
     if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
         if($_SESSION['usuario'][1] == 2) {
             $matricula = $_SESSION['usuario'][0];
-            $nome_analista = $_SESSION['usuario'][2];
+            $nome_usuario = $_SESSION['usuario'][2];
         } else {
             header("location: ../index.php");
         }
@@ -63,10 +63,8 @@
         <form action="verCategoria.php" method="POST">
         <h2>Ver Categoria</h2>
         <?php echo "Tipo Associado: ".$resultado['nome_tipo'];?><!--Informa o Tipo associado-->
-            <div class="form-group">
-                <!--Passa o codigo via POST para ser possivel realizar o update-->
-                <input type="hidden" class="form-control" name="vercc" id="vcc" required value="<?php if(isset($resultado)) {echo $resultado['cod_categoria'];} ?>"><!--passa o valor para o formulario-->
-            </div>
+            <!--Passa o codigo via POST para ser possivel realizar o update-->
+            <input type="hidden" name="vercc" id="vcc" required value="<?php if(isset($resultado)) {echo $resultado['cod_categoria'];} ?>"><!--passa o valor para o formulario-->
             <div class="form-group">
                 <label for="vcat">Categoria</label>
                 <input type="text" class="form-control" name="vercat" id="vc" required value="<?php if(isset($resultado)) {echo $resultado['nome_categoria'];}//passa o valor para o formulario ?>">

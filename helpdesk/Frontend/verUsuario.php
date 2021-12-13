@@ -274,69 +274,81 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-            <div class="row justify-content-center align-items-center" id="dp">
-                <form method="POST" action="verUsuario.php">
-                <h2>Editar Usuário</h2>
-            <div class="row">
-                <div class="form-group">
-                    <label for="mat">Número Matricula:</label>
-                    <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required value="<?php if(isset($resultado)) {echo $resultado['matricula'];}//passa o valor para o formulario ?>">
-                </div>
-                <div class="form-group">
-                    <label for="email">Endereço de E-mail:</label>
-                    <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="e-mail" required value="<?php if(isset($resultado)) {echo $resultado['email'];} ?>">
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label for="nome">Nome Completo::</label>
-                    <input type="text" class="form-control" placeholder="Seu Nome:" name="nome" id="nme" required value="<?php if(isset($resultado)) {echo $resultado['nome'];} ?>">
-                </div>
-                <div class="form-group">
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" required value="<?php if(isset($resultado)) {echo $resultado['telefone'];} ?>">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="status">Selrcione o status</label>
-                <select class="form-control" id="cds" name="status">
-            <?php
-                include '../Backend/conexao.php';
+                    <form method="POST" action="verUsuario.php" class="user">
+                    <h2>Editar Usuário</h2>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
+                                <label for="mat">Número Matricula:</label>
+                                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required value="<?php if(isset($resultado)) {echo $resultado['matricula'];}//passa o valor para o formulario ?>">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
+                                <label for="email">Endereço de E-mail:</label>
+                                <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="e-mail" required value="<?php if(isset($resultado)) {echo $resultado['email'];} ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
+                                <label for="nome">Nome Completo::</label>
+                                <input type="text" class="form-control" placeholder="Seu Nome:" name="nome" id="nme" required value="<?php if(isset($resultado)) {echo $resultado['nome'];} ?>">
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
+                                <label for="telefone">Telefone:</label>
+                                <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" required value="<?php if(isset($resultado)) {echo $resultado['telefone'];} ?>">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Selrcione o Departamento</label>
+                        <select class="form-control" id="cds" name="status">
+                    <?php
+                        include '../Backend/conexao.php';
 
-                $dados = array();        
+                        $dados = array();        
                     
-            //Faz a consulta no banco
-                $query = $conn->query("SELECT * FROM departamento");
+                        //Faz a consulta no banco
+                        $query = $conn->query("SELECT * FROM departamento");
                     
-                //Joga os dados do banco num array e faz a leitura do array jogando as informações opition
-                foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                    if($dados['cod_departamento'] == $resultado['cod_departamento']) {
-                        echo "<option selected value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
-                    } else {
-                        echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
-                    }
-                }
-            ?>
-                </select>
-            </div>
-                <div class="form-group">
-                    <label for="Nivelac">Nivel Acesso:</label><br>
-                    <select class="form-control" id="nv" name="nivel">
-                        <option value="0" <?php if($resultado['nivel'] == 0) {echo "selected";}?>>Usuário</option>
-                        <option value="1" <?php if($resultado['nivel'] == 1) {echo "selected";}?>>Analista</option>
-                        <option value="2" <?php if($resultado['nivel'] == 2) {echo "selected";}?>>Administrador</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ativo">Ativo:</label><br>
-                    <select class="form-control" id="atv" name="ativo">
-                        <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
-                        <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
-                    </select>
-                </div>
-                <input type="submit" value="Guardar">
-            </form>
-            </div>
+                        //Joga os dados do banco num array e faz a leitura do array jogando as informações opition
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            if($dados['cod_departamento'] == $resultado['cod_departamento']) {
+                                echo "<option selected value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                            } else {
+                                echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                            }
+                        }
+                    ?>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
+                                <label for="Nivelac">Nivel Acesso:</label><br>
+                                <select class="form-control" id="nv" name="nivel">
+                                    <option value="0" <?php if($resultado['nivel'] == 0) {echo "selected";}?>>Usuário</option>
+                                    <option value="1" <?php if($resultado['nivel'] == 1) {echo "selected";}?>>Analista</option>
+                                    <option value="2" <?php if($resultado['nivel'] == 2) {echo "selected";}?>>Administrador</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <div class="form-group">
+                                <label for="ativo">Ativo:</label><br>
+                                <select class="form-control" id="atv" name="ativo">
+                                    <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
+                                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="verUsuarios.php" class="btn btn-primary btn-block">Salvar</a>
+                    </form>
                 </div>
                 <!-- /.container-fluid -->
             </div>
