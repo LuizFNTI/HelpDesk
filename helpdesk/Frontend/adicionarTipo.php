@@ -259,11 +259,11 @@ if(isset($_POST['novot'])) {
                                 <div class="form-group">
                                     <label for="ativo">Ativo:</label><br>
                                     <select class="form-control" id="atv" name="ativo">
-                                        <option>Inativo</option>
-                                        <option>Ativo</option>
+                                        <option value="0">Inativo</option>
+                                        <option value="1">Ativo</option>
                                     </select>
                                 </div>
-                                <a href="login.html" class="btn btn-primary btn-block">Guardar</a>
+                                <a href="adicionarTipo.php" class="btn btn-primary btn-block">Guardar</a>
                             </form>
                         </div> <!--form1-->
                     </div> <!--dpc-->
