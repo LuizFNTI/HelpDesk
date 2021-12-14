@@ -242,7 +242,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTableVisaoGeral" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
                                             <th>Tipo</th>
@@ -290,7 +290,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTableStatus" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
                                             <th>Codigo</th>
@@ -339,7 +339,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTableTipoAtendimento" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
                                             <th>Codigo</th>
@@ -387,7 +387,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTablePrioridade" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
                                             <th>Codigo</th>
