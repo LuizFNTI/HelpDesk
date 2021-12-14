@@ -267,29 +267,29 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                <div class="row justify-content-center align-items-center" id="dpc">
+                <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                     <div id="form1">
                         <form action="verStatus.php" method="POST">
                         <h2>Ver Status</h2>
                         <div class="form-group">
-                <!--Passa o codigo via POST para ser possivel realizar o update-->
-                <input type="hidden" class="form-control" name="vercs" id="vcs" required value="<?php if(isset($resultado)) {echo $resultado['cod_status'];} ?>">
-            </div>
-            <div class="form-group">
-                <label for="nstatus">Status</label>
-                <input type="text" class="form-control" placeholder="Status:" name="verst" id="vst" required value="<?php if(isset($resultado)) {echo $resultado['nome_status'];}//passa o valor para o formulario ?>">
-            </div>
-            <div class="form-group">
-                <label for="ativo">Ativo:</label><br>
-                <select class="form-control" id="atv" name="ativo">
-                    <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
-                    <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
-                </select>
-            </div>
-            <input type="submit" value="Guardar">
-        </form>
-    </div> <!--form1-->
-    </div> <!--dpc-->
+                        <!--Passa o codigo via POST para ser possivel realizar o update-->
+                            <input type="hidden" class="form-control" name="vercs" id="vcs" required value="<?php if(isset($resultado)) {echo $resultado['cod_status'];} ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="nstatus">Status</label>
+                            <input type="text" class="form-control" placeholder="Status:" name="verst" id="vst" required value="<?php if(isset($resultado)) {echo $resultado['nome_status'];}//passa o valor para o formulario ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="ativo">Ativo:</label><br>
+                            <select class="form-control" id="atv" name="ativo">
+                                <option value="0" <?php if($resultado['ativo'] == 0) {echo "selected";}?>>Inativo</option>
+                                <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
+                            </select>
+                        </div>
+                        <input type="submit" value="Guardar">
+                        </form>
+                    </div> <!--form1-->
+                </div> <!--dpc-->
                 </div>
                 <!-- /.container-fluid -->
             </div>
