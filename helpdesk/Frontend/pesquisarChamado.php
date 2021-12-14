@@ -268,7 +268,7 @@ if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
                                 </div>
                             </div>
                         </div>
-                        <a href="login.html" class="btn btn-primary btn-user btn-block"> Register Account</a>
+                        <a href="login.html" class="btn btn-primary btn-block"> Register Account</a>
                     </form>
                 </div>
                 <!-- /.container-fluid -->
