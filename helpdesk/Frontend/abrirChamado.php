@@ -266,6 +266,10 @@ if(isset($_POST['descricao'])) {
 
                     <form action="abrirChamado.php" method="POST" class="user">
                     <div class="form-group row">
+                    <input type="text" name="status" value="1">
+                    <input type="text" name="prioridade" value="1">
+                    <input type="text" name="tipoa" value="1">
+                    <input type="text" name="fgeral" value="1">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                         <?php include 'carregarTipo.php'; ?>
                         </div>
@@ -285,7 +289,7 @@ if(isset($_POST['descricao'])) {
                         <label for="descricao">Faça uma breve descrição da sua solicitação:</label>
                         <textarea class="form-control" rows="8" placeholder="Descrição:" id="descr" name="descricao"></textarea>
                     </div>
-                    <a href="login.html" class="btn btn-primary btn-user btn-block">Register Account</a>
+                    <input type="submit" value="Enviar" class="btn btn-primary btn-user btn-block"></input>
                 </div>
                 <!-- /.container-fluid -->
             </div>

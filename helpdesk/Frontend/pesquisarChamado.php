@@ -1,14 +1,23 @@
 <?php
-include_once '../Backend/conexao.php';
+    include_once '../Backend/conexao.php';
 
-session_start();
+    session_start();
 
-if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
     $matricula = $_SESSION['usuario'][0];
     $nome_usuario = $_SESSION['usuario'][2];
-} else {
+    } else {
     header("location: ../index.php");
-}
+    }
+
+    $numero_chamado = $_POST['numCha'];
+    $nome_usuario = $_POST['nomeu'];
+    $data_inicio = $_POST['datain'];
+    $data_fim = $_POST['datafim'];
+
+    $query = $conn->prepare("SELECT * FROM chamados INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula WHERE numero_chamado = ? AND nome = ?");
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

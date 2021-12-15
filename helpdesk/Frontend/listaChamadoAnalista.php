@@ -4,6 +4,7 @@
     if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
         $matricula = $_SESSION['usuario'][0];
         $nome_usuario = $_SESSION['usuario'][2];
+        $nome_analista = $_SESSION['usuario'][2];
     } else {
         header("location: ../index.php");
     }
