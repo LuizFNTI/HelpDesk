@@ -28,67 +28,123 @@ if(isset($_POST['nome'])) {
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/cadastro.css">
-</head>
-<body>
-    <div class="row justify-content-center align-items-center" id="dp">
-        <form action="cadastro.php" method="POST">
-        <h2>Cadastro</h2>
-        <div id="df1">
-            <div class="form-group">
-                <label for="mat">Número Matricula:</label>
-                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Endereço de E-mail:</label>
-                <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="e-mail" required>
-            </div>
-        </div>
-        <div id="df1">
-        <div class="form-group">
-                <label for="nome">Nome Completo::</label>
-                <input type="text" class="form-control" placeholder="Seu Nome:" name="nome" id="nme" required>
-            </div>
-            <div class="form-group">
-                <label for="telefone">Telefone:</label>
-                <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" required>
-            </div>
-        </div>
-            <div class="form-group">
-            <label for="tipodemanda">Selrcione o Seu Departamento</label>
-            <select class="form-control" id="cdd" name="cdepartamento">
-                <option>Selecione</option>
-        <?php
-            include '../Backend/conexao.php';
 
-            $dados = array();        
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Register</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none d-lg-block"></div>
+                    <div class="col-lg-7">
+                        <div class="p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Crie Sua Conta!</h1>
+                            </div>
+                            <form class="user" action="cadastro.php" method="POST">
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" placeholder="Matricula" name="mat" id="matr" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" placeholder="Seu E-mail:" name="email" id="e-mail" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" placeholder="Seu Nome:" name="nome" id="nme" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" placeholder="Seu Telefone:" name="telefone" id="fone" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" id="cdd" name="cdepartamento">
+                                        <option>Selecione seu Departamento</option>
+                            <?php
+                                include '../Backend/conexao.php';
+
+                                $dados = array();        
                     
-            //Faz a consulta no banco
-            $query = $conn->query("SELECT * FROM departamento ORDER BY nome_departamento");
+                                //Faz a consulta no banco
+                                $query = $conn->query("SELECT * FROM departamento ORDER BY nome_departamento");
                     
-            //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
-            }
-        ?>
-            </select>
+                                //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                                foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                                    echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                                }
+                            ?>
+                                    </select>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" placeholder="Digite su senha:" name="senha" id="pass" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control form-control-user" placeholder="Confirme sua senha:" name="csenha" id="cpass" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" value="Cadastrar" class="btn btn-primary btn-user btn-block">
+                            </form>
+                            <hr>
+                            <div class="text-center">
+                                <a class="small" href="recuperarSenha.php">Esqueceu a Senha?</a>
+                            </div>
+                            <div class="text-center">
+                                <a class="small" href="index.php">Já Tem Uma Conta? Login!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="senha">Senha:</label>
-                <input type="text" class="form-control" placeholder="Digite su senha:" name="senha" id="pass" required>
-            </div>
-            <div class="form-group">
-                <label for="confsenha">Confirmar Senha:</label>
-                <input type="text" class="form-control" placeholder="Confirme sua senha:" name="csenha" id="cpass" required>
-            </div>
-            <input type="submit" value="Finalizar Cadastro">
-        </form>
+        </div>
     </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
 </body>
+
 </html>

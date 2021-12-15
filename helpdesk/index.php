@@ -64,7 +64,7 @@
                                         <a class="small" href="recuperaarSenha.php">Esqueceu a Senha?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="cadastro.php">Cadastra-se</a>
+                                        <a class="small" href="Frontend/cadastro.php">Cadastra-se</a>
                                     </div>
                                 </div>
                             </div>
