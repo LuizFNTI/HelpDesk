@@ -256,7 +256,7 @@ if(isset($_POST['novop'])) {
                             <label for="nprioridade">Nova Prioridade</label>
                             <input type="text" class="form-control" placeholder="Prioridade:" name="novop" id="np" required>
                         </div>
-                        <a href="adicionarPrioridade.php" class="btn btn-primary btn-block">Guardar</a>
+                        <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                         </form>
                         </div> <!--form1-->
                     </div> <!--dpc-->

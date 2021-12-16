@@ -256,7 +256,7 @@ if(isset($_POST['novota'])) {
                             <label for="ntipoa">Digite o Novo Tipo Atendimento</label>
                             <input type="text" class="form-control" placeholder="Novo Tipo Atendimento:" name="novota" id="nta" required>
                         </div>
-                        <a href="adicionarTipoAtendimento.php" class="btn btn-primary btn-block">Guardar</a>
+                        <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                         </form>
                         </div> <!--form1-->
                     </div> <!--dpc-->

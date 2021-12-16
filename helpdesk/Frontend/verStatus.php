@@ -286,7 +286,7 @@
                                 <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option><!--Verifica qual a situação no banco para fazer a seleção no opition-->
                             </select>
                         </div>
-                        <input type="submit" value="Guardar">
+                        <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                         </form>
                     </div> <!--form1-->
                 </div> <!--dpc-->

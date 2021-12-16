@@ -285,7 +285,7 @@ if(isset($_POST['novacat'])) {
                             <option value="1">Ativo</option>
                         </select>
                     </div>
-                    <a href="adicionarCategoria.php" class="btn btn-primary btn-block">Guardar</a>
+                    <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                     </form>
                     </div> <!--form1-->
                 </div> <!--dpc-->

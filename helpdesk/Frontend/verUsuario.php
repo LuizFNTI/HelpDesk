@@ -347,7 +347,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="verUsuarios.php" class="btn btn-primary btn-block">Salvar</a>
+                    <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                     </form>
                 </div>
                 <!-- /.container-fluid -->

@@ -286,7 +286,7 @@
                                         <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
                                     </select><!--puxa do banco o 'ativo' e faz a verificação para ver qual sera selecionado-->
                                 </div>
-                                <a href="verPrioridade.php" class="btn btn-primary btn-block">Guardar</a>
+                                <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                             </form>
                         </div> <!--form1-->
                     </div> <!--dpc-->

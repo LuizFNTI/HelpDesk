@@ -284,7 +284,7 @@
                                         <option value="1" <?php if($resultado['ativo'] == 1) {echo "selected";}?>>Ativo</option>
                                     </select>
                                 </div>
-                                <a href="verTipo.php" class="btn btn-primary btn-block">Guardar</a>
+                                <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                             </form>
                         </div> <!--form1-->
                     </div> <!--dpc-->
