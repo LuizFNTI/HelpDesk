@@ -10,6 +10,11 @@
     } else {
     header("location: ../index.php");
     }
+
+    $numero_chamado = $_POST['numCha'];
+    $nome_usuarioo = $_POST['nomeu'];
+    $data_inicio = $_POST['datain'];
+    $data_fim = $_POST['datafim'];
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -241,38 +246,69 @@
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Chamados</h1>
                     <p class="mb-4">Aqui estão localizados os chamados que estão abertos.</p>
+               
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Usuários</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0" style="font-size: 14px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Chamado</th>
+                                            <th>Tipo>Categoria>SubCategoria>Item</th>
+                                            <th>Data Inicio</th>
+                                            <th>Data Prazo</th>
+                                            <th>Usuário</th>
+                                            <th>Prioridade</th>
+                                            <th>Status</th>
+                                            <th>Ação</th>
+                                        </tr>
+                                    </thead>
+                    <?php
+                        
+                        include '../Backend/conexao.php';
 
-                    <form action="resultadoPesquisaChamado.php" method="POST" class="user">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="form-group">
-                                    <label for="pchamado">Numero do Chamado</label>
-                                    <input type="text" class="form-control" placeholder="Numero Chamado:" name="numCha" id="nch" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="nomeusuario">Nome do Usuário</label>
-                                    <input type="text" class="form-control" placeholder="Nome Chamado:" name="nomeu" id="nu" required>
-                                </div>      
+                        $dados = array();        
+
+                        //Faz a consulta no banco
+                        $query = $conn->prepare("SELECT * FROM chamados
+                    INNER JOIN item ON item.cod_item = chamados.item_cod_item
+                    INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
+                    INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
+                    INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
+                    INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+                    INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE numero_chamado = ? AND nome = ? AND data_hora_abertura BETWEEN ':di' AND ':df'");
+                    $query->bindValue(":di", $data_inicio);
+                    $query->bindValue(":df", $data_fim);
+                    $query->execute(array($numero_chamado, $nome_usuarioo));
+
+                    echo "<tbody>";
+
+                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                            echo "<tr>";
+                                echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_tipo'].">".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
+                                //echo "<th>".$dados['descricao']."</th>";
+                                echo "<th>".$dados['data_hora_abertura']."</th>";
+                                echo "<th>".$dados['data_prazo']."</th>";
+                                echo "<th>".$dados['nome']."</th>";
+                                echo "<th>".$dados['nome_prioridade']."</th>";
+                                echo "<th>".$dados['nome_status']."</th>";
+                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado'].">Editar<br></a>";
+                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
+                            echo "</tr>";
+                        }
+                    ?>
+                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="form-group">
-                                    <label for="datafinal">Data Inicial</label>
-                                    <input type="date" class="form-control" name="datain" id="din" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="datainicial">Data Final</label>
-                                    <input type="date" class="form-control" name="datafim" id="dfim" required>
-                                </div>
-                            </div>
-                        </div>
-                        <input type="submit" value="Enviar" class="btn btn-primary btn-block">
-                    </form>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>
