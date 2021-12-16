@@ -16,7 +16,11 @@
     $data_inicio = $_POST['datain'];
     $data_fim = $_POST['datafim'];
 
-    $query = $conn->prepare("SELECT * FROM chamados INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula WHERE numero_chamado = ? AND nome = ?");
+    $query = $conn->prepare("SELECT * FROM chamados INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula WHERE numero_chamado = ? AND nome = ? AND data_hora_abertura BETWEEN :di AND :df");
+
+    $query->bindValue(":di", $data_inicio);
+    $query->bindValue(":df", $data_fim);
+    $query->execute(array($numero_chamado, $nome_usuario));
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -278,7 +282,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="login.html" class="btn btn-primary btn-block"> Register Account</a>
+                        <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                     </form>
                 </div>
                 <!-- /.container-fluid -->
