@@ -3,8 +3,8 @@
 
     if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
         $matricula = $_SESSION['usuario'][0];
+        $nivel = $_SESSION['usuario'][1];
         $nome_usuario = $_SESSION['usuario'][2];
-        $nome_analista = $_SESSION['usuario'][2];
     } else {
         header("location: ../index.php");
     }
@@ -95,6 +95,7 @@
                 </a>
             </li>
 
+            <?php if($nivel == 2) { ?>
             <div class="sidebar-heading">
                 ADMINISTRADOR
             </div>
@@ -144,7 +145,7 @@
                     <span>Sistema de Chamados</span>
                 </a>
             </li>
-
+            <?php } ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -268,7 +269,7 @@
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
                     INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE analista = ? AND fila_geral = 0 AND status_chamado_cod_status != 3");
-                    $query->execute(array($nome_analista));
+                    $query->execute(array($nome_usuario));
 
                     echo "<tbody>";
 

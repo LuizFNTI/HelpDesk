@@ -5,6 +5,7 @@
 
     if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
     $matricula = $_SESSION['usuario'][0];
+    $nivel = $_SESSION['usuario'][1];
     $nome_usuario = $_SESSION['usuario'][2];
     } else {
     header("location: ../index.php");
@@ -16,8 +17,6 @@
     $data_fim = $_POST['datafim'];
 
     $query = $conn->prepare("SELECT * FROM chamados INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula WHERE numero_chamado = ? AND nome = ?");
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -94,6 +93,7 @@
                 </a>
             </li>
 
+            <?php if($nivel == 1) { ?>
             <div class="sidebar-heading">
                 ANALISTA
             </div>
@@ -105,6 +105,7 @@
                 </a>
             </li>
 
+            <?php } else if($nivel == 2) { ?>
             <div class="sidebar-heading">
                 ADMINISTRADOR
             </div>
@@ -154,7 +155,7 @@
                     <span>Sistema de Chamados</span>
                 </a>
             </li>
-
+            <?php } ?>
 
 
             <!-- Divider -->

@@ -5,6 +5,7 @@ session_start();
 
 if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
     $matricula = $_SESSION['usuario'][0];
+    $nivel = $_SESSION['usuario'][1];
     $nome_usuario = $_SESSION['usuario'][2];
 } else {
     header("location: ../index.php");
@@ -86,9 +87,7 @@ if(isset($_POST['descricao'])) {
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <div class="sidebar-heading">
-                USUÁRIO
-            </div>
+            <div class="sidebar-heading">USUÁRIO</div>
 
             <!-- Nav Item - Pages Collapse Menu -->
 
@@ -112,10 +111,8 @@ if(isset($_POST['descricao'])) {
                     <span>Pesquisar Chamado</span>
                 </a>
             </li>
-
-            <div class="sidebar-heading">
-                ANALISTA
-            </div>
+            <?php if($nivel == 1) { ?>
+            <div class="sidebar-heading">ANALISTA</div>
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="listaChamadoAnalista.php">
@@ -123,6 +120,7 @@ if(isset($_POST['descricao'])) {
                     <span>Atendimento Chamados</span>
                 </a>
             </li>
+            <?php } else if($nivel == 2) { ?>
 
             <div class="sidebar-heading">
                 ADMINISTRADOR
@@ -173,6 +171,7 @@ if(isset($_POST['descricao'])) {
                     <span>Sistema de Chamados</span>
                 </a>
             </li>
+            <?php } ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -181,7 +180,6 @@ if(isset($_POST['descricao'])) {
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
         </ul>
         <!-- End of Sidebar -->
 
