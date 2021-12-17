@@ -245,19 +245,19 @@
                     <form action="pesquisarChamado.php" method="POST" class="user">
                         <div class="form-group">
                             <label for="pchamado">Pesquísa</label>
-                            <input type="text" class="form-control" placeholder="Numero Chamado, Usuário, Analista" name="pesquisa" id="nch" required>    
+                            <input type="text" class="form-control" placeholder="Numero Chamado, Usuário, Analista" name="pesquisa" id="nch">    
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <div class="form-group">
                                     <label for="datafinal">Data Inicial</label>
-                                    <input type="date" class="form-control" name="datain" id="din" required>
+                                    <input type="date" class="form-control" name="datain" id="din">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="datainicial">Data Final</label>
-                                    <input type="date" class="form-control" name="datafim" id="dfim" required>
+                                    <input type="date" class="form-control" name="datafim" id="dfim">
                                 </div>
                             </div>
                         </div>
@@ -276,7 +276,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTablePesquisa" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>

@@ -93,6 +93,13 @@ $(document).ready(function() {
       }
     }
   );
+  $('#dataTablePesquisa').DataTable(
+    {
+      language: {
+        url: 'js/demo/pt_br.json'
+      }
+    }
+  );
 });
 
 
