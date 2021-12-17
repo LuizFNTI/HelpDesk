@@ -11,10 +11,7 @@
     header("location: ../index.php");
     }
 
-    $numero_chamado = $_POST['numCha'];
-    $nome_usuarioo = $_POST['nomeu'];
-    $data_inicio = $_POST['datain'];
-    $data_fim = $_POST['datafim'];
+    
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -270,6 +267,11 @@
                     <?php
                         
                         include '../Backend/conexao.php';
+
+                        $numero_chamado = $_POST['numCha'];
+                        $nome_usuarioo = $_POST['nomeu'];
+                        $data_inicio = $_POST['datain'];
+                        $data_fim = $_POST['datafim'];
 
                         $dados = array();        
 
