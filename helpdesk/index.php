@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -61,7 +61,7 @@
                                     </form>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="recuperaarSenha.php">Esqueceu a Senha?</a>
+                                        <a class="small" href="Frontend/recuperarSenha.php">Esqueceu a Senha?</a>
                                     </div>
                                     <div class="text-center">
                                         <a class="small" href="Frontend/cadastro.php">Cadastra-se</a>
