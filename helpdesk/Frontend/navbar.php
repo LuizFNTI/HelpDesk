@@ -20,7 +20,7 @@
 <!-- Nav Item - Pages Collapse Menu -->
 
 <!-- Nav Item - Charts -->
-<li class="nav-item active">
+<li class="nav-item">
     <a class="nav-link" href="abrirChamado.php">
         <i class="fas fa-fw fa-plus"></i>
         <span>Abrir Chamado</span></a>
@@ -39,7 +39,7 @@
         <span>Pesquisar Chamado</span>
     </a>
 </li>
-<?php if($nivel == 1) { ?>
+<?php if($nivel == 1 || $nivel == 2) { ?>
 <div class="sidebar-heading">ANALISTA</div>
 
 <li class="nav-item">
@@ -48,7 +48,7 @@
         <span>Atendimento Chamados</span>
     </a>
 </li>
-<?php } else if($nivel == 2) { ?>
+<?php } if($nivel == 2) { ?>
 
 <div class="sidebar-heading">
     ADMINISTRADOR
