@@ -2,11 +2,46 @@
     session_start();
 
     if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
-        $matricula = $_SESSION['usuario'][0];
-        $nivel = $_SESSION['usuario'][0];
+        $matricula_session = $_SESSION['usuario'][0];
+        $nivel = $_SESSION['usuario'][1];
         $nome_usuario = $_SESSION['usuario'][2];
     } else {
         header("location: ../index.php");
+    }
+
+    include '../Backend/conexao.php';
+
+    $resultado = array();
+
+    //pega o codigo passado pela outra página via URL e atribui a uma variavel
+    $matricula_up = $matricula_session;
+        
+    //Faz a consulta no banco de acordo com o codigo passado via URL
+    $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = :m");
+    $query->bindValue(":m",$matricula_up);
+    $query->execute();
+    $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    //Verifica se existe POST
+    if(isset($_POST['nome'])) {
+
+        //Pega os POSTs do formularios e atribue a variaveis
+        $matricula = $_POST['mat'];
+        $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        $departamento = $_POST['departamento'];
+        
+        //Faz o update no banco de acordo com o codigo passado via URL
+        $query = $conn->prepare("UPDATE usuarios SET telefone = :t, email = :e, departamento = :d WHERE matricula = :m");
+        $query->bindValue(":t",$telefone);
+        $query->bindValue(":e",$email);
+        $query->bindValue(":d",$departamento);
+        $query->bindValue(":m",$matricula);
+        $query->execute();
+    }
+    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
+    if($matricula_up == null) {
+        header("location: gerenciarUsuarios.php");
     }
 ?>
 <!DOCTYPE html>
@@ -40,116 +75,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <div class="sidebar-heading">USUÁRIO</div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="abrirChamado.php">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>Abrir Chamado</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="listaChamadoUsuario.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Meus Chamados</span></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="pesquisarChamado.php">
-                    <i class="fas fa-fw fa-search"></i>
-                    <span>Pesquisar Chamado</span>
-                </a>
-            </li>
-            <?php if($nivel == 1) { ?>
-            <div class="sidebar-heading">ANALISTA</div>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="listaChamadoAnalista.php">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Atendimento Chamados</span>
-                </a>
-            </li>
-            <?php } else if($nivel == 2) { ?>
-
-            <div class="sidebar-heading">
-                ADMINISTRADOR
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="gerenciarUsuarios.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Gerenciar Usuários</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>Adicionar Opções</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">ABERTURA DE CHAMADOS</h6>
-                        <a class="collapse-item" href="adicionarTipo.php">Adicionar Tipo</a>
-                        <a class="collapse-item" href="adicionarCategoria.php">Adicionar Categoria</a>
-                        <a class="collapse-item" href="adicionarSubCat.php">Adicionar Sub Categoria</a>
-                        <a class="collapse-item" href="adicionarItem.php">Adicionar Item</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">ATENDIMENTO</h6>
-                        <a class="collapse-item" href="adicionarStatus.php">Adicionar Status</a>
-                        <a class="collapse-item" href="adicionarPrioridade.php">Adicionar Prioridade</a>
-                        <a class="collapse-item" href="adicionarTipoAtendimento.php">Adicionar Tipo Atendimento</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">DEPARTAMENTO</h6>
-                        <a class="collapse-item" href="adicionarDepartamento.php">Adicionar Departamento</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="gerenciarAberturaChamados.php">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Gerenciar Abertura</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="gerenciarSistemaChamados.php">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Sistema de Chamados</span>
-                </a>
-            </li>
-            <?php } ?>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-        </ul>
+        <?php include 'navbar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -159,69 +85,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                        </li>
-
-                        <!-- Nav Item - User Information -->
-                        
-                            <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nome_usuario; ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configurações
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../Backend/logout.php" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Sair
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                <?php include 'topbar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -236,19 +100,19 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="email">E-mail</label>
-                                        <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="ema" required>
+                                        <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="ema">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="Telefone">Telefone</label>
-                                        <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" required>
+                                        <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="dep">Departamento</label>
-                                        <select class="form-control" id="cdd" name="cdepartamento">
+                                        <select class="form-control" id="cdd" name="departamento">
                                             <option>Selecione seu Departamento</option>
                                             <?php
                                                 include '../Backend/conexao.php';
@@ -260,7 +124,11 @@
                                     
                                                 //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                                 foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                                    echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                                                    if($dados['cod_departamento'] == $resultado['cod_departamento']) {
+                                                        echo "<option selected value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                                                    } else {
+                                                        echo "<option value=".$dados['cod_departamento'].">".$dados['nome_departamento']."</option>";
+                                                    }
                                                 }
                                             ?>
                                         </select>
@@ -269,19 +137,19 @@
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="senha">Senha Atual</label>
-                                        <input type="text" class="form-control" placeholder="Digite sua senha atual:" name="senha" id="pass" required>
+                                        <input type="text" class="form-control" placeholder="Digite sua senha atual:" name="senha" id="pass">
                                     </div>
                                 </div>
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="ns">Nova Senha</label>
-                                        <input type="text" class="form-control" placeholder="Digite sua nova senha:" name="senha" id="pass" required>
+                                        <input type="text" class="form-control" placeholder="Digite sua nova senha:" name="senha" id="pass">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="rns">Repita Nova Senha</label>
-                                        <input type="text" class="form-control" placeholder="Confirme sua nova senha:" name="csenha" id="cpass" required>
+                                        <input type="text" class="form-control" placeholder="Confirme sua nova senha:" name="csenha" id="cpass">
                                     </div> 
                                 </div>
                             </div>
