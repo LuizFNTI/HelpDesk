@@ -1,14 +1,15 @@
 <?php
-include_once '../Backend/conexao.php';
+    include_once '../Backend/conexao.php';
 
-session_start();
+    session_start();
 
-if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
-    $matricula = $_SESSION['usuario'][0];
-    $nome_usuario = $_SESSION['usuario'][2];
-} else {
-    header("location: ../index.php");
-}
+    if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
+        $matricula = $_SESSION['usuario'][0];
+        $nivel = $_SESSION['usuario'][1];
+        $nome_usuario = $_SESSION['usuario'][2];
+    } else {
+        header("location: ../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -41,122 +42,7 @@ if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                USUÁRIO
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="abrirChamado.php">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>Abrir Chamado</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="listaChamadoUsuario.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Meus Chamados</span></a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link collapsed" href="pesquisarChamado.php">
-                    <i class="fas fa-fw fa-search"></i>
-                    <span>Pesquisar Chamado</span>
-                </a>
-            </li>
-
-            <div class="sidebar-heading">
-                ANALISTA
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="listaChamadoAnalista.php">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Atendimento Chamados</span>
-                </a>
-            </li>
-
-            <div class="sidebar-heading">
-                ADMINISTRADOR
-            </div>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="gerenciarUsuarios.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Gerenciar Usuários</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-plus"></i>
-                    <span>Adicionar Opções</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">ABERTURA DE CHAMADOS</h6>
-                        <a class="collapse-item" href="adicionarTipo.php">Adicionar Tipo</a>
-                        <a class="collapse-item" href="adicionarCategoria.php">Adicionar Categoria</a>
-                        <a class="collapse-item" href="adicionarSubCat.php">Adicionar Sub Categoria</a>
-                        <a class="collapse-item" href="adicionarItem.php">Adicionar Item</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">ATENDIMENTO</h6>
-                        <a class="collapse-item" href="adicionarStatus.php">Adicionar Status</a>
-                        <a class="collapse-item" href="adicionarPrioridade.php">Adicionar Prioridade</a>
-                        <a class="collapse-item" href="adicionarTipoAtendimento.php">Adicionar Tipo Atendimento</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">DEPARTAMENTO</h6>
-                        <a class="collapse-item" href="adicionarDepartamento.php">Adicionar Departamento</a>
-                    </div>
-                </div>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="gerenciarAberturaChamados.php">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Gerenciar Abertura</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="gerenciarSistemaChamados.php">
-                    <i class="fas fa-fw fa-list"></i>
-                    <span>Sistema de Chamados</span>
-                </a>
-            </li>
-
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+        <?php include 'navbar.php'; ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -166,70 +52,7 @@ if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                        </li>
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $nome_usuario; ?></span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Perfil
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Configurações
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../Backend/logout.php" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Sair
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </nav>
+                <?php include 'topbar.php'; ?>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -239,37 +62,101 @@ if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
                     <h1 class="h3 mb-2 text-gray-800">Chamados</h1>
                     <p class="mb-4">Aqui estão localizados os chamados que estão abertos.</p>
 
-                    <form action="abrirChamado.php" method="POST" class="user">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="form-group">
-                                    <label for="pchamado">Numero do Chamado</label>
-                                    <input type="text" class="form-control" placeholder="Numero Chamado:" name="numCha" id="nch" required>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="nomeusuario">Nome do Usuário</label>
-                                    <input type="text" class="form-control" placeholder="Nome Chamado:" name="nomeu" id="nu" required>
-                                </div>      
-                            </div>
+                    <form action="pesquisarChamado.php" method="POST" class="user">
+                        <div class="form-group">
+                            <label for="pchamado">Pesquísa</label>
+                            <input type="text" class="form-control" placeholder="Numero Chamado, Usuário, Analista" name="pesquisa" id="nch">    
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <div class="form-group">
                                     <label for="datafinal">Data Inicial</label>
-                                    <input type="date" class="form-control" name="datain" id="din" required>
+                                    <input type="date" class="form-control" name="datain" id="din">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="datainicial">Data Final</label>
-                                    <input type="date" class="form-control" name="datafim" id="dfim" required>
+                                    <input type="date" class="form-control" name="datafim" id="dfim">
                                 </div>
                             </div>
                         </div>
-                        <a href="login.html" class="btn btn-primary btn-user btn-block"> Register Account</a>
+                        <input type="submit" value="Enviar" class="btn btn-primary btn-block">
                     </form>
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+               
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Usuários</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTablePesquisa" width="100%" cellspacing="0" style="font-size: 14px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Chamado</th>
+                                            <th>Tipo>Categoria>SubCategoria>Item</th>
+                                            <th>Data Inicio</th>
+                                            <th>Usuário</th>
+                                            <th>Analista</th>
+                                            <th>Prioridade</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                    <?php
+                        
+                        include '../Backend/conexao.php';
+
+                        if(isset($_POST['pesquisa'])) {
+
+                            $pesquisa = $_POST['pesquisa'];
+                            $data_inicio = $_POST['datain'];
+                            $data_fim = $_POST['datafim'];
+                        
+                            $dados = array();        
+
+                            //Faz a consulta no banco
+                            $query = $conn->prepare("SELECT * FROM chamados
+                        INNER JOIN item ON item.cod_item = chamados.item_cod_item
+                        INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
+                        INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
+                        INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
+                        INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+                        INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+                        INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE numero_chamado LIKE '%:pesq%' OR nome LIKE '%:pesq%' OR analista LIKE '%:pesq%' AND data_hora_abertura BETWEEN ':di' AND ':df'");
+                        $query->bindValue(":pesq", $pesquisa);
+                        $query->bindValue(":di", $data_inicio);
+                        $query->bindValue(":df", $data_fim);
+                        $query->execute();
+
+                        echo "<tbody>";
+
+                            //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
+                            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                                echo "<tr>";
+                                    echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
+                                    echo "<th>".$dados['nome_tipo'].">".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
+                                    echo "<th>".$dados['data_hora_abertura']."</th>";
+                                    echo "<th>".$dados['nome']."</th>";
+                                    echo "<th>".$dados['analista']."</th>";
+                                    echo "<th>".$dados['nome_prioridade']."</th>";
+                                    echo "<th>".$dados['nome_status']."</th>";
+                                    //echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado'].">Editar<br></a>";
+                                    //echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
+                                echo "</tr>";
+                            }
+                        }
+                    ?>
+                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>

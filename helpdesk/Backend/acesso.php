@@ -14,6 +14,6 @@
     } else if($nivel == 1) {
         header("location: ../Frontend/listaChamadoAnalista.php");
     } else if($nivel == 2) {
-        header("location: ../Frontend/gerenciarSistema.php");
+        header("location: ../Frontend/gerenciarUsuarios.php");
     }
 ?>
