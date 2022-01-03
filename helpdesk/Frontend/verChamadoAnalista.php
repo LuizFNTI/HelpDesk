@@ -202,7 +202,7 @@
                                     ?>
                                         </select>       
                                     </div>
-                                    <input type="submit" value="Mover para sua fila">
+                                    <input type="submit" value="Mover Param Sua Fila" class="btn btn-primary btn-block">
                                 </form>
                             </div>
                         </div>

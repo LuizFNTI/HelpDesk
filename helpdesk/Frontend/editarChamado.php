@@ -207,7 +207,7 @@
                             <label for="descricao">Faça uma breve descrição da sua resposta:</label>
                             <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
                         </div>
-                        <input type="submit" value="Alterar Chamado">
+                        <input type="submit" value="Guardar" class="btn btn-primary btn-block">
                         </form>
                     </div>
                 </div> <!--row-->

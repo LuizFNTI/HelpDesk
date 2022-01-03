@@ -20,7 +20,7 @@
     $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = :m");
     $query->bindValue(":m",$matricula_up);
     $query->execute();
-    $resultado = $query->fetchAll(PDO::FETCH_ASSOC);
+    $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
     //Verifica se existe POST
     if(isset($_POST['nome'])) {
@@ -95,18 +95,18 @@
                     <h1 class="h3 mb-2 text-gray-800">Editar Perfil</h1>
 
                     <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
-                        <form action="abrirChamado.php" method="POST" class="user">
+                        <form action="editarPerfil.php" method="POST" class="user">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="email">E-mail</label>
-                                        <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="ema">
+                                        <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="ema" value="<?php echo $resultado['email']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="Telefone">Telefone</label>
-                                        <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone">
+                                        <input type="text" class="form-control" placeholder="Seu Telefone:" name="telefone" id="fone" value="<?php echo $resultado['telefone']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-12 mb-3 mb-sm-0">

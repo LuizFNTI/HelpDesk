@@ -11,19 +11,24 @@ if(isset($_POST['nome'])) {
     $telefone = $_POST['telefone'];
     $departamento = $_POST['cdepartamento'];
     $senha = $_POST['senha'];
+    $confsenha = $_POST['csenha'];
 
-    //Criptografa a senha usando om password_hash
-    $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+    if($senha == $confsenha) {
+        //Criptografa a senha usando om password_hash
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    //Pega os POSTs das variaveis e insere os dados no banco
-    $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha) VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
-    $query->bindValue(":matricula", $matricula);
-    $query->bindValue(":nome",$nome);
-    $query->bindValue(":telefone",$telefone);
-    $query->bindValue(":email",$email);
-    $query->bindValue(":departamento",$departamento);
-    $query->bindValue(":senha",$senha_hash);
-    $query->execute();
+        //Pega os POSTs das variaveis e insere os dados no banco
+        $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha) VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
+        $query->bindValue(":matricula", $matricula);
+        $query->bindValue(":nome",$nome);
+        $query->bindValue(":telefone",$telefone);
+        $query->bindValue(":email",$email);
+        $query->bindValue(":departamento",$departamento);
+        $query->bindValue(":senha",$senha_hash);
+        $query->execute();
+    } else if($senha != $confsenha){
+        echo "<script>window.alert('As senhas não coferem')</script>";
+    }
 }
 ?>
 <!DOCTYPE html>
