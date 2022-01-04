@@ -39,7 +39,7 @@
         $query->bindValue(":m",$matricula);
         $query->execute();
     } else {
-        header("location: ../index.php");
+        
     }
     //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($matricula_up == null) {

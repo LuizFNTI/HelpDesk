@@ -110,32 +110,29 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <div>
+                            <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
                                 <p>Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
                             </div><br>
                             
-                            <div>
+                            <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
                                 <?php echo $resultado['nome_tipo'] . ">" 
                                 . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?>
-                            </div>
+                            </div><br>
 
-                            <div>
+                            <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
                                 <p>Numero Matricula: <?php echo $resultado['matricula']; ?></p>
                                 <p>Nome: <?php echo $resultado['nome']; ?></p>
                                 <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
                                 <p>Telefone: <?php echo $resultado['telefone']; ?></p>
                                 <p>E-Mail: <?php echo $resultado['email']; ?></p>
-                            </div><br><br><br><br>
-                            <div>
-                                Descrição <br>
-                                <?php echo $resultado['descricao']; ?>
-                            </div>
+                            </div><br><br><br>
+                            
                         </div> <!--col-->
                         <div class="col">
-                            <div>
+                            <div class="container-sm">
                                 <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
                                 <form action="verChamadoAnalista.php" method="POST">
                                 <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
@@ -206,7 +203,13 @@
                                 </form>
                             </div>
                         </div>
-                    </div> <!--row-->
+                    </div><br> <!--row-->
+                    <div class="row">
+                        <div class="container-lg" style="border-style: solid; border-width: 1px;">
+                            Descrição <br><br>
+                            <?php echo $resultado['descricao']; ?>
+                        </div>
+                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>
