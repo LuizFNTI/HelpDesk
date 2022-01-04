@@ -23,7 +23,7 @@
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
     //Verifica se existe POST
-    if(isset($_POST['nome'])) {
+    if(isset($_POST['nome']) && password_verify($_POST['senha'], $resultado['senha'])) {
 
         //Pega os POSTs do formularios e atribue a variaveis
         $matricula = $_POST['mat'];
@@ -38,6 +38,8 @@
         $query->bindValue(":d",$departamento);
         $query->bindValue(":m",$matricula);
         $query->execute();
+    } else {
+        header("location: ../index.php");
     }
     //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($matricula_up == null) {
