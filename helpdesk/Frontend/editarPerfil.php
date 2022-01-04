@@ -143,13 +143,13 @@
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="ns">Nova Senha</label>
-                                        <input type="text" class="form-control" placeholder="Digite sua nova senha:" name="senha" id="pass">
+                                        <input type="text" class="form-control" placeholder="Digite sua nova senha:" name="senha" id="password">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="rns">Repita Nova Senha</label>
-                                        <input type="text" class="form-control" placeholder="Confirme sua nova senha:" name="csenha" id="cpass">
+                                        <input type="text" class="form-control" placeholder="Confirme sua nova senha:" name="csenha" id="confirm_password">
                                     </div> 
                                 </div>
                             </div>
@@ -211,17 +211,9 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
-    <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
-    <script src="JS/ajaxCategoria.js"></script>
-    <script src="JS/ajaxSubCat.js"></script>
-    <script src="JS/ajaxItem.js"></script>
+    <!-- Validação de Confirmação de Senha -->
+    <script src="JS/confirmarSenha.js"></script>
+    
 </body>
 
 </html>
