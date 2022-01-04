@@ -13,7 +13,7 @@ if(isset($_POST['nome'])) {
     $senha = $_POST['senha'];
     $confsenha = $_POST['csenha'];
 
-    if($senha == $confsenha) {
+    
         //Criptografa a senha usando om password_hash
         $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
@@ -26,9 +26,6 @@ if(isset($_POST['nome'])) {
         $query->bindValue(":departamento",$departamento);
         $query->bindValue(":senha",$senha_hash);
         $query->execute();
-    } else if($senha != $confsenha){
-        echo "<script>window.alert('As senhas não coferem')</script>";
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -115,12 +112,12 @@ if(isset($_POST['nome'])) {
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Digite su senha:" name="senha" id="pass" required>
+                                            <input type="text" class="form-control form-control-user" placeholder="Digite su senha:" name="senha" id="password" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Confirme sua senha:" name="csenha" id="cpass" required>
+                                            <input type="text" class="form-control form-control-user" placeholder="Confirme sua senha:" name="csenha" id="confirm_password" required>
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +146,9 @@ if(isset($_POST['nome'])) {
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Validação de Confirmação de Senha -->
+    <script src="JS/confirmarSenha.js"></script>
 
 </body>
 
