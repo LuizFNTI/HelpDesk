@@ -113,7 +113,7 @@
                             <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
                                 <p>Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
-                            </div><br>
+                            </div>
                             
                             <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
@@ -128,7 +128,7 @@
                                 <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
                                 <p>Telefone: <?php echo $resultado['telefone']; ?></p>
                                 <p>E-Mail: <?php echo $resultado['email']; ?></p>
-                            </div><br><br><br>
+                            </div>
                             
                         </div> <!--col-->
                         <div class="col">
@@ -205,7 +205,7 @@
                         </div>
                     </div><br> <!--row-->
                     <div class="row">
-                        <div class="container-lg" style="border-style: solid; border-width: 1px;">
+                        <div class="container-lg">
                             Descrição <br><br>
                             <?php echo $resultado['descricao']; ?>
                         </div>

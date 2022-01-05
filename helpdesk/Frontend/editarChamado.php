@@ -106,26 +106,22 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col">
-                            <div>
+                            <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
                                 <p>Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
-                            </div><br>
-                            <div>
+                            </div>
+                            <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
                                 <?php echo $resultado['nome_tipo'] . ">" 
                                 . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?>
-                            </div>
-                            <div id="usuario">
+                            </div><br>
+                            <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
                                 <p>Numero Matricula: <?php echo $resultado['matricula']; ?></p>
                                 <p>Nome: <?php echo $resultado['nome']; ?></p>
                                 <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
                                 <p>Telefone: <?php echo $resultado['telefone']; ?></p>
                                 <p>E-Mail: <?php echo $resultado['email']; ?></p>
-                            </div><br><br><br><br>
-                            <div id="descricao">
-                                Descrição <br>
-                                <?php echo $resultado['descricao']; ?>
                             </div>
                         </div> <!--col-->
                         <div class="col">
@@ -159,58 +155,68 @@
                                 ?>
                                     </select>
                                 </div>
-                        <div class="form-group">
-                            <label for="status">Selrcione a Prioridade</label>
-                            <select class="form-control" id="cdp" name="prioridade">
-                        <?php
-                            include '../Backend/conexao.php';
+                                <div class="form-group">
+                                    <label for="status">Selrcione a Prioridade</label>
+                                    <select class="form-control" id="cdp" name="prioridade">
+                                <?php
+                                    include '../Backend/conexao.php';
 
-                            $dados = array();        
-                        
-                            //Faz a consulta no banco
-                            $query = $conn->query("SELECT * FROM prioridade_chamado");
-                        
-                            //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                if($dados['cod_prioridade'] == $resultado['cod_prioridade']) {
-                                    echo "<option selected value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
-                                } else {
-                                    echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
-                                }
-                            }
-                        ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="status">Selrcione o Tipo Atendimento</label>
-                            <select class="form-control" id="cds" name="tipoa">
-                        <?php
-                            include '../Backend/conexao.php';
+                                    $dados = array();        
+                                
+                                    //Faz a consulta no banco
+                                    $query = $conn->query("SELECT * FROM prioridade_chamado");
+                                
+                                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                                        if($dados['cod_prioridade'] == $resultado['cod_prioridade']) {
+                                            echo "<option selected value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
+                                        } else {
+                                            echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
+                                        }
+                                    }
+                                ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Selrcione o Tipo Atendimento</label>
+                                    <select class="form-control" id="cds" name="tipoa">
+                                <?php
+                                    include '../Backend/conexao.php';
 
-                            $dados = array();        
-                        
-                            //Faz a consulta no banco
-                            $query = $conn->query("SELECT * FROM tipo_atendimento");
-                        
-                            //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                if($dados['cod_tipo_atendimento'] == $resultado['cod_tipo_atendimento']) {
-                                    echo "<option selected value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
-                                } else {
-                                    echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
-                                }
-                            }
-                        ?>
-                            </select>
+                                    $dados = array();        
+                                
+                                    //Faz a consulta no banco
+                                    $query = $conn->query("SELECT * FROM tipo_atendimento");
+                                
+                                    //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                                    foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                                        if($dados['cod_tipo_atendimento'] == $resultado['cod_tipo_atendimento']) {
+                                            echo "<option selected value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
+                                        } else {
+                                            echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
+                                        }
+                                    }
+                                ?>
+                                    </select>
+                                </div>
+                        </div> <!--col-->
+                    </div><br> <!--row-->
+                    <div class="row">
+                        <div class="container-sm">
+                            Descrição <br>
+                            <?php echo $resultado['descricao']; ?>
                         </div>
-                        <div class="form-group">
-                            <label for="descricao">Faça uma breve descrição da sua resposta:</label>
-                            <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
+                    </div><br>
+                    <div class="row">
+                        <div class="container-sm">
+                            <div class="form-group">
+                                <label for="descricao">Faça uma breve descrição da sua resposta:</label>
+                                <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
+                            </div>
+                            <input type="submit" value="Guardar" class="btn btn-primary btn-block"></form>
                         </div>
-                        <input type="submit" value="Guardar" class="btn btn-primary btn-block">
-                        </form>
                     </div>
-                </div> <!--row-->
+
                 </div>
                 <!-- /.container-fluid -->
             </div>
