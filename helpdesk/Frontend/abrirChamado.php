@@ -27,7 +27,7 @@ if(isset($_POST['descricao'])) {
     $fila_geral = $_POST['fgeral'];
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (localizacso, descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item, fila_geral) VALUES (:locali, :descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item, :fgeral)");
+    $query = $conn->prepare("INSERT INTO chamados (localizacao, descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item, fila_geral) VALUES (:locali, :descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item, :fgeral)");
     $query->bindValue(":locali",$localizacao);
     $query->bindValue(":descr",$descricao);
     $query->bindValue("mat",$matricula);

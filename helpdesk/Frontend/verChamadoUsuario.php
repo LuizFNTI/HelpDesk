@@ -37,10 +37,12 @@
 
         //Pega os POSTs do formularios e atribue a variaveis
         $numero_chamado = $_POST["vnc"];
-        $descricao = $_POST['descricao'];
+        $localizacao = $_POST["localizacao"];
+        $descricao = $_POST["descricao"];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao = :du,  WHERE numero_chamado = :nc");
+        $query = $conn->prepare("UPDATE chamados SET localizacao = :locali, descricao = :du WHERE numero_chamado = :nc");
+        $query->bindValue(":locali",$localizacao);
         $query->bindValue(":du",$descricao);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
@@ -120,6 +122,10 @@
                     <div class="row">
                         <div class="container-sm">
                             <form action="verChamadoUsuario.php" method="POST">
+                                <div class="form-group">
+                                    <label for="descricao">Localização:</label>
+                                    <input class="form-control" placeholder="Local do Equipamamento:" id="local" name="localizacao" value="<?php echo $resultado['localizacao']; ?>">
+                                </div>
                                 <div class="form-group">
                                     <label for="descricao">Edite a descrição da sua solicitação:</label>
                                     <textarea class="form-control" rows="5" placeholder="Descrição:" id="descr" name="descricao"> <?php echo $resultado['descricao']; ?></textarea>
