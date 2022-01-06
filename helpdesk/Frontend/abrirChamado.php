@@ -19,6 +19,7 @@ if(isset($_POST['descricao'])) {
     $categoria = $_POST['ccat'];
     $subcategoria = $_POST['cscat'];
     $item = $_POST['item']; 
+    $localizacao = $_POST['localizacao'];
     $descricao = $_POST['descricao'];
     $status = $_POST['status'];
     $prioridade = $_POST['prioridade'];
@@ -26,7 +27,8 @@ if(isset($_POST['descricao'])) {
     $fila_geral = $_POST['fgeral'];
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item, fila_geral) VALUES (:descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item, :fgeral)");
+    $query = $conn->prepare("INSERT INTO chamados (localizacso, descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item, fila_geral) VALUES (:locali, :descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item, :fgeral)");
+    $query->bindValue(":locali",$localizacao);
     $query->bindValue(":descr",$descricao);
     $query->bindValue("mat",$matricula);
     $query->bindValue(":sts",$status);
@@ -107,6 +109,10 @@ if(isset($_POST['descricao'])) {
                         <div class="col-sm-6">
                         <?php include 'carregarItem.php'; ?>        
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Localização:</label>
+                        <input class="form-control" placeholder="Local do Equipamamento:" id="local" name="localizacao">
                     </div>
                     <div class="form-group">
                         <label for="descricao">Faça uma breve descrição da sua solicitação:</label>

@@ -57,46 +57,15 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Chamados</h1>
-                    <p class="mb-4">Aqui estão localizados os chamados que estão abertos.</p>
-
-                    <form action="pesquisarChamado.php" method="POST" class="user">
-                        <div class="form-group">
-                            <label for="pchamado">Pesquísa</label>
-                            <input type="text" class="form-control" placeholder="Numero Chamado, Usuário, Analista" name="pesquisa" id="nch">    
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <div class="form-group">
-                                    <label for="datafinal">Data Inicial</label>
-                                    <input type="date" class="form-control" name="datain" id="din">
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group">
-                                    <label for="datainicial">Data Final</label>
-                                    <input type="date" class="form-control" name="datafim" id="dfim">
-                                </div>
-                            </div>
-                        </div>
-                        <input type="submit" value="Enviar" class="btn btn-primary btn-block">
-                    </form>
-                </div>
-                <!-- /.container-fluid -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
                
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Usuários</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Todos os Chamados</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTablePesquisa" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTablePesquisaChamado" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>
@@ -109,30 +78,19 @@
                                         </tr>
                                     </thead>
                     <?php
-                        
-                        include '../Backend/conexao.php';
-
-                        if(isset($_POST['pesquisa'])) {
-
-                            $pesquisa = $_POST['pesquisa'];
-                            $data_inicio = $_POST['datain'];
-                            $data_fim = $_POST['datafim'];
+                            include '../Backend/conexao.php';
                         
                             $dados = array();        
 
                             //Faz a consulta no banco
-                            $query = $conn->prepare("SELECT * FROM chamados
+                            $query = $conn->query("SELECT * FROM chamados
                         INNER JOIN item ON item.cod_item = chamados.item_cod_item
                         INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
                         INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
                         INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                         INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                         INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                        INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE numero_chamado LIKE '%:pesq%' OR nome LIKE '%:pesq%' OR analista LIKE '%:pesq%' AND data_hora_abertura BETWEEN ':di' AND ':df'");
-                        $query->bindValue(":pesq", $pesquisa);
-                        $query->bindValue(":di", $data_inicio);
-                        $query->bindValue(":df", $data_fim);
-                        $query->execute();
+                        INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status");
 
                         echo "<tbody>";
 
@@ -150,7 +108,6 @@
                                     //echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
                                 echo "</tr>";
                             }
-                        }
                     ?>
                     </tbody>
                                 </table>
@@ -220,11 +177,6 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
-    <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
-    <script src="JS/ajaxCategoria.js"></script>
-    <script src="JS/ajaxSubCat.js"></script>
-    <script src="JS/ajaxItem.js"></script>
 </body>
 
 </html>
