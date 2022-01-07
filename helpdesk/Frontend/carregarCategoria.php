@@ -1,6 +1,7 @@
 <div class="form-group">
     <label for="categoria">Selecione a Categoria:</label>
     <select class="form-control" id="ccatg" name="ccat">
+        <option>Selecione</option>
     <?php
         include '../Backend/conexao.php';
 

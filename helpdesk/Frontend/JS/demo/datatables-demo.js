@@ -93,7 +93,7 @@ $(document).ready(function() {
       }
     }
   );
-  $('#dataTablePesquisaChamamado').DataTable(
+  $('#dataTablePesquisaChamado').DataTable(
     {
       language: {
         url: 'js/demo/pt_br.json'

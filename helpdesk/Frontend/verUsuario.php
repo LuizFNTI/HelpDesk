@@ -133,7 +133,7 @@
                     </div>
                     <div class="form-group">
                         <label for="status">Selrcione o Departamento</label>
-                        <select class="form-control" id="cds" name="status">
+                        <select class="form-control" id="cds" name="departamento">
                     <?php
                         include '../Backend/conexao.php';
 

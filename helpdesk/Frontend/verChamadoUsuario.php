@@ -122,6 +122,7 @@
                     <div class="row">
                         <div class="container-sm">
                             <form action="verChamadoUsuario.php" method="POST">
+                            <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                                 <div class="form-group">
                                     <label for="descricao">Localização:</label>
                                     <input class="form-control" placeholder="Local do Equipamamento:" id="local" name="localizacao" value="<?php echo $resultado['localizacao']; ?>">

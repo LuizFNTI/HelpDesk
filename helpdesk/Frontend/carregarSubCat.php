@@ -1,6 +1,7 @@
 <div class="form-group">
     <label for="subcat">Selecione a SubCategoria:</label>
     <select class="form-control" id="cscatg" name="cscat">
+        <option>Selecione</option>
     <?php
         include '../Backend/conexao.php';
 

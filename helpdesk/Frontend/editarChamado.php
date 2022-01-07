@@ -122,6 +122,7 @@
                                 <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
                                 <p>Telefone: <?php echo $resultado['telefone']; ?></p>
                                 <p>E-Mail: <?php echo $resultado['email']; ?></p>
+                                <p>Localização: <?php echo $resultado['localizacao']; ?></p>
                             </div>
                         </div> <!--col-->
                         <div class="col">
