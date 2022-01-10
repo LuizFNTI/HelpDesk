@@ -20,7 +20,7 @@
 <!-- Nav Item - Pages Collapse Menu -->
 
 <!-- Nav Item - Charts -->
-<li class="nav-item">
+<li class="nav-item" id="abrirchamado">
     <a class="nav-link" href="abrirChamado.php">
         <i class="fas fa-fw fa-plus"></i>
         <span>Abrir Chamado</span></a>
