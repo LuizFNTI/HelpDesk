@@ -97,7 +97,7 @@
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
                             <form action="adicionarTipo.php" method="POST" class="user">
-                            <h2>Editar Tipo</h2>
+                            <h2>Ver Tipo</h2>
                             <!--form para passar o cod-tipo via POST para fazer o updadate-->  
                             <input type="hidden" name="verct" id="vct" value="<?php echo $resultado['cod_tipo']; ?>">
                                 <div class="form-group">

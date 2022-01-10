@@ -62,54 +62,6 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Visão Geral</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableVisaoGeral" width="100%" cellspacing="0" style="font-size: 14px;">
-                                    <thead>
-                                        <tr>
-                                            <th>Tipo</th>
-                                            <th>Categoria</th>
-                                            <th>SubCategoria</th>
-                                            <th>Item</th>
-                                        </tr>
-                                    </thead>
-                    <?php
-                        
-                        include '../Backend/conexao.php';
-
-                        $dados = array();        
-
-                        //Faz a consulta no banco
-                        $query = $conn->query("SELECT tipo.nome_tipo, categoria.nome_categoria, subcategoria.nome_subcategoria, item.nome_item FROM item INNER JOIN subcategoria ON subcategoria.cod_subcategoria = item.subcategoria_cod_subcategoria INNER JOIN categoria ON categoria.cod_categoria = subcategoria.categoria_cod_categoria INNER JOIN tipo ON tipo.cod_tipo = categoria.tipo_cod_tipo");
-
-                    echo "<tbody>";
-
-                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
-                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<tr>";
-                                echo "<th>".$dados['nome_tipo']."</th>";//Busca os dados na posiçãom do vetor
-                                echo "<th>".$dados['nome_categoria']."</th>";
-                                echo "<th>".$dados['nome_subcategoria']."</th>";
-                                echo "<th>".$dados['nome_item']."</th>";
-                            echo "</tr>";
-                        }
-                    ?>
-                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.container-fluid -->
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Gerenciar Status</h6>
                         </div>
                         <div class="card-body">

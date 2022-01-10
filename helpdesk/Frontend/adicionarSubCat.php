@@ -81,7 +81,7 @@ if(isset($_POST['novasub'])) {
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
                         <form action="adicionarSubCat.php" method="POST">
-                        <h2>Cadastrar Nova SubCategoria</h2>
+                        <h2>Cadastrar Nova Subcategoria</h2>
                         <div class="form-group">
                             <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
                             <select class="form-control" id="cdt" name="ctipo">

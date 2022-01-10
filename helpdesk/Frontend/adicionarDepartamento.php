@@ -75,7 +75,7 @@ if(isset($_POST['novodep'])) {
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
                         <form action="adicionarDepartamento.php" method="POST">
-                        <h2>Cadastrar Novo Departamento</h2>
+                        <h2>Adicionar Novo Departamento</h2>
                         <div class="form-group">
                             <label for="ndepartamento">Digite o Novo Departamento</label>
                             <input type="text" class="form-control" placeholder="Novo Departamento:" name="novodep" id="nd" required>

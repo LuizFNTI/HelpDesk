@@ -23,7 +23,7 @@
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
     //Verifica se existe POST
-    if(isset($_POST['nome']) && password_verify($_POST['senha'], $resultado['senha'])) {
+    if(isset($_POST['nome'])) {
 
         //Pega os POSTs do formularios e atribue a variaveis
         $matricula = $_POST['mat'];
