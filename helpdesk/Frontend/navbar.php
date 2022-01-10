@@ -48,6 +48,14 @@
         <span>Atendimento Chamados</span>
     </a>
 </li>
+
+<li class="nav-item">
+    <a class="nav-link collapsed" href="estatisticaRelatorios.php">
+        <i class="fas fa-fw fa-list"></i>
+        <span>Estatistica/Relatórios</span>
+    </a>
+</li>
+
 <?php } if($nivel == 2) { ?>
 
 <div class="sidebar-heading">
