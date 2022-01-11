@@ -107,34 +107,29 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" style="margin-top: 2%;">
                     <div class="row">
                         <div class="col">
-                            <div class="sidebar-heading">ANALISTA</div>
+                            <div class="sidebar-heading"><strong style="font-weight: 900">Informações do Chamado</strong></div>
                             <div style="border-style: solid; border-color: transparent; border-width: 1px;">
                                 <div class="container-sm">
-                                    <p style="margin-top: 3%;">Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
+                                    <p style="margin-top: 3%;"><strong>Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
                                     <p style="margin-bottom: 3%;"><?php echo $resultado['nome_tipo'] . ">" 
                                     . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?></p>
                                 </div>
                             </div><br>
-                            <div class="sidebar-heading">ANALISTA</div>
+                            <div class="sidebar-heading"><strong style="font-weight: 900;">Informações do Usuário</strong></div>
                             <div style="border-style: solid; border-color: transparent; border-width: 1px; border-top: none;">
                                 <div class="container-sm">
                                     <!--Passa as informações para imprimir na tela-->
-                                    <p style="margin-top: 3%">Numero Matricula: <?php echo $resultado['matricula']; ?></p>
-                                    <p>Nome: <?php echo $resultado['nome']; ?></p>
-                                    <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
-                                    <p>Telefone: <?php echo $resultado['telefone']; ?></p>
-                                    <p>E-Mail: <?php echo $resultado['email']; ?></p>
+                                    <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Matricula: </strong><?php echo $resultado['matricula']; ?></p>
+                                    <p><strong style="font-weight: 900;">Nome: </strong> <?php echo $resultado['nome']; ?></p>
+                                    <p><strong style="font-weight: 900;">Departamento: </strong>: <?php echo $resultado['nome_departamento']; ?>
+                                    <p><strong style="font-weight: 900;">Telefone: </strong> <?php echo $resultado['telefone']; ?></p>
+                                    <p><strong style="font-weight: 900;">E-mail: </strong> <?php echo $resultado['email']; ?></p>
+                                    <p><strong style="font-weight: 900;">Localização: </strong> <?php echo $resultado['localizacao']; ?></p>
                                 </div>
                             </div><br>
-                            <div class="sidebar-heading">ANALISTA</div>
-                            <div style="border-style: solid; border-color: transparent; border-width: 1px; border-top: none;">
-                                <div class="container-sm">
-                                    <p style="margin-top: 3%">Localização: <?php echo $resultado['localizacao']; ?></p>
-                                </div>
-                            </div>
                         </div> <!--col-->
                         <div class="col">
                             <div class="container-sm">
