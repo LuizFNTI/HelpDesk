@@ -111,102 +111,99 @@
                     <div class="row">
                         <div class="col">
                             <div class="sidebar-heading"><strong style="font-weight: 900">Informações do Chamado</strong></div>
-                            <div style="border-style: solid; border-color: transparent; border-width: 1px;">
-                                <div class="container-sm">
-                                    <p style="margin-top: 3%;"><strong>Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
-                                    <p style="margin-bottom: 3%;"><?php echo $resultado['nome_tipo'] . ">" 
-                                    . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?></p>
-                                </div>
-                            </div><br>
+                            <div class="container-sm">
+                                <p style="margin-top: 3%;"><strong>Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
+                                <p style="margin-bottom: 3%;"><?php echo $resultado['nome_tipo'] . ">" . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?></p>
+                            </div>
+                            <hr>
                             <div class="sidebar-heading"><strong style="font-weight: 900;">Informações do Usuário</strong></div>
-                            <div style="border-style: solid; border-color: transparent; border-width: 1px; border-top: none;">
-                                <div class="container-sm">
-                                    <!--Passa as informações para imprimir na tela-->
-                                    <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Matricula: </strong><?php echo $resultado['matricula']; ?></p>
-                                    <p><strong style="font-weight: 900;">Nome: </strong> <?php echo $resultado['nome']; ?></p>
-                                    <p><strong style="font-weight: 900;">Departamento: </strong>: <?php echo $resultado['nome_departamento']; ?>
-                                    <p><strong style="font-weight: 900;">Telefone: </strong> <?php echo $resultado['telefone']; ?></p>
-                                    <p><strong style="font-weight: 900;">E-mail: </strong> <?php echo $resultado['email']; ?></p>
-                                    <p><strong style="font-weight: 900;">Localização: </strong> <?php echo $resultado['localizacao']; ?></p>
-                                </div>
-                            </div><br>
+                            <div class="container-sm">
+                                <!--Passa as informações para imprimir na tela-->
+                                <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Matricula: </strong><?php echo $resultado['matricula']; ?></p>
+                                <p><strong style="font-weight: 900;">Nome: </strong> <?php echo $resultado['nome']; ?></p>
+                                <p><strong style="font-weight: 900;">Departamento: </strong>: <?php echo $resultado['nome_departamento']; ?>
+                                <p><strong style="font-weight: 900;">Telefone: </strong> <?php echo $resultado['telefone']; ?></p>
+                                <p><strong style="font-weight: 900;">E-mail: </strong> <?php echo $resultado['email']; ?></p>
+                                <p><strong style="font-weight: 900;">Localização: </strong> <?php echo $resultado['localizacao']; ?></p>
+                            </div>
                         </div> <!--col-->
+                        <div style="height: 500px; border-left: 1px solid;"></div>
                         <div class="col">
                             <div class="container-sm">
-                                <form action="verChamadoAnalista.php" method="POST">
-                                    <div style="border-style: solid; border-color: transparent; border-width: 1px;">
-                                        <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
-                                        <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                                        <input type="hidden" name="fgeral" value="0">
-                                        <div class="form-group">
-                                            <label for="dprazo">Informe a Data Prazo</label>
-                                            <input type="date" name="dprazo" id="dp">
-                                        </div>
-                                    </div>
-                                    <div style="border-style: solid; border-color: transparent; border-width: 1px;">
-                                        <div class="form-group">
-                                            <label for="status">Selrcione o status</label>
-                                            <select class="form-control" id="cds" name="status">
-                                            <option>Selecione</option>
-                                        <?php
-                                            include '../Backend/conexao.php';
+                            <form action="verChamadoAnalista.php" method="POST">
+                                <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura'];?></p>
+                                <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
+                                <input type="hidden" name="fgeral" value="0">
+                                <div class="form-group">
+                                    <label for="dprazo">Informe a Data Prazo</label>
+                                    <input type="date" name="dprazo" id="dp">
+                                </div>
+                            </div> 
+                            <hr>
+                            <div class="container-sm"> 
+                                <div class="form-group">
+                                    <label for="status">Selrcione o status</label>
+                                    <select class="form-control" id="cds" name="status">
+                                    <option>Selecione</option>
+                                    <?php
+                                        include '../Backend/conexao.php';
 
-                                            $dados = array();        
+                                        $dados = array();        
                                         
-                                            //Faz a consulta no banco
-                                            $query = $conn->query("SELECT * FROM status_chamado");
+                                        //Faz a consulta no banco
+                                        $query = $conn->query("SELECT * FROM status_chamado");
                                         
-                                            //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                                            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                                echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
-                                            }
-                                        ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="status">Selrcione a Prioridade</label>
-                                            <select class="form-control" id="cdp" name="prioridade">
-                                            <option>Selecione</option>
-                                        <?php
-                                            include '../Backend/conexao.php';
+                                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                                            echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
+                                        }
+                                    ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Selrcione a Prioridade</label>
+                                    <select class="form-control" id="cdp" name="prioridade">
+                                    <option>Selecione</option>
+                                    <?php
+                                        include '../Backend/conexao.php';
 
-                                            $dados = array();        
+                                        $dados = array();        
                                         
-                                            //Faz a consulta no banco
-                                            $query = $conn->query("SELECT * FROM prioridade_chamado");
+                                        //Faz a consulta no banco
+                                        $query = $conn->query("SELECT * FROM prioridade_chamado");
                                         
-                                            //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                                            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                                echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
-                                            }
-                                        ?>
-                                            </select>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="status">Selrcione o Tipo Atendimento</label>
-                                            <select class="form-control" id="cds" name="tipoa">
-                                            <option>Selecione</option>
-                                        <?php
-                                            include '../Backend/conexao.php';
+                                        //Joga os dados do banco num array e faz a leitura do arrayjogando as informações no opition
+                                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                                            echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
+                                        }
+                                    ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Selrcione o Tipo Atendimento</label>
+                                    <select class="form-control" id="cds" name="tipoa">
+                                    <option>Selecione</option>
+                                    <?php
+                                        include '../Backend/conexao.php';
 
-                                            $dados = array();        
+                                        $dados = array();        
                                         
-                                            //Faz a consulta no banco
-                                            $query = $conn->query("SELECT * FROM tipo_atendimento");
+                                        //Faz a consulta no banco
+                                        $query = $conn->query("SELECT * FROM tipo_atendimento");
                                         
-                                            //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                                            foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                                echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
-                                            }
-                                        ?>
-                                            </select>       
-                                        </div>
-                                        <input type="submit" value="Mover Param Sua Fila" class="btn btn-primary btn-block">
-                                    </div>
-                                </form>
+                                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
+                                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
+                                            echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
+                                        }
+                                    ?>
+                                    </select>       
+                                </div>
+                                <input type="submit" value="Mover Param Sua Fila" class="btn btn-primary btn-block">
                             </div>
+                            </form>
                         </div>
-                    </div><br> <!--row-->
+                    </div> <!--row-->
+                    <hr>
                     <div class="row">
                         <div class="container-lg">
                             Descrição <br><br>
