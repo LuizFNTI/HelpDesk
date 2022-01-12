@@ -143,8 +143,8 @@
                             <div class="container-sm"> 
                                 <div class="form-group">
                                     <label for="status">Selrcione o status</label>
-                                    <select class="form-control" id="cds" name="status">
-                                    <option>Selecione</option>
+                                    <select class="form-control" id="cds" name="status" required>
+                                    <option value="">Selecione</option>
                                     <?php
                                         include '../Backend/conexao.php';
 
@@ -162,8 +162,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Selrcione a Prioridade</label>
-                                    <select class="form-control" id="cdp" name="prioridade">
-                                    <option>Selecione</option>
+                                    <select class="form-control" id="cdp" name="prioridade" required>
+                                    <option value="">Selecione</option>
                                     <?php
                                         include '../Backend/conexao.php';
 
@@ -181,8 +181,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Selrcione o Tipo Atendimento</label>
-                                    <select class="form-control" id="cds" name="tipoa">
-                                    <option>Selecione</option>
+                                    <select class="form-control" id="cds" name="tipoa" required>
+                                    <option value="">Selecione</option>
                                     <?php
                                         include '../Backend/conexao.php';
 
@@ -206,7 +206,7 @@
                     <hr>
                     <div class="row">
                         <div class="container-lg">
-                            Descrição <br><br>
+                            <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
                             <?php echo $resultado['descricao']; ?>
                         </div>
                     </div>
