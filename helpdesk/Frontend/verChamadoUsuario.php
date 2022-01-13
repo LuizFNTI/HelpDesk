@@ -61,7 +61,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Tables</title>
+    <title>Ver Chamado - <?php echo $resultado['numero_chamado']; ?></title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -92,12 +92,8 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
-                <?php include 'topbar.php'; ?>
-                <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
+                <div class="container-fluid" style="margin-top: 2%;">
                     <div class="row">
                         <div class="col">
                             <div class="container-sm">
@@ -146,13 +142,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Prefeitura Municipal de Telêmaco Borba</span>
-                    </div>
-                </div>
-            </footer>
+            <?php include 'footer.php'; ?>
             <!-- End of Footer -->
 
         </div>
@@ -161,29 +151,7 @@
     </div>
     <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Sair?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Tem Certeza que deseja sair?</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="../Backend/logout.php">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include 'telaLogout.php'; ?>
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -195,17 +163,6 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
-    <script src="JS/JQuery/jquery-3.6.0.min.js"></script>
-    <script src="JS/ajaxCategoria.js"></script>
-    <script src="JS/ajaxSubCat.js"></script>
-    <script src="JS/ajaxItem.js"></script>
 </body>
 
 </html>

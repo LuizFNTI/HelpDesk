@@ -71,7 +71,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin 2 - Tables</title>
+    <title>Ver Chamado - <?php echo $resultado['numero_chamado']; ?></title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -101,10 +101,6 @@
 
             <!-- Main Content -->
             <div id="content">
-
-                <!-- Topbar -->
-                <?php include 'topbar.php'; ?>
-                <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid" style="margin-top: 2%;">
