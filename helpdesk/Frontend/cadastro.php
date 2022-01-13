@@ -38,7 +38,7 @@ if(isset($_POST['nome'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Cadastro</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -147,7 +147,7 @@ if(isset($_POST['nome'])) {
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Validação de Confirmação de Senha -->
-    <script src="JS/confirmarSenha.js"></script>
+    <script src="js/confirmarSenha.js"></script>
 
 </body>
 

@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-<li class="nav-item dropdown no-arrow">
+<li class="nav-item dropdown dropright no-arrow">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-light-600 small"><?php echo $nome_usuario; ?></span>
