@@ -49,10 +49,6 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
-                <?php include 'topbar.php'; ?>
-                <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid" style="margin-top: 2%;">
 
