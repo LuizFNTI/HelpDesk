@@ -95,9 +95,8 @@
                             echo "<tr>";
                                 echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_tipo'].">".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
-                                //echo "<th>".$dados['descricao']."</th>";
-                                echo "<th>".$dados['data_hora_abertura']."</th>";
-                                echo "<th>".$dados['data_prazo']."</th>";
+                                echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
+                                echo "<th>".date('d/m/Y', strtotime($dados['data_prazo']))."</th>";
                                 echo "<th>".$dados['analista']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
                                 echo "<th><a href=verChamadoUsuario.php?nc_up=".$dados['numero_chamado'].">Editar</a><br>";

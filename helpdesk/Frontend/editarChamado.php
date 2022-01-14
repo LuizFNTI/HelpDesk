@@ -122,12 +122,12 @@
                             </div>
                         </div> <!--col-->
                         <div class="col">
-                            <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
+                            <p>Data e Hora abertura: <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                             <form action="editarChamado.php" method="POST">
                                 <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                                 <div class="form-group">
-                                    <label for="dprazo">Informe a Data Prazo</label>
+                                    <label for="dprazo">Alterar Data Prazo</label>
                                     <input type="date" name="dprazo" id="dp" value="<?php echo $resultado['data_prazo'] ?>">
                                 </div>
                                 <div class="form-group">

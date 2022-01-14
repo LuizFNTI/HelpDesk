@@ -110,8 +110,8 @@
                         </div> <!--col-->
                         <div class="col">
                             <div class="container-sm">
-                                <p>Data e Hora abertura: <?php echo $resultado['data_hora_abertura']; ?></p>
-                                <p>Data Prazo: <?php if($resultado['data_prazo'] == null) {echo "Data prazo ainda não definida pelo analista! ";} else {echo $resultado['data_prazo'];} ?>
+                                <p>Data e Hora abertura: <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
+                                <p>Data Prazo: <?php if($resultado['data_prazo'] == null) {echo "Data prazo ainda não definida pelo analista! ";} else {echo date('d/m/Y', strtotime($resultado['data_prazo']));} ?>
                             </div>
                         </div>
                     </div><br> <!--row-->

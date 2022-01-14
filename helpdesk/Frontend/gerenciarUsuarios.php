@@ -93,7 +93,7 @@
                             echo "<th>".$dados['nome_departamento']."</th>";
                             if($dados['nivel'] == 0) {echo "<th>Usuário</th>";} else if($dados['nivel'] == 1) {echo "<th>Analista</th>";} else {echo "<th>Administrador</th>";}
                             if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                            echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Ver</a></th>";
+                            echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Editar</a></th>";
                             echo "</tr>";
                         }
                     ?>
@@ -142,7 +142,7 @@
                                 echo "<th>".$dados['cod_departamento']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_departamento']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verDepartamento.php?departamento_up=".$dados['cod_departamento'].">Ver</a></th>";
+                                echo "<th><a href=verDepartamento.php?departamento_up=".$dados['cod_departamento'].">Editar</a></th>";
                             echo "</tr>";
                         }
                     ?>
