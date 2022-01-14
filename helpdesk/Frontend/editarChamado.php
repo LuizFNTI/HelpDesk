@@ -102,36 +102,39 @@
                 <div class="container-fluid" style="margin-top: 2%;">
                     <div class="row">
                         <div class="col">
+                            <div class="sidebar-heading"><strong style="font-weight: 900">Informações do Chamado</strong></div>
                             <div class="container-sm">
-                                <!--Passa as informações para imprimir na tela-->
-                                <p>Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
+                                <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
+                                <p style="margin-bottom: 3%;"><?php echo $resultado['nome_tipo'] . ">" . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?></p>
                             </div>
+                            <hr>
+                            <div class="sidebar-heading"><strong style="font-weight: 900;">Informações do Usuário</strong></div>
                             <div class="container-sm">
                                 <!--Passa as informações para imprimir na tela-->
-                                <?php echo $resultado['nome_tipo'] . ">" 
-                                . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?>
-                            </div><br>
-                            <div class="container-sm">
-                                <!--Passa as informações para imprimir na tela-->
-                                <p>Numero Matricula: <?php echo $resultado['matricula']; ?></p>
-                                <p>Nome: <?php echo $resultado['nome']; ?></p>
-                                <p>Departamento: <?php echo $resultado['nome_departamento']; ?>
-                                <p>Telefone: <?php echo $resultado['telefone']; ?></p>
-                                <p>E-Mail: <?php echo $resultado['email']; ?></p>
-                                <p>Localização: <?php echo $resultado['localizacao']; ?></p>
+                                <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Matricula: </strong><?php echo $resultado['matricula']; ?></p>
+                                <p><strong style="font-weight: 900;">Nome: </strong> <?php echo $resultado['nome']; ?></p>
+                                <p><strong style="font-weight: 900;">Departamento: </strong>: <?php echo $resultado['nome_departamento']; ?>
+                                <p><strong style="font-weight: 900;">Telefone: </strong> <?php echo $resultado['telefone']; ?></p>
+                                <p><strong style="font-weight: 900;">E-mail: </strong> <?php echo $resultado['email']; ?></p>
+                                <p><strong style="font-weight: 900;">Localização: </strong> <?php echo $resultado['localizacao']; ?></p>
                             </div>
                         </div> <!--col-->
+                        <div style="height: 500px; border-left: 1px solid;"></div>
                         <div class="col">
-                            <p>Data e Hora abertura: <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
+                            <div class="container-sm">
                             <form action="editarChamado.php" method="POST">
+                                <p><strong style="font-weight: 900;">Data e Hora abertura: </strong> <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                                 <div class="form-group">
                                     <label for="dprazo">Alterar Data Prazo</label>
                                     <input type="date" name="dprazo" id="dp" value="<?php echo $resultado['data_prazo'] ?>">
                                 </div>
+                            </div>
+                            <hr>
+                            <div class="container-sm">
                                 <div class="form-group">
-                                    <label for="status">Selrcione o status</label>
+                                    <label for="status">Selrcione o novo status</label>
                                     <select class="form-control" id="cds" name="status">
                                 <?php
                                     include '../Backend/conexao.php';
@@ -153,7 +156,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="status">Selrcione a Prioridade</label>
+                                    <label for="status">Selrcione a Nova Prioridade</label>
                                     <select class="form-control" id="cdp" name="prioridade">
                                 <?php
                                     include '../Backend/conexao.php';
@@ -175,7 +178,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="status">Selrcione o Tipo Atendimento</label>
+                                    <label for="status">Selrcione o Novo Tipo Atendimento</label>
                                     <select class="form-control" id="cds" name="tipoa">
                                 <?php
                                     include '../Backend/conexao.php';
@@ -196,14 +199,17 @@
                                 ?>
                                     </select>
                                 </div>
+                            </div>
                         </div> <!--col-->
-                    </div><br> <!--row-->
+                    </div> <!--row-->
+                    <hr>
                     <div class="row">
-                        <div class="container-sm">
-                            Descrição <br>
+                        <div class="container-lg">
+                            <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
                             <?php echo $resultado['descricao']; ?>
                         </div>
-                    </div><br>
+                    </div>
+                    <hr>
                     <div class="row">
                         <div class="container-sm">
                             <div class="form-group">

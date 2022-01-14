@@ -127,7 +127,7 @@
                         <div class="col">
                             <div class="container-sm">
                             <form action="verChamadoAnalista.php" method="POST">
-                                <p>Data e Hora abertura: <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
+                                <p><strong style="font-weight: 900">Data e Hora abertura: </strong><?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                                 <input type="hidden" name="fgeral" value="0">
                                 <div class="form-group">
