@@ -99,8 +99,8 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado'].">Editar<br></a>";
-                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
+                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary'></button><i class='fas fa-fw fa-wrench'></i></a>";
+                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-danger'></button><i class='fas fa-fw fa-times'></i></a>";
                             echo "</tr>";
                         }
                     ?>

@@ -98,25 +98,16 @@
                         <div class="col">
                             <div class="container-sm">
                                 <p>Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
-                            </div>
-                            <div class="container-sm">
                                 <p>Analista: <?php echo $resultado['analista']; ?></p>
-                            </div>
-                            <div class="container-sm">
-                                <!--Passa as informações para imprimir na tela-->
-                                <?php echo $resultado['nome_tipo'] . ">" 
-                                . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?>
-                            </div><br>
-                        </div> <!--col-->
-                        <div class="col">
-                            <div class="container-sm">
+                                <p><?php echo $resultado['nome_tipo'] . ">" 
+                                . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?></p>
                                 <p>Data e Hora abertura: <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <p>Data Prazo: <?php if($resultado['data_prazo'] == null) {echo "Data prazo ainda não definida pelo analista! ";} else {echo date('d/m/Y', strtotime($resultado['data_prazo']));} ?>
                             </div>
-                        </div>
-                    </div><br> <!--row-->
-                    <div class="row">
-                        <div class="container-sm">
+                        </div> <!--col-->
+                        <div style="height: 400px; border-left: 1px solid;"></div>
+                        <div class="col">
+                            <div class="container-sm">
                             <form action="verChamadoUsuario.php" method="POST">
                             <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                                 <div class="form-group">
@@ -129,11 +120,15 @@
                                 </div>
                                 <input type="submit" value="Editar" class="btn btn-primary btn-block">
                             </form>
+                            </div>
                         </div>
-                    </div><br>
+                    </div><!--row-->
+                    <hr>
                     <div class="row">
                         <div class="container-sm">
-                            <p>Resposta Analista: <?php echo $resultado['descricao_analista']; ?></p>
+                            <h4 class="h4 mb-2 text-gray-800">Resposta Analista: </h4>
+                            <p><?php echo $resultado['descricao_analista']; ?></p>
+                            
                         </div>
                     </div>
                 </div>

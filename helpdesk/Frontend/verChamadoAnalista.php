@@ -203,7 +203,7 @@
                     <div class="row">
                         <div class="container-lg">
                             <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
-                            <?php echo $resultado['descricao']; ?>
+                            <p><?php echo $resultado['descricao']; ?></p>
                         </div>
                     </div>
                 </div>
