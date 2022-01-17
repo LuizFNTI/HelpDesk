@@ -63,7 +63,7 @@
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>
-                                            <th>Tipo>Categoria>SubCategoria>Item</th>
+                                            <th>Tipo>Categoria>Subcategoria>Item</th>
                                             <th>Data Inicio</th>
                                             <th>Data Prazo</th>
                                             <th>Analista Respossável</th>
@@ -99,8 +99,8 @@
                                 echo "<th>".date('d/m/Y', strtotime($dados['data_prazo']))."</th>";
                                 echo "<th>".$dados['analista']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=verChamadoUsuario.php?nc_up=".$dados['numero_chamado'].">Editar</a><br>";
-                                echo "<a href=cancelarChamado.php?nc_up=".$dados['numero_chamado'].">Cancelar</a></th>";
+                                echo "<th><a href=verChamadoUsuario.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary' style='height: 35px;'></button><i class='fas fa-fw fa-wrench'></i></a>";
+                                echo "<a href=cancelarChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-danger' style='margin-left: 10px; height: 35px;'></button><i class='fas fa-fw fa-times'></i></a>";
                             echo "</tr>";
                         }
                     ?>

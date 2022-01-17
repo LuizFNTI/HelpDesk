@@ -61,7 +61,7 @@
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>
-                                            <th>Tipo>Categoria>SubCategoria>Item</th>
+                                            <th>Tipo>Categoria>Subcategoria>Item</th>
                                             <th>Data Inicio</th>
                                             <th>Data Prazo</th>
                                             <th>Usuário</th>
@@ -99,8 +99,8 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary'></button><i class='fas fa-fw fa-wrench'></i></a>";
-                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-danger'></button><i class='fas fa-fw fa-times'></i></a>";
+                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary' style='height: 35px;'></button><i class='fas fa-fw fa-wrench'></i></a>";
+                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-danger' style='margin-left: 10px; height: 35px;'></button><i class='fas fa-fw fa-times'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -126,7 +126,7 @@
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>
-                                            <th>Tipo>Categoria>SubCategoria>Item</th>
+                                            <th>Tipo>Categoria>Subcategoria>Item</th>
                                             <th>Data Inicio</th>
                                             <th>Usuário</th>
                                             <th>Prioridade</th>
@@ -161,7 +161,7 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=verChamadoAnalista.php?nc_up=".$dados['numero_chamado'].">Ver</a></th>";
+                                echo "<th><a href=verChamadoAnalista.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary' style='height: 35px;'></button><i class='fas fa-fw fa-arrow-up'></i></a>";
                             echo "</tr>";
                         }
                     ?>
