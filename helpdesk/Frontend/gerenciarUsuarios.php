@@ -93,7 +93,7 @@
                             echo "<th>".$dados['nome_departamento']."</th>";
                             if($dados['nivel'] == 0) {echo "<th>Usuário</th>";} else if($dados['nivel'] == 1) {echo "<th>Analista</th>";} else {echo "<th>Administrador</th>";}
                             if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                            echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula'].">Editar</a></th>";
+                            echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula']."<i class='fas fa-fw fa-wrench'></i></a>";
                             echo "</tr>";
                         }
                     ?>

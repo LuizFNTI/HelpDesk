@@ -5,12 +5,10 @@
     $query = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
     $query->execute(array($_POST['email']));
 
-    $resultado = $query->fetch(PDO::FETCH_ASSOC);
-
-    $matricula_hash = password_hash($resultado['matricula'], PASSWORD_DEFAULT);
+    $resultado = $query->fetch(PDO::FETCH_ASSOC); 
 
     if($resultado) {
-        $chave = sha1($matricula_hash . $resultado['senha']);
+        $chave = sha1($resultado['matricula'] . $resultado['senha']);
 
         if($chave) {
             echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?chave='.$chave.'">http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?chave='.$chave.'</a>';
@@ -66,6 +64,7 @@
                                         <p class="mb-4"></p>
                                     </div>
                                     <form action="recuperarSenha.php" method="POST" class="user">
+                                        <input type="hidden" name="chave_form" value="<?php echo $chave ?>">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="Email" name="email" aria-describedby="emailHelp"
