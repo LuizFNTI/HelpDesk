@@ -4,7 +4,7 @@
 <li class="nav-item dropdown dropright no-arrow">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        <img class="img-profile rounded-circle" src="img/undraw_profile.png">
+        <img class="img-profile rounded-circle" src="img/do-utilizador.png">
         <span class="mr-2 d-none d-lg-inline text-light-600 small"><?php echo $nome_usuario; ?></span>
     </a>
     <!-- Dropdown - User Information -->

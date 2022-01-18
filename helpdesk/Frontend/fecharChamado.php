@@ -92,7 +92,7 @@
                             <label for="descricao">Faça uma breve descrição sobre o encerramento:</label>
                             <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
                         </div>
-                        <input type="submit" value="Encerrar" class="btn btn-primary btn-block">
+                        <input type="submit" value="Encerrar" class="btn btn-danger btn-block">
                     </form>
                 </div>
                 <!-- /.container-fluid -->

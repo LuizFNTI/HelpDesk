@@ -88,12 +88,12 @@
                     <div class="container-sm">
                         <form action="" method="POST">
                             <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                            <input type="hidden" name="aberto" value="4">
+                            <input type="hidden" name="aberto" value="4"><!--Muda o status para Cancelado-->
                             <div class="form-group">
                                 <label for="descricao">Faça uma breve descrição sobre o motivo do cancelamento:</label>
-                                <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descricao"></textarea>
+                                <textarea class="form-control" rows="5" placeholder="Sua Resposta:" id="descr" name="descricao"></textarea>
                             </div>
-                            <input type="submit" value="Cancelar Chamado" class="btn btn-primary btn-block">
+                            <input type="submit" value="Cancelar Chamado" class="btn btn-danger btn-block">
                         </form>
                     </div>
                 </div>
