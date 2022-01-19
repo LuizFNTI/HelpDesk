@@ -88,7 +88,7 @@
                                 echo "<th>".$dados['cod_status']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_status']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verStatus.php?status_up=".$dados['cod_status'].">Editar</a></th>";
+                                echo "<th style='text-align: center'><a href=verStatus.php?status_up=".$dados['cod_status']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -137,7 +137,7 @@
                                 echo "<th>".$dados['cod_tipo_atendimento']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_tipo_atendimento']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verTipoAtendimento.php?tipoa_up=".$dados['cod_tipo_atendimento'].">Editar</a></th>";
+                                echo "<th style='text-align: center'><a href=verTipoAtendimento.php?tipoa_up=".$dados['cod_tipo_atendimento']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -185,7 +185,7 @@
                                 echo "<th>".$dados['cod_prioridade']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verPrioridade.php?prioridade_up=".$dados['cod_prioridade'].">Editar</a></th>";
+                                echo "<th style='text-align: center'><a href=verPrioridade.php?prioridade_up=".$dados['cod_prioridade']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>

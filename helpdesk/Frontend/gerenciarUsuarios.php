@@ -59,7 +59,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0" style='font-size: 14px;'>
                                     <thead>
                                         <tr>
                                             <th>Matricula</th>
@@ -93,7 +93,7 @@
                             echo "<th>".$dados['nome_departamento']."</th>";
                             if($dados['nivel'] == 0) {echo "<th>Usuário</th>";} else if($dados['nivel'] == 1) {echo "<th>Analista</th>";} else {echo "<th>Administrador</th>";}
                             if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                            echo "<th><a href=verUsuario.php?matricula_up=".$dados['matricula']."<i class='fas fa-fw fa-wrench'></i></a>";
+                            echo "<th style='text-align: center'><a href=verUsuario.php?matricula_up=".$dados['matricula']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableDepartamento" width="100%" cellspacing="0" style="font-size: 14px;">
+                                <table class="table table-bordered" id="dataTableDepartamento" width="100%" cellspacing="0" style='font-size: 14px;'>
                                     <thead>
                                         <tr>
                                             <th>Código</th>
@@ -142,8 +142,7 @@
                                 echo "<th>".$dados['cod_departamento']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_departamento']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verDepartamento.php?departamento_up=".$dados['cod_departamento'].">Editar</a></th>";
-                            echo "</tr>";
+                                echo "<th style='text-align: center'><a href=verDepartamento.php?departamento_up=".$dados['cod_departamento']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                         }
                     ?>
                     </tbody>

@@ -98,9 +98,45 @@
                                 echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
                                 echo "<th>".date('d/m/Y', strtotime($dados['data_prazo']))."</th>";
                                 echo "<th>".$dados['analista']."</th>";
-                                echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=verChamadoUsuario.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary' style='height: 35px;'></button><i class='fas fa-fw fa-wrench'></i></a>";
-                                echo "<a href=cancelarChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-danger' style='margin-left: 10px; height: 35px;'></button><i class='fas fa-fw fa-times'></i></a>";
+                                switch ($dados['cod_status']) {
+                                    case 1:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: red;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 2:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: yellow;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 3:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 4:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: black;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 5:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: orange;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 6:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: blue;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 7:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: gray;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 8:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 9:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 10:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    case 11:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        break;
+                                    default:
+                                        echo "<th>"."<i class='fas fa-fw fa-circle'></i>".$dados['nome_status']."</th>";
+                                }
+                                echo "<th><a href=verChamadoUsuario.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
+                                echo "<a href=cancelarChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-times' style='color: red; font-size: 20px;' title='Cancelar'></i></a>";
                             echo "</tr>";
                         }
                     ?>

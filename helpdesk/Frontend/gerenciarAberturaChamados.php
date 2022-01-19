@@ -137,7 +137,7 @@
                                 echo "<th>".$dados['cod_tipo']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_tipo']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verTipo.php?tipo_up=".$dados['cod_tipo'].">Editar</a></th>";
+                                echo "<th style='text-align: center'><a href=verTipo.php?tipo_up=".$dados['cod_tipo']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -187,7 +187,7 @@
                                 echo "<th>".$dados['nome_categoria']."</th>";
                                 echo "<th>".$dados['nome_tipo']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verCategoria.php?categoria_up=".$dados['cod_categoria'].">Editar</a></th>";
+                                echo "<th style='text-align: center'><a href=verCategoria.php?categoria_up=".$dados['cod_categoria']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -240,7 +240,7 @@
                                 echo "<th>".$dados['nome_categoria']."</th>";
                                 echo "<th>".$dados['nome_tipo']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verSubcategoria.php?subcategoria_up=".$dados['cod_subcategoria'].">Editar</a></th>";
+                                echo "<th style='text-align: center'><a href=verSubcategoria.php?subcategoria_up=".$dados['cod_subcategoria']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -294,7 +294,7 @@
                                 echo "<th>".$dados['nome_categoria']."</th>";
                                 echo "<th>".$dados['nome_tipo']."</th>";
                                 if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th><a href=verItem.php?item_up=".$dados['cod_item'].">Editar</a></th>";
+                                echo "<th style='text-align: center'><a href=verItem.php?item_up=".$dados['cod_item']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>

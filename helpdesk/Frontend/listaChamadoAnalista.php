@@ -99,8 +99,8 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary' style='height: 35px;'></button><i class='fas fa-fw fa-wrench'></i></a>";
-                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-danger' style='margin-left: 10px; height: 35px;'></button><i class='fas fa-fw fa-times'></i></a>";
+                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
+                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-times' style='color: red; font-size: 20px;' title='Encerrar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -161,7 +161,7 @@
                                 echo "<th>".$dados['nome']."</th>";
                                 echo "<th>".$dados['nome_prioridade']."</th>";
                                 echo "<th>".$dados['nome_status']."</th>";
-                                echo "<th><a href=verChamadoAnalista.php?nc_up=".$dados['numero_chamado']."<button type='button' class='btn btn-outline-primary' style='height: 35px;'></button><i class='fas fa-fw fa-arrow-up'></i></a>";
+                                echo "<th style='text-align: center'><a href=verChamadoAnalista.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-arrow-up' style='font-size: 20px;' title='Mover Para Sua Fila'></i></a>";
                             echo "</tr>";
                         }
                     ?>
