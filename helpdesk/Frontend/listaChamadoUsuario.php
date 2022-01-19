@@ -121,19 +121,19 @@
                                         echo "<th>"."<i class='fas fa-fw fa-circle' style='color: gray;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 8:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-red;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 9:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-blue;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 10:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: brown;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 11:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: purple;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     default:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: white;'></i>".$dados['nome_status']."</th>";
                                 }
                                 echo "<th><a href=verChamadoUsuario.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                                 echo "<a href=cancelarChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-times' style='color: red; font-size: 20px;' title='Cancelar'></i></a>";

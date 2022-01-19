@@ -94,12 +94,63 @@
                             foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                                 echo "<tr>";
                                     echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
-                                    echo "<th>".$dados['nome_tipo'].">".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
+                                    echo "<th>".$dados['nome_tipo']."<i class='fas fa-fw fa-chevron-right'></i>".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
                                     echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
                                     echo "<th>".$dados['nome']."</th>";
                                     echo "<th>".$dados['analista']."</th>";
-                                    echo "<th>".$dados['nome_prioridade']."</th>";
-                                    echo "<th>".$dados['nome_status']."</th>";
+                                    switch ($dados['cod_prioridade']) {
+                                        case 1:
+                                            echo "<th>"."<i class='fas fa-fw fa-square' style='color: green;'></i>".$dados['nome_prioridade']."</th>";
+                                            break;
+                                        case 2:
+                                            echo "<th>"."<i class='fas fa-fw fa-square' style='color: yellow;'></i>".$dados['nome_prioridade']."</th>";
+                                            break;
+                                        case 3:
+                                            echo "<th>"."<i class='fas fa-fw fa-square' style='color: red;'></i>".$dados['nome_prioridade']."</th>";
+                                            break;
+                                        case 4:
+                                            echo "<th>"."<i class='fas fa-fw fa-square' style='color: #ff8700;'></i>".$dados['nome_prioridade']."</th>";
+                                            break;
+                                        default:
+                                            echo "<th>"."<i class='fas fa-fw fa-square' style='color: white;'></i>".$dados['nome_prioridade']."</th>";
+                                    }
+                                    switch ($dados['cod_status']) {
+                                        case 1:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: red;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 2:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: yellow;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 3:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: green;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 4:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: black;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 5:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: orange;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 6:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: blue;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 7:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: gray;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 8:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-red;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 9:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-blue;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 10:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: brown;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        case 11:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: purple;'></i>".$dados['nome_status']."</th>";
+                                            break;
+                                        default:
+                                            echo "<th>"."<i class='fas fa-fw fa-circle' style='color: white;'></i>".$dados['nome_status']."</th>";
+                                    }
                                     //echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado'].">Editar<br></a>";
                                     //echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
                                 echo "</tr>";
