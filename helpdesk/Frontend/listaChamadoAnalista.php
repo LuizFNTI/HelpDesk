@@ -61,7 +61,7 @@
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>
-                                            <th>Tipo>Categoria>Subcategoria>Item</th>
+                                            <th>Tipo<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Categoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Subcategoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Item</th>
                                             <th>Data Inicio</th>
                                             <th>Data Prazo</th>
                                             <th>Usuário</th>
@@ -93,7 +93,7 @@
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                             echo "<tr>";
                                 echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
-                                echo "<th>".$dados['nome_tipo'].">".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
+                                echo "<th>".$dados['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_item']."</th>";
                                 echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
                                 echo "<th>".date('d/m/Y', strtotime($dados['data_prazo']))."</th>";
                                 echo "<th>".$dados['nome']."</th>";
@@ -177,7 +177,7 @@
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>
-                                            <th>Tipo>Categoria>Subcategoria>Item</th>
+                                            <th>Tipo<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Categoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Subcategoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Item</th>
                                             <th>Data Inicio</th>
                                             <th>Usuário</th>
                                             <th>Prioridade</th>
@@ -207,7 +207,7 @@
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                             echo "<tr>";
                                 echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
-                                echo "<th>".$dados['nome_tipo'].">".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
+                                echo "<th>".$dados['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_item']."</th>";
                                 echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
                                 echo "<th>".$dados['nome']."</th>";
                                 switch ($dados['cod_prioridade']) {

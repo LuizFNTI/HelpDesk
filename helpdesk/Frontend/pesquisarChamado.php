@@ -65,12 +65,13 @@
                                     <thead>
                                         <tr>
                                             <th>Chamado</th>
-                                            <th>Tipo>Categoria>SubCategoria>Item</th>
+                                            <th>Tipo<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Categoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>SubCategoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Item</th>
                                             <th>Data Inicio</th>
                                             <th>Usuário</th>
                                             <th>Analista</th>
                                             <th>Prioridade</th>
                                             <th>Status</th>
+                                            <th>Ação</th>
                                         </tr>
                                     </thead>
                     <?php
@@ -94,7 +95,7 @@
                             foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                                 echo "<tr>";
                                     echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
-                                    echo "<th>".$dados['nome_tipo']."<i class='fas fa-fw fa-chevron-right'></i>".$dados['nome_categoria'].">".$dados['nome_subcategoria'].">".$dados['nome_item']."</th>";
+                                    echo "<th>".$dados['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_item']."</th>";
                                     echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
                                     echo "<th>".$dados['nome']."</th>";
                                     echo "<th>".$dados['analista']."</th>";
@@ -151,8 +152,7 @@
                                         default:
                                             echo "<th>"."<i class='fas fa-fw fa-circle' style='color: white;'></i>".$dados['nome_status']."</th>";
                                     }
-                                    //echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado'].">Editar<br></a>";
-                                    //echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado'].">Encerrar</a></th>";
+                                    echo "<th style='text-align: center'><a href=verChamadoPesquisa.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-eye' style='font-size: 20px;' title='Ver'></i></a>";
                                 echo "</tr>";
                             }
                     ?>
