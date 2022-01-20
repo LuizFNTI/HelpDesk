@@ -109,7 +109,7 @@
                             <div class="sidebar-heading"><strong style="font-weight: 900">Informações do Chamado</strong></div>
                             <div class="container-sm">
                                 <p style="margin-top: 3%;"><strong>Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
-                                <p style="margin-bottom: 3%;"><?php echo $resultado['nome_tipo'] . ">" . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?></p>
+                                <p><?php echo $resultado['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_item']; ?></p>
                             </div>
                             <hr>
                             <div class="sidebar-heading"><strong style="font-weight: 900;">Informações do Usuário</strong></div>

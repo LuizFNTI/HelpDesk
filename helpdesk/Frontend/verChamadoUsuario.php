@@ -96,13 +96,13 @@
                 <div class="container-fluid" style="margin-top: 2%;">
                     <div class="row">
                         <div class="col">
+                            <div class="sidebar-heading"><strong style="font-weight: 900">Informações do Chamado</strong></div>
                             <div class="container-sm">
-                                <p>Numero Chamado: <?php echo $resultado['numero_chamado']; ?></p>
-                                <p>Analista: <?php echo $resultado['analista']; ?></p>
-                                <p><?php echo $resultado['nome_tipo'] . ">" 
-                                . $resultado['nome_categoria'] . ">" . $resultado['nome_subcategoria'] . ">" .$resultado['nome_item']; ?></p>
-                                <p>Data e Hora abertura: <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
-                                <p>Data Prazo: <?php if($resultado['data_prazo'] == null) {echo "Data prazo ainda não definida pelo analista! ";} else {echo date('d/m/Y', strtotime($resultado['data_prazo']));} ?>
+                                <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
+                                <p><strong style="font-weight: 900;">Analista: </strong><?php if($resultado['analista'] == null) {echo "Aguardando Analista...";} else{echo $resultado['analista'];}?></p>
+                                <p><?php echo $resultado['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_item']; ?></p>
+                                <p><strong style="font-weight: 900;">Data e Hora abertura: </strong> <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
+                                <p><strong style="font-weight: 900;">Data Prazo: </strong> <?php if($resultado['data_prazo'] == null) {echo "Data prazo ainda não definida pelo analista! ";} else {echo date('d/m/Y', strtotime($resultado['data_prazo']));} ?></p>
                             </div>
                         </div> <!--col-->
                         <div style="height: 400px; border-left: 1px solid;"></div>
@@ -127,8 +127,7 @@
                     <div class="row">
                         <div class="container-sm">
                             <h4 class="h4 mb-2 text-gray-800">Resposta Analista: </h4>
-                            <p><?php echo $resultado['descricao_analista']; ?></p>
-                            
+                            <p><?php if($resultado['descricao_analista'] == null) {echo "Ainda não há nem uma resposta do analista! ";} else {echo $resultado['descricao_analista'];} ?></p>
                         </div>
                     </div>
                 </div>

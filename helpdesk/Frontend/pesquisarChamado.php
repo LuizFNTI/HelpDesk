@@ -98,7 +98,7 @@
                                     echo "<th>".$dados['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_item']."</th>";
                                     echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
                                     echo "<th>".$dados['nome']."</th>";
-                                    echo "<th>".$dados['analista']."</th>";
+                                    if($dados['analista'] == null) {echo "<th>Aguardando Analista...</th>";} else{echo "<th>".$dados['analista']."</th>";}
                                     switch ($dados['cod_prioridade']) {
                                         case 1:
                                             echo "<th>"."<i class='fas fa-fw fa-square' style='color: green;'></i>".$dados['nome_prioridade']."</th>";

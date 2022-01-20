@@ -79,10 +79,11 @@
                             <div class="sidebar-heading"><strong style="font-weight: 900">Informações do Chamado</strong></div>
                             <div class="container-sm">
                                 <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
-                                <p><strong style="font-weight: 900;">Analista Responssável: </strong> <?php echo $resultado['analista']; ?></p>
+                                <p style="margin-top: 3%;"><strong style="font-weight: 900;">Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
+                                <p><strong style="font-weight: 900;">Analista: </strong><?php if($resultado['analista'] == null) {echo "Aguardando Analista...";} else{echo $resultado['analista'];}?></p>
                                 <p><?php echo $resultado['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_item']; ?></p>
                                 <p><strong style="font-weight: 900;">Data e Hora abertura: </strong> <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
-                                <p><strong style="font-weight: 900;">Data Prazo: </strong> <?php if($resultado['data_prazo'] == null) {echo "Data prazo ainda não definida pelo analista! ";} else {echo date('d/m/Y', strtotime($resultado['data_prazo']));} ?>
+                                <p><strong style="font-weight: 900;">Data Prazo: </strong> <?php if($resultado['data_prazo'] == null) {echo "Data prazo ainda não definida pelo analista! ";} else {echo date('d/m/Y', strtotime($resultado['data_prazo']));} ?></p>
                             </div>
                             <hr>
                             <div class="sidebar-heading"><strong style="font-weight: 900;">Informações do Usuário</strong></div>
@@ -108,7 +109,7 @@
                         <hr>
                         <div class="container-lg">
                             <h4 class="h4 mb-2 text-gray-800">Resposta Analista: </h4>
-                            <p><?php echo $resultado['descricao_analista']; ?></p>
+                            <p><?php if($resultado['descricao_analista'] == null) {echo "Ainda não há nem uma resposta do analista! ";} else {echo $resultado['descricao_analista'];} ?></p>
                         </div>
                         </div> <!--col-->
                     </div> <!--row-->
