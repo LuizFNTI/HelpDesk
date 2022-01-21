@@ -7,4 +7,16 @@ INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado
 GROUP BY
     nome_status
 
+
+
+SELECT
+    analista,
+    COUNT(numero_chamado) AS "total"
+FROM
+    chamados
+GROUP BY
+    analista  
+ORDER BY 
+	analista
+
 SELECT nome_status, COUNT(status_chamado_cod_status) AS "total" FROM chamados INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status GROUP BY nome_status

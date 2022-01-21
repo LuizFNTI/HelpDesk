@@ -136,10 +136,10 @@
                                         echo "<th>"."<i class='fas fa-fw fa-circle' style='color: gray;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 8:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-red;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: tomato;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 9:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-blue;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: dodgerBlue;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 10:
                                         echo "<th>"."<i class='fas fa-fw fa-circle' style='color: brown;'></i>".$dados['nome_status']."</th>";
@@ -249,10 +249,10 @@
                                         echo "<th>"."<i class='fas fa-fw fa-circle' style='color: gray;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 8:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-red;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: tomato;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 9:
-                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: light-blue;'></i>".$dados['nome_status']."</th>";
+                                        echo "<th>"."<i class='fas fa-fw fa-circle' style='color: dodgerBlue;'></i>".$dados['nome_status']."</th>";
                                         break;
                                     case 10:
                                         echo "<th>"."<i class='fas fa-fw fa-circle' style='color: brown;'></i>".$dados['nome_status']."</th>";

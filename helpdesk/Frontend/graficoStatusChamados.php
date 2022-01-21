@@ -1,4 +1,3 @@
-<html>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load("current", {packages:["corechart"]});
@@ -25,11 +24,23 @@
         var options = {
           title: 'Status dos Chamados',
           pieHole: 0.4,
+          slices: {
+            0: { color: 'red' },
+            1: { color: 'yellow' },
+            2: { color: 'green' },
+            3: { color: 'black' },
+            4: { color: 'orange' },
+            5: { color: 'blue' },
+            6: { color: 'gray' },
+            7: { color: 'tomato' },
+            8: { color: 'dodgerBlue' },
+            9: { color: 'brown' },
+            10: { color: 'purple' }
+          }
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
         chart.draw(data, options);
       }
     </script>
-  <body>
     <div id="donutchart" style="width: 900px; height: 500px;"></div>
