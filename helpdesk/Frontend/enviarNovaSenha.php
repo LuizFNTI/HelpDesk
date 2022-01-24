@@ -6,6 +6,7 @@
     $chave_get = $_GET['key'];
     $chave_post = $_POST['chave_form']; 
 
+
     $senha = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     if($chave_get == $chave_post) {

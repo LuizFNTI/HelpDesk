@@ -103,6 +103,8 @@
         $("#enviarChave") .on("click", function() {
         var chave = '<?php echo $key ?>';
 
+        window.alert(chave);
+
         $.ajax({
             method: "POST",
             url: "enviarNovaSenha.php",
