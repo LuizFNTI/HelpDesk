@@ -1,22 +1,22 @@
 <?php 
 
-    include 'conexao.php';
+    include '../Backend/conexao.php';
 
-    $chave_get = $_GET['chave'];
+    $matricula = $_GET['matricula'];
+    $chave_get = $_GET['key'];
     $chave_post = $_POST['chave_form']; 
 
+    $senha = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
     if($chave_get == $chave_post) {
-        $query = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
-        $query->execute(array($_POST['email']));
 
-        $resultado = $query->fetch(PDO::FETCH_ASSOC);
-
-
+        $query = $conn->prepare("UPDATE usuarios SET senha = :s WHERE matricula = :m");
+        $query->bindValue(":s",$senha);
+        $query->bindValue(":m",$matricula);
+        $query->execute();
     } else {
-
+        echo "Erro!";
     }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

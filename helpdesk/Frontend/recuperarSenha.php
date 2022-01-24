@@ -8,10 +8,11 @@
     $resultado = $query->fetch(PDO::FETCH_ASSOC); 
 
     if($resultado) {
-        $chave = sha1($resultado['matricula'] . $resultado['senha']);
+        $matricula = $resultado['matricula'];
+        $key = password_hash($resultado['senha'] . date("Y-m-d h:i:sa"), PASSWORD_DEFAULT);
 
-        if($chave) {
-            echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?chave='.$chave.'">http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?chave='.$chave.'</a>';
+        if($matricula) {
+            echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?matricula='.$matricula.'?key='.$key.'>Clique aqui para redefinir a senha</a>';
         } else {
             echo "Errro Link";
         }
@@ -64,7 +65,7 @@
                                         <p class="mb-4"></p>
                                     </div>
                                     <form action="recuperarSenha.php" method="POST" class="user">
-                                        <input type="hidden" name="chave_form" value="<?php echo $chave ?>">
+                                        <input type="hidden" name="chave_form" value="<?php echo $key ?>">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="Email" name="email" aria-describedby="emailHelp"
