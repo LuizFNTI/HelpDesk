@@ -12,7 +12,7 @@
         $key = password_hash($resultado['senha'] . date("Y-m-d h:i:sa"), PASSWORD_DEFAULT);
 
         if($matricula) {
-            echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?matricula='.$matricula.'?key='.$key.'>Clique aqui para redefinir a senha</a>';
+            echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?matricula='.$matricula.'&key='.$key.'>Clique aqui para redefinir a senha</a>';
         } else {
             echo "Errro Link";
         }
@@ -65,13 +65,12 @@
                                         <p class="mb-4"></p>
                                     </div>
                                     <form action="recuperarSenha.php" method="POST" class="user">
-                                        <input type="hidden" name="chave_form" value="<?php echo $key ?>">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="Email" name="email" aria-describedby="emailHelp"
                                                 placeholder="Seu endereço de e-mail">
                                         </div>
-                                        <input type="submit" value="Recuperar Senha" class="btn btn-primary btn-user btn-block">
+                                        <input type="submit" value="Recuperar Senha" class="btn btn-primary btn-user btn-block" id="enviarChave">
                                     </form>
                                     <hr>
                                     <div class="text-center">
@@ -99,6 +98,18 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script>
+        $("#enviarChave") .on("click", function() {
+        var chave = '<?php echo $key ?>';
+
+        $.ajax({
+            method: "POST",
+            url: "enviarNovaSenha.php",
+            data: {chave_form: chave}
+        });
+    });
+    </script>
 
 </body>
 
