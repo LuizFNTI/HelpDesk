@@ -2,31 +2,31 @@
 
     include '../Backend/conexao.php';
 
-    $query = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
-    $query->execute(array($_POST['email']));
+    if(isset($_POST['email'])) {
 
-    $resultado = $query->fetch(PDO::FETCH_ASSOC); 
+        $query = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
+        $query->execute(array($_POST['email']));
 
-    if($resultado) {
-        $matricula = $resultado['matricula'];
-        $key = password_hash($resultado['senha'] . date("Y-m-d h:i:sa"), PASSWORD_DEFAULT);
+        $resultado = $query->fetch(PDO::FETCH_ASSOC); 
 
-        $query = $conn->prepare("UPDATE usuarios SET chave = :c WHERE matricula = :m");
-        $query->bindValue(":c",$key);
-        $query->bindValue(":m",$matricula);
-        $query->execute();
+        if($resultado) {
+            $matricula = $resultado['matricula'];
+            $key = password_hash($resultado['senha'] . date("Y-m-d h:i:sa"), PASSWORD_DEFAULT);
 
-        if($matricula) {
+            $query = $conn->prepare("UPDATE usuarios SET chave = :c WHERE matricula = :m");
+            $query->bindValue(":c",$key);
+            $query->bindValue(":m",$matricula);
+            $query->execute();
+
             echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
         } else {
-            echo "Errro Link";
+            echo "<script>window.alert('Endereço de e-mail não encontrado! Por favor realize o cadastro no sistema!')</script>";
+            header("location: cadastro.php");
         }
-    } else {
-        echo "Erro chave";
     }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 
@@ -103,20 +103,6 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-
-    <script>
-        $("#enviarChave") .on("click", function() {
-        var chave = '<?php echo $key ?>';
-
-        window.alert(chave);
-
-        $.ajax({
-            method: "POST",
-            url: "enviarNovaSenha.php",
-            data: {chave_form: chave}
-        });
-    });
-    </script>
 
 </body>
 
