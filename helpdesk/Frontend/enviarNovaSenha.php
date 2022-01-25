@@ -17,6 +17,14 @@
         $query->bindValue(":m",$matricula);
         $query->execute();
     }
+
+    if($_GET['key'] == null) {
+        $query = $conn->prepare("UPDATE usuarios SET chave = :c WHERE matricula = :m");
+        $query->bindValue(":c",$chave_vazia);
+        $query->bindValue(":m",$matricula);
+        $query->execute();
+        header("location: ../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

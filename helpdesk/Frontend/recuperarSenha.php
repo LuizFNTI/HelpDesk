@@ -21,7 +21,6 @@
             echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
         } else {
             echo "<script>window.alert('Endereço de e-mail não encontrado! Por favor realize o cadastro no sistema!')</script>";
-            header("location: cadastro.php");
         }
     }
 ?>
