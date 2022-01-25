@@ -11,8 +11,13 @@
         $matricula = $resultado['matricula'];
         $key = password_hash($resultado['senha'] . date("Y-m-d h:i:sa"), PASSWORD_DEFAULT);
 
+        $query = $conn->prepare("UPDATE usuarios SET chave = :c WHERE matricula = :m");
+        $query->bindValue(":c",$key);
+        $query->bindValue(":m",$matricula);
+        $query->execute();
+
         if($matricula) {
-            echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?matricula='.$matricula.'&key='.$key.'>Clique aqui para redefinir a senha</a>';
+            echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
         } else {
             echo "Errro Link";
         }

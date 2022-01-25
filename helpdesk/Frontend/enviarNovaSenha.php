@@ -2,21 +2,25 @@
 
     include '../Backend/conexao.php';
 
-    $matricula = $_GET['matricula'];
     $chave_get = $_GET['key'];
-    $chave_post = $_POST['chave_form']; 
+    $matricula = $_POST['matricula'];
+    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    $senha = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $query = $conn->prepare("SELECT * FROM usuarios WHERE chave = ?");
+    $query->execute(array($_GET['key']));
 
-    if($chave_get == $chave_post) {
+    $resultado = $query->fetch(PDO::FETCH_ASSOC); 
 
-        $query = $conn->prepare("UPDATE usuarios SET senha = :s WHERE matricula = :m");
-        $query->bindValue(":s",$senha);
-        $query->bindValue(":m",$matricula);
-        $query->execute();
+    $query = $conn->prepare("UPDATE usuarios SET senha = :s WHERE matricula = :m");
+    $query->bindValue(":s",$senha);
+    $query->bindValue(":m",$matricula);
+    $query->execute();
+    
+    /*if (password_verify($_POST['senha'], $resultado['senha'])) {
+        echo "exito";
     } else {
-        echo "Erro!";
-    }
+        echo "Não exito";
+    }*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +33,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Forgot Password</title>
+    <title>Enviar Nova Senha</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -63,11 +67,12 @@
                                         <p class="mb-4"></p>
                                     </div>
                                     <form action="enviarNovaSenha.php" method="POST" class="user">
+                                        <input type="hidden" name="matricula" value="<?php echo $resultado['matricula'] ?>">
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" id="password" name="senha" placeholder="Digite Sua Nova Senha">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="confirm_password" name="senha" placeholder="Confirme Sua Nova Senha">
+                                            <input type="password" class="form-control form-control-user" id="confirm_password" name="csenha" placeholder="Confirme Sua Nova Senha">
                                         </div>
                                         <input type="submit" value="Alterar Senha" class="btn btn-primary btn-user btn-block">
                                     </form>
