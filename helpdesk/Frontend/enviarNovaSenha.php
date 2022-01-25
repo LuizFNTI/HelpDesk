@@ -2,13 +2,12 @@
 
     include '../Backend/conexao.php';
 
-    $chave_get = $_GET['key'];
     $matricula = $_POST['matricula'];
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
     $query = $conn->prepare("SELECT * FROM usuarios WHERE chave = ?");
     $query->execute(array($_GET['key']));
-
+    
     $resultado = $query->fetch(PDO::FETCH_ASSOC); 
 
     $query = $conn->prepare("UPDATE usuarios SET senha = :s WHERE matricula = :m");
