@@ -42,9 +42,9 @@
                 //$mail->addAddress('endereco2@provedor.com.br');
 
                 $mail->isHTML(true);
-                $mail->Subject = 'Teste de email via gmail Canal TI';
-                $mail->Body = 'Chegou o email teste do <strong>Canal TI</strong>';
-                $mail->AltBody = 'Chegou o email teste do Canal TI';
+                $mail->Subject = 'Recuperação de senha Help Desk';
+                $mail->Body = 'Link para redefinir sua senha <strong><a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a></strong>';
+                $mail->AltBody = '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
 
                 if($mail->send()) {
                     echo 'Email enviado com sucesso';
@@ -54,8 +54,6 @@
             } catch (Exception $e) {
                 echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
             }
-
-            //echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
         } else {
             echo "<script>window.alert('Endereço de e-mail não encontrado! Por favor realize o cadastro no sistema!')</script>";
         }
