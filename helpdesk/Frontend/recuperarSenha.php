@@ -43,7 +43,7 @@
 
                 $mail->isHTML(true);
                 $mail->Subject = 'Recuperação de senha Help Desk';
-                $mail->Body = 'Link para redefinir sua senha <strong><a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a></strong>';
+                $mail->Body = 'Link para redefinir sua senha: <strong><a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a></strong>';
                 $mail->AltBody = '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
 
                 if($mail->send()) {
