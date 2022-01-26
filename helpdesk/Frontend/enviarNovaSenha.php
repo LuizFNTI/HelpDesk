@@ -7,22 +7,27 @@
         
     $resultado = $query->fetch(PDO::FETCH_ASSOC); 
 
-    if(isset($_POST['senha'])) {
+    if($resultado['chave'] == $_GET['key']) {
 
-        $matricula = $_POST['matricula'];
-        $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+        if(isset($_POST['senha'])) {
 
-        $query = $conn->prepare("UPDATE usuarios SET senha = :s WHERE matricula = :m");
-        $query->bindValue(":s",$senha);
-        $query->bindValue(":m",$matricula);
-        $query->execute();
-    }
+            $matricula = $_POST['matricula'];
+            $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-    if($_GET['key'] == null) {
-        $query = $conn->prepare("UPDATE usuarios SET chave = :c WHERE matricula = :m");
-        $query->bindValue(":c",$chave_vazia);
-        $query->bindValue(":m",$matricula);
-        $query->execute();
+            $query = $conn->prepare("UPDATE usuarios SET senha = :s WHERE matricula = :m");
+            $query->bindValue(":s",$senha);
+            $query->bindValue(":m",$matricula);
+            $query->execute();
+        }
+
+        if($_GET['key'] == null) {
+            $query = $conn->prepare("UPDATE usuarios SET chave = :c WHERE matricula = :m");
+            $query->bindValue(":c",$chave_vazia);
+            $query->bindValue(":m",$matricula);
+            $query->execute();
+            header("location: ../index.php");
+        }
+    } else {
         header("location: ../index.php");
     }
 ?>
