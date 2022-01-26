@@ -2,6 +2,10 @@
 
     include '../Backend/conexao.php';
 
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+
     if(isset($_POST['email'])) {
 
         $query = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
@@ -18,7 +22,40 @@
             $query->bindValue(":m",$matricula);
             $query->execute();
 
-            echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
+            require('../Backend/PHPMailer/PHPMailer.php');
+            require('../Backend/PHPMailer/SMTP.php');
+            require('../Backend/PHPMailer/Exception.php');
+
+            $mail = new PHPMailer(true);
+
+            try {
+                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                $mail->isSMTP();
+                $mail->Host = 'smtp.gmail.com';
+                $mail->SMTPAuth = true;
+                $mail->Username = 'php80helpdesk@gmail.com';
+                $mail->Password = 'teste8080';
+                $mail->Port = 587;
+
+                $mail->setFrom('php80helpdesk@gmail.com');
+                $mail->addAddress('fellippe.nascimento@gmail.com');
+                //$mail->addAddress('endereco2@provedor.com.br');
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Teste de email via gmail Canal TI';
+                $mail->Body = 'Chegou o email teste do <strong>Canal TI</strong>';
+                $mail->AltBody = 'Chegou o email teste do Canal TI';
+
+                if($mail->send()) {
+                    echo 'Email enviado com sucesso';
+                } else {
+                    echo 'Email nao enviado';
+                }
+            } catch (Exception $e) {
+                echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
+            }
+
+            //echo '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
         } else {
             echo "<script>window.alert('Endereço de e-mail não encontrado! Por favor realize o cadastro no sistema!')</script>";
         }
