@@ -44,7 +44,7 @@
                                 <span class="text">Redefinir Senha</span>
                             </a>
                         </div>
-                        <?php include 'footer.php'; ?>
+                        <?php include "footer.php"; ?>
                     </div>
                 </div>
 
