@@ -25,7 +25,7 @@
             $query->bindValue(":c",$chave_vazia);
             $query->bindValue(":m",$matricula);
             $query->execute();
-            header("location: ../index.php");
+            echo '<script>window.location.href = "../index.php";</script>';
         }
     } else {
         header("location: ../index.php");
