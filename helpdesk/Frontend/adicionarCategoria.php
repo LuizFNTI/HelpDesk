@@ -24,12 +24,15 @@ if(isset($_POST['novacat'])) {
     $ativo = $_POST['ativo'];
     $cod_tipo = $_POST['ctipo']; 
 
-    //faz a consulta no banco
+    //faz a insert no banco
     $query = $conn->prepare("INSERT INTO categoria (nome_categoria, ativo, tipo_cod_tipo) VALUES (:novac, :atv, :tcd)");
     $query->bindValue(":novac",$categoria);
     $query->bindValue(":atv",$ativo);
     $query->bindValue(":tcd",$cod_tipo);
     $query->execute();
+
+    echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+    echo "<script>window.location.href = 'gerenciarAberturaChamados.php'</script>";
 }
 ?>
 <!DOCTYPE html>

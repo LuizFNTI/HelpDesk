@@ -26,6 +26,9 @@ if(isset($_POST['novota'])) {
     $query = $conn->prepare("INSERT INTO tipo_atendimento (nome_tipo_atendimento) VALUES (:novota)");
     $query->bindValue(":novota",$tipoa);
     $query->execute();
+
+    echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+    echo "<script>window.location.href = 'gerenciarSistemaChamados.php'</script>";
 }
 ?>
 <!DOCTYPE html>

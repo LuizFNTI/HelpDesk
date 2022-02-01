@@ -22,10 +22,13 @@ if(isset($_POST['novot'])) {
     //Pega os POSTs do form e atribui a variaveis
     $tipo = $_POST['novot']; 
 
-    //faz a consulta no banco
+    //faz a insert no banco
     $query = $conn->prepare("INSERT INTO tipo (nome_tipo) VALUES (:novot)");
     $query->bindValue(":novot",$tipo);
     $query->execute();
+
+    echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+    echo "<script>window.location.href = 'gerenciarAberturaChamados.php'</script>";
 }
 ?>
 <!DOCTYPE html>

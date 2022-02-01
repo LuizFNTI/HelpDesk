@@ -26,6 +26,9 @@ if(isset($_POST['novop'])) {
     $query = $conn->prepare("INSERT INTO prioridade_chamado (nome_prioridade) VALUES (:novop)");
     $query->bindValue(":novop",$prioridade);
     $query->execute();
+
+    echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+    echo "<script>window.location.href = 'gerenciarSistemaChamados.php'</script>";
 }
 ?>
 <!DOCTYPE html>

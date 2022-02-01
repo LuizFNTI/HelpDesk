@@ -95,7 +95,7 @@
                                 echo "<th>".$dados['numero_chamado']."</th>";//Busca os dados na posiçãom do vetor
                                 echo "<th>".$dados['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_item']."</th>";
                                 echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
-                                echo "<th>".date('d/m/Y', strtotime($dados['data_prazo']))."</th>";
+                                if($dados['data_prazo'] == null) {echo "<th>Sem Data Prazo</th> ";} else {echo "<th>".date('d/m/Y', strtotime($dados['data_prazo']))."</th>";}
                                 echo "<th>".$dados['nome']."</th>";
                                 switch ($dados['cod_prioridade']) {
                                     case 1:

@@ -29,6 +29,9 @@ if(isset($_POST['novoi'])) {
     $query->bindValue(":atv",$ativo);
     $query->bindValue(":cdsc",$cod_subcategoria);
     $query->execute();
+
+    echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+    echo "<script>window.location.href = 'gerenciarAberturaChamados.php'</script>";
 }
 ?>
 <!DOCTYPE html>

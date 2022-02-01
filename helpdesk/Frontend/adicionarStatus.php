@@ -25,6 +25,9 @@ if(isset($_POST['novost'])) {
     $query = $conn->prepare("INSERT INTO status_chamado (nome_status) VALUES (:novost)");
     $query->bindValue(":novost",$status);
     $query->execute();
+
+    echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+    echo "<script>window.location.href = 'gerenciarSistemaChamados.php'</script>";
 }
 ?>
 <!DOCTYPE html>

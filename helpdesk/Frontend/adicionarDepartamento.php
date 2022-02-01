@@ -14,18 +14,21 @@
         header("location: ../index.php");
     }
 
-include_once '../Backend/conexao.php';
+    include_once '../Backend/conexao.php';
 
-//Verifica se existe POST
-if(isset($_POST['novodep'])) {
-    //Pega os POSTs do form e atribui a variaveis
-    $departamento = $_POST['novodep']; 
+    //Verifica se existe POST
+    if(isset($_POST['novodep'])) {
+        //Pega os POSTs do form e atribui a variaveis
+        $departamento = $_POST['novodep']; 
 
-    //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO departamento (nome_departamento) VALUES (:novodep)");
-    $query->bindValue(":novodep",$departamento);
-    $query->execute();
-}
+        //faz a consulta no banco
+        $query = $conn->prepare("INSERT INTO departamento (nome_departamento) VALUES (:novodep)");
+        $query->bindValue(":novodep",$departamento);
+        $query->execute();
+
+        echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+        echo "<script>window.location.href = 'gerenciarUsuarios.php'</script>";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -40,6 +40,9 @@ if(isset($_POST['descricao'])) {
     $query->bindValue(":item",$item);
     $query->bindValue(":fgeral",$fila_geral);
     $query->execute();
+
+    echo "<script>window.alert('Seu chamado foi aberto no siste, em breve será atendido por um de nossos analistas!')</script>";
+    echo "<script>window.location.href = 'listaChamadoUsuario.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -145,12 +148,11 @@ if(isset($_POST['descricao'])) {
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Ajax -->
-    <script src="js/JQuery/jquery-3.6.0.min.js"></script>
     <script src="js/ajaxCategoria.js"></script>
     <script src="js/ajaxSubCat.js"></script>
     <script src="js/ajaxItem.js"></script>
 
-    <!--active navbar-->
+    <!--Active Navbar-->
     <script>$("#abrirChamado").addClass("active")</script>
 </body>
 

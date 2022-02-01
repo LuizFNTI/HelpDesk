@@ -15,7 +15,7 @@
             header("location: acesso.php");
         } else {
             echo "<script>window.alert('Numero de matricula ou senha incorreta!')</script>";
-            echo "<script>window.location.href = '../index.php';</script>';
+            echo "<script>window.location.href = '../index.php';</script>";
         }
     } 
 ?>
