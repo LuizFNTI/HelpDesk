@@ -8,13 +8,14 @@
         //Joga os dados num array
         $usuario = $query->fetch(PDO::FETCH_ASSOC);
         //Verifica a senha criptografada usando a função password_verify
-        if(password_verify($_POST['senha'], $usuario['senha'])) {
+        if(password_verify($_POST['senha'], $usuario['senha']) && $usuario) {
             //Inicia seção e recebe os valores num array
             session_start();
             $_SESSION['usuario'] = array($usuario['matricula'], $usuario['nivel'], $usuario['nome']);
             header("location: acesso.php");
         } else {
-            header("location: ../index.php");
+            echo "<script>window.alert('Numero de matricula ou senha incorreta!')</script>";
+            echo "<script>window.location.href = '../index.php';</script>';
         }
     } 
 ?>
