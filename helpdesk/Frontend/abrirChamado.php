@@ -149,6 +149,9 @@ if(isset($_POST['descricao'])) {
     <script src="js/ajaxCategoria.js"></script>
     <script src="js/ajaxSubCat.js"></script>
     <script src="js/ajaxItem.js"></script>
+
+    <!--active navbar-->
+    <script>$("#abrirChamado").addClass("active")</script>
 </body>
 
 </html>

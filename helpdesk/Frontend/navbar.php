@@ -2,12 +2,12 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesUser"
         aria-expanded="true" aria-controls="collapsePages">
         <img class="img-profile rounded-circle" src="img/do-utilizador.png">
         <span class="mr-2 d-none d-lg-inline text-light-600 small"><?php echo $nome_usuario; ?></span>
     </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+    <div id="collapsePagesUser" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">PERFIL</h6>
             <a class="collapse-item" href="editarPerfil.php">Editar Perfil</a>
@@ -29,20 +29,20 @@
 <!-- Nav Item - Pages Collapse Menu -->
 
 <!-- Nav Item - Charts -->
-<li class="nav-item" id="abrirchamado">
+<li class="nav-item" id="abrirChamado">
     <a class="nav-link" href="abrirChamado.php">
         <i class="fas fa-fw fa-plus"></i>
         <span>Abrir Chamado</span></a>
 </li>
 
 <!-- Nav Item - Tables -->
-<li class="nav-item">
+<li class="nav-item" id="meusChamado">
     <a class="nav-link" href="listaChamadoUsuario.php">
         <i class="fas fa-fw fa-table"></i>
         <span>Meus Chamados</span></a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item" id="pesquisarChamado">
     <a class="nav-link collapsed" href="pesquisarChamado.php">
         <i class="fas fa-fw fa-search"></i>
         <span>Pesquisar Chamado</span>
@@ -51,14 +51,14 @@
 <?php if($nivel == 1 || $nivel == 2) { ?>
 <div class="sidebar-heading">ANALISTA</div>
 
-<li class="nav-item">
+<li class="nav-item" id="atenderChamado">
     <a class="nav-link collapsed" href="listaChamadoAnalista.php">
         <i class="fas fa-fw fa-list"></i>
         <span>Atendimento Chamados</span>
     </a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item" id="estatistica">
     <a class="nav-link collapsed" href="estatisticaRelatorios.php">
         <i class="fas fa-fw fa-list"></i>
         <span>Estatistica/Relatórios</span>
@@ -71,14 +71,14 @@
     ADMINISTRADOR
 </div>
 
-<li class="nav-item">
+<li class="nav-item" id="gerenciarUsuarios">
     <a class="nav-link collapsed" href="gerenciarUsuarios.php">
         <i class="fas fa-fw fa-user"></i>
         <span>Gerenciar Usuários</span>
     </a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item" id="adicionarOpcoes">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
         aria-expanded="true" aria-controls="collapsePages">
         <i class="fas fa-fw fa-plus"></i>
@@ -103,14 +103,14 @@
     </div>
 </li>
 
-<li class="nav-item">
+<li class="nav-item" id="gerenciarAbertura">
     <a class="nav-link collapsed" href="gerenciarAberturaChamados.php">
         <i class="fas fa-fw fa-list"></i>
         <span>Gerenciar Abertura</span>
     </a>
 </li>
 
-<li class="nav-item">
+<li class="nav-item" id="sistemaChamados">
     <a class="nav-link collapsed" href="gerenciarSistemaChamados.php">
         <i class="fas fa-fw fa-list"></i>
         <span>Sistema de Chamados</span>

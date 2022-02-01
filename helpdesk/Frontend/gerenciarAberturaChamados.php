@@ -338,6 +338,8 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    <!--active navbar-->
+    <script>$("#gerenciarAbertura").addClass("active")</script>
 </body>
 
 </html>

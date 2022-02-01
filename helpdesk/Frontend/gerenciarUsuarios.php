@@ -186,6 +186,8 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
 
+    <!--active navbar-->
+    <script>$("#gerenciarUsuarios").addClass("active")</script>
 </body>
 
 </html>
