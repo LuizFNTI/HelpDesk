@@ -30,20 +30,32 @@
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
         $departamento = $_POST['departamento'];
+        $novasenha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
         
         //Faz o update no banco de acordo com o codigo passado via URL
-        $query = $conn->prepare("UPDATE usuarios SET telefone = :t, email = :e, departamento = :d WHERE matricula = :m");
+        $query = $conn->prepare("UPDATE usuarios SET telefone = :t, email = :e, departamento = :d, senha = :ns WHERE matricula = :m");
         $query->bindValue(":t",$telefone);
         $query->bindValue(":e",$email);
         $query->bindValue(":d",$departamento);
         $query->bindValue(":m",$matricula);
         $query->execute();
-    } else {
-        
+    }
+    if(isset($_POST['senhaatual'])) {
+        if(password_verify($_POST['senhaatual'], $resultado['senha'])) {
+            $query = $conn->prepare("UPDATE usuarios SET senha = :ns WHERE matricula = :m");
+            $query->bindValue(":ns",$novasenha);
+            $query->bindValue(":m",$matricula);
+            $query->execute();
+        } else {
+            echo "<script>window.alert('Senha incorreta!')</script>";
+        }
+        if($matricula == null) {
+            header("location: listaChamadoUsuario.php");
+        }
     }
     //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($matricula_up == null) {
-        header("location: gerenciarUsuarios.php");
+        header("location: listaChamadoUsuario.php");
     }
 ?>
 <!DOCTYPE html>
@@ -135,7 +147,7 @@
                                 <div class="col-sm-4 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="senha">Senha Atual</label>
-                                        <input type="text" class="form-control" placeholder="Digite sua senha atual:" name="senha" id="pass">
+                                        <input type="text" class="form-control" placeholder="Digite sua senha atual:" name="senhaatual" id="pass">
                                     </div>
                                 </div>
                                 <div class="col-sm-4 mb-3 mb-sm-0">

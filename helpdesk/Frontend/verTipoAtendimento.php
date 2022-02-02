@@ -44,7 +44,7 @@
     }
     //caso a variavel seja nula, volta para a tela de gerenciamento
     if($cod_tipoa_up == null) {
-        header("location: gerenciarSistemaChamado.php");
+        header("location: gerenciarSistemaChamados.php");
     }
 ?>
 <!DOCTYPE html>

@@ -44,7 +44,7 @@
     }
     //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
     if($cod_departamento_up == null) {
-        header("location: gerenciarSistemaChamado.php");
+        header("location: gerenciarSistemaChamados.php");
     }
 ?>
 <!DOCTYPE html>

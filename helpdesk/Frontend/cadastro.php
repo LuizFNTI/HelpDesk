@@ -127,7 +127,7 @@ if(isset($_POST['nome'])) {
                                 <a class="small" href="recuperarSenha.php">Esqueceu a Senha?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="index.php">Já Tem Uma Conta? Login!</a>
+                                <a class="small" href="../index.php">Já Tem Uma Conta? Login!</a>
                             </div>
                         </div>
                     </div>

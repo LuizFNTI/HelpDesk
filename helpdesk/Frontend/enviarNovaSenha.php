@@ -112,6 +112,8 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <!-- Validação de Confirmação de Senha -->
+    <script src="js/confirmarSenha.js"></script>
 </body>
 
 </html>

@@ -2,10 +2,6 @@
 
     include '../Backend/conexao.php';
 
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\SMTP;
-    use PHPMailer\PHPMailer\Exception;
-
     if(isset($_POST['email'])) {
 
         $query = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
@@ -22,87 +18,20 @@
             $query->bindValue(":m",$matricula);
             $query->execute();
 
-            $to = "fellippe.nascimento@gmail.com";
-            $subject = "HTML email";
-
-            $message = "
-            <html>
-            <head>
-            <title>HTML email</title>
-            </head>
-            <body>
-            <p>This email contains HTML Tags!</p>
-            <table>
-            <tr>
-            <th>Firstname</th>
-            <th>Lastname</th>
-            </tr>
-            <tr>
-            <td>John</td>
-            <td>Doe</td>
-            </tr>
-            </table>
-            </body>
-            </html>
-            ";
+            $para = "fellippe.nascimento@gmail.com";
+            $assunto = "Recuperação de senha";
 
             // Always set content-type when sending HTML email
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-
-            // More headers
             $headers .= 'From: <fellippe.nascimento@gmail.com>' . "\r\n";
-            $headers .= 'Cc: myboss@example.com' . "\r\n";
 
-            mail($to,$subject,$message,$headers);
+            include 'emailRecuperarSenha.php';
 
-            /*[mail function]
-            ; For Win32 only.
-            SMTP = smtp.gmail.com
-            smtp_port = 587
-
-            ; For Win32 only.
-            sendmail_from = phptestemail22@gmail.com
-            auth_username = phptestemail22@gmail.com
-            auth_password = teste2223 */
-
-            /*require('../Backend/PHPMailer/PHPMailer.php');
-            require('../Backend/PHPMailer/SMTP.php');
-            require('../Backend/PHPMailer/Exception.php');
-
-            $mail = new PHPMailer(true);
-
-            try {
-                $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
-                $mail->SMTPAuth = true;
-                $mail->Username = 'phptestemail22@gmail.com';
-                $mail->Password = 'teste2223';
-                $mail->Port = 587;
-
-                $mail->setFrom('php80helpdesk@gmail.com');
-                $mail->addAddress('fellippe.nascimento@gmail.com');
-                $mail->addAddress('luiz.nascimento@telemacoborba.pr.gov.br');
-
-                include 'emailRecuperarSenha.php';
-
-                $mail->isHTML(true);
-                $mail->Subject = 'Recuperação de senha Help Desk';
-                $mail->Body = $conteudo;
-                
-                $mail->AltBody = '<a href=http://localhost/HelpDesk/helpdesk/Frontend/enviarNovaSenha.php?key='.$key.'>Clique aqui para redefinir a senha</a>';
-
-                if($mail->send()) {
-                    echo 'Email enviado com sucesso';
-                } else {
-                    echo 'Email nao enviado';
-                }
-            } catch (Exception $e) {
-                echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
-            }*/
+            mail($para, $assunto, $mensagem, $headers);
         } else {
             echo "<script>window.alert('Endereço de e-mail não encontrado! Por favor realize o cadastro no sistema!')</script>";
+            echo '<script>window.location.href = "cadastro.php";</script>';
         }
     }
 ?>
