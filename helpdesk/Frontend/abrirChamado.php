@@ -91,35 +91,37 @@ if(isset($_POST['descricao'])) {
                     <p class="mb-4">Selecione as opções que melhor se encaixão a sua solicitação</p>
 
                     <form action="abrirChamado.php" method="POST" class="user">
-                    <div class="form-group row">
-                    <input type="hidden" name="status" value="1">
-                    <input type="hidden" name="prioridade" value="1">
-                    <input type="hidden" name="tipoa" value="1">
-                    <input type="hidden" name="fgeral" value="1">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                        <?php include 'carregarTipo.php'; ?>
+                        <div class="form-group row">
+                            <input type="hidden" name="status" value="1">
+                            <input type="hidden" name="prioridade" value="1">
+                            <input type="hidden" name="tipoa" value="1">
+                            <input type="hidden" name="fgeral" value="1">
+                            <div class="col">
+                                <div class="container-sm">
+                                    <?php 
+                                        include 'carregarTipo.php';
+                                        include 'carregarCategoria.php';
+                                        include 'carregarSubCat.php';
+                                        include 'carregarItem.php'; 
+                                    ?>
+                                </div>
+                            </div>
+                            <div style="height: 400px; border-left: 1px solid;"></div>
+                            <div class="col">
+                                <div class="container-sm">
+                                    <div class="form-group">
+                                        <label for="descricao">Localização:</label>
+                                        <input class="form-control" placeholder="Local do Equipamamento:" id="local" name="localizacao" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descricao">Faça uma breve descrição da sua solicitação:</label>
+                                        <textarea class="form-control" rows="8" placeholder="Descrição:" id="descr" name="descricao" required></textarea>
+                                    </div>
+                                    <input type="submit" value="Enviar" class="btn btn-primary btn-block"> 
+                                </div>   
+                            </div>
                         </div>
-                        <div class="col-sm-6">
-                        <?php include 'carregarCategoria.php'; ?>        
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6 mb-3 mb-sm-0">
-                        <?php include 'carregarSubCat.php'; ?>
-                        </div>
-                        <div class="col-sm-6">
-                        <?php include 'carregarItem.php'; ?>        
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="descricao">Localização:</label>
-                        <input class="form-control" placeholder="Local do Equipamamento:" id="local" name="localizacao">
-                    </div>
-                    <div class="form-group">
-                        <label for="descricao">Faça uma breve descrição da sua solicitação:</label>
-                        <textarea class="form-control" rows="8" placeholder="Descrição:" id="descr" name="descricao"></textarea>
-                    </div>
-                    <input type="submit" value="Enviar" class="btn btn-primary btn-block">
+                    </form>
                 </div>
                 <!-- /.container-fluid -->
             </div>

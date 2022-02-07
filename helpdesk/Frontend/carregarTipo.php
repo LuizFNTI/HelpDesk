@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
-    <select class="form-select form-control" id="cdt" name="ctipo" placeholder="Last Name">
-        <option selected>Selecione</option>
+    <select class="form-control" id="cdt" name="ctipo" required>
+        <option value="">Selecione</option>
     <?php
         include '../Backend/conexao.php';
 

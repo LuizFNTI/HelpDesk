@@ -1,7 +1,7 @@
 <div class="form-group">
     <label for="item">Selecione o Item:</label>
-    <select class="form-control" id="idtem" name="item">
-        <option>Selecione</option>
+    <select class="form-control" id="idtem" name="item" required>
+        <option value="">Selecione</option>
     <?php
     include '../Backend/conexao.php';
 
