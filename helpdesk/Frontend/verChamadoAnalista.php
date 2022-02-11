@@ -67,11 +67,12 @@
 
         include 'emailChamadoPegoAnalista.php';
 
+        
         mail($para, $assunto, $mensagem, $headers);
     }
     //caso a variavel seja nula, volta para a tela de gerenciamento
     if($numero_chamado_up == null) {
-        header("location: listaChamadoAnalista.php");
+        //header("location: listaChamadoAnalista.php");
     }
 ?>
 <!DOCTYPE html>
@@ -138,7 +139,7 @@
                         <div style="height: 500px; border-left: 1px solid;"></div>
                         <div class="col">
                             <div class="container-sm">
-                            <form action="verChamadoAnalista.php" method="POST">
+                            <form action="" method="POST">
                                 <p><strong style="font-weight: 900">Data e Hora abertura: </strong><?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                                 <input type="hidden" name="fgeral" value="0">
