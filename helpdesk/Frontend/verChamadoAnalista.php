@@ -56,6 +56,18 @@
         $query->bindValue(":fgeral",$fila_geral);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
+
+        $para = "fellippe.nascimento@gmail.com";
+        $assunto = "Atualização sobre sua solicitação";
+
+            // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: <fellippe.nascimento@gmail.com>' . "\r\n";
+
+        include 'emailChamadoPegoAnalista.php';
+
+        mail($para, $assunto, $mensagem, $headers);
     }
     //caso a variavel seja nula, volta para a tela de gerenciamento
     if($numero_chamado_up == null) {
