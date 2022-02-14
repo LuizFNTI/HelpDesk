@@ -18,14 +18,12 @@
             $query->bindValue(":s",$senha);
             $query->bindValue(":m",$matricula);
             $query->execute();
-        }
 
-        if($_GET['key'] == null) {
             $query = $conn->prepare("UPDATE usuarios SET chave = :c WHERE matricula = :m");
             $query->bindValue(":c",$chave_vazia);
             $query->bindValue(":m",$matricula);
             $query->execute();
-            echo '<script>window.location.href = "../index.php";</script>';
+            header("location: ../index.php");
         }
     } else {
         header("location: ../index.php");
@@ -75,7 +73,7 @@
                                         <h1 class="h4 text-gray-900 mb-2">Redifina Sua Senha</h1>
                                         <p class="mb-4"></p>
                                     </div>
-                                    <form action="enviarNovaSenha.php" method="POST" class="user">
+                                    <form action="" method="POST" class="user">
                                         <input type="hidden" name="matricula" value="<?php echo $resultado['matricula'] ?>">
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user" id="password" name="senha" placeholder="Digite Sua Nova Senha">

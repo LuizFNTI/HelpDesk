@@ -1,6 +1,8 @@
 <?php
 
 $status_email = $resultado['nome_status'];
+$data_prazo_email = date('d/m/Y', strtotime($resultado['data_prazo']));
+$prioridade_email = $resultado['nome_prioridade'];
 
 $mensagem = <<<EOD
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -162,7 +164,7 @@ a[x-apple-data-detectors] {
                   <td align="center" valign="top" style="padding:0;Margin:0;width:540px"> 
                    <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px"> 
                      <tr style="border-collapse:collapse"> 
-                      <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;color:#666666;font-size:18px">Status: $status_email <div class=""></div>  &nbsp;<br>Data Prazo:<br>Prioridade:<br>Tipo do Atendimento:</p></td> 
+                      <td align="left" style="padding:0;Margin:0"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:lato, 'helvetica neue', helvetica, arial, sans-serif;line-height:27px;color:#666666;font-size:18px">Status: $status_email <br>Data Prazo: $data_prazo_email <br>Prioridade: $prioridade_email </p></td> 
                      </tr> 
                    </table></td> 
                  </tr> 

@@ -38,7 +38,6 @@
 
         //Pega os POSTs do formularios e atribue a variaveis
         $numero_chamado = $_POST["vnc"];
-        $descricao_analista = $_POST['descanalista'];
         $data_prazo = $_POST['dprazo'];
         $status = $_POST['status'];
         $prioridade = $_POST['prioridade'];
@@ -46,8 +45,7 @@
         $fila_geral = $_POST['fgeral'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
-        $query->bindValue(":dn",$descricao_analista);
+        $query = $conn->prepare("UPDATE chamados SET data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
         $query->bindValue(":dp",$data_prazo);
         $query->bindValue(":analista",$nome_analista);
         $query->bindValue(":cs",$status);
@@ -60,19 +58,16 @@
         $para = "fellippe.nascimento@gmail.com";
         $assunto = "Atualização sobre sua solicitação";
 
-            // Always set content-type when sending HTML email
+        // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= 'From: <fellippe.nascimento@gmail.com>' . "\r\n";
 
         include 'emailChamadoPegoAnalista.php';
 
-        
         mail($para, $assunto, $mensagem, $headers);
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        //header("location: listaChamadoAnalista.php");
+
+        header("location: listaChamadoAnalista.php");
     }
 ?>
 <!DOCTYPE html>
