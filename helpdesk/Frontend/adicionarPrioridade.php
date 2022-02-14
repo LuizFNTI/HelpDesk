@@ -71,16 +71,12 @@ if(isset($_POST['novop'])) {
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
-                <?php include 'topbar.php'; ?>
-                <!-- End of Topbar -->
-
                 <!-- Begin Page Content -->
                 <div class="container-fluid" style="margin-top: 2%;">
 
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
-                        <form action="adicionarPrioridade.php" method="POST">
+                        <form action="" method="POST">
                         <h2>Adicionar Prioridade</h2>
                         <div class="form-group">
                             <label for="nprioridade">Nova Prioridade</label>

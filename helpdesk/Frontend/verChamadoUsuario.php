@@ -46,10 +46,9 @@
         $query->bindValue(":du",$descricao);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        header("location: listaChamadoUsuario.php");
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'listaChamadoUsuario.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -108,7 +107,7 @@
                         <div style="height: 400px; border-left: 1px solid;"></div>
                         <div class="col">
                             <div class="container-sm">
-                            <form action="verChamadoUsuario.php" method="POST">
+                            <form action="" method="POST">
                             <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                                 <div class="form-group">
                                     <label for="descricao">Localização:</label>

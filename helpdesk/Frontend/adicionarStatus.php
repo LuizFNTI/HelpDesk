@@ -75,7 +75,7 @@ if(isset($_POST['novost'])) {
 
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
-                        <form action="adicionarStatus.php" method="POST">
+                        <form action="" method="POST">
                         <h2>Adicionar Novo Status</h2>
                         <div class="form-group">
                             <label for="nstatus">Digite o Novo Status</label>

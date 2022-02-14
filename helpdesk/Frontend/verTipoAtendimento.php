@@ -41,10 +41,9 @@
         $query->bindValue(":a",$ativo);
         $query->bindValue(":cta",$cod_tipo_atendimento);
         $query->execute();
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($cod_tipoa_up == null) {
-        header("location: gerenciarSistemaChamados.php");
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'gerenciarSistemaChamados.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -92,7 +91,7 @@
 
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
-                            <form action="verTipoAtendimento.php" method="POST">
+                            <form action="" method="POST">
                             <h2>Editar Tipo Atendimento</h2>
                                 <div class="form-group">
                                 <!--form para passar o cod-tipo via POST para fazer o updadate-->

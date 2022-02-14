@@ -73,16 +73,12 @@ if(isset($_POST['novacat'])) {
         <!-- Main Content -->
         <div id="content">
 
-            <!-- Topbar -->
-            <?php include 'topbar.php'; ?>
-            <!-- End of Topbar -->
-
             <!-- Begin Page Content -->
             <div class="container-fluid" style="margin-top: 2%;">
 
                 <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                     <div id="form1">
-                    <form action="adicionarCategoria.php" method="POST">
+                    <form action="" method="POST">
                     <h2>Cadastrar Nova Categoria</h2>
                     <div class="form-group">
                         <label for="tipodemanda">Selrcione o Tipo de Demanda que Deseja Vincular a Esta Categoria</label>

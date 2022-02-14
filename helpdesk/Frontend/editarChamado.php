@@ -52,10 +52,9 @@
         $query->bindValue(":cta",$tipo_atendimento);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        header("location: listaChamadoAnalista.php");
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'listaChamadoUsuario.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -122,7 +121,7 @@
                         <div style="height: 500px; border-left: 1px solid;"></div>
                         <div class="col">
                             <div class="container-sm">
-                            <form action="editarChamado.php" method="POST">
+                            <form action="" method="POST">
                                 <p><strong style="font-weight: 900;">Data e Hora abertura: </strong> <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">

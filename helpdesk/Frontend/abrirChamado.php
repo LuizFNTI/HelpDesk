@@ -90,7 +90,7 @@ if(isset($_POST['descricao'])) {
                     <h1 class="h3 mb-2 text-gray-800">Abrir Novo Chamado</h1>
                     <p class="mb-4">Selecione as opções que melhor se encaixão a sua solicitação</p>
 
-                    <form action="abrirChamado.php" method="POST" class="user">
+                    <form action="" method="POST" class="user">
                         <div class="form-group row">
                             <input type="hidden" name="status" value="1">
                             <input type="hidden" name="prioridade" value="1">

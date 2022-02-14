@@ -37,10 +37,9 @@
         $query->bindValue(":stfinalizado",$aberto);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        header("location: listaChamadoAnalista.php");
+
+        echo "<script>window.alert('O chamado foi encerrado com sucesso')</script>";
+        echo "<script>window.location.href = 'listaChamadoAnalista.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -85,7 +84,7 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid" style="margin-top: 2%;">
-                    <form action="fecharChamado.php" method="POST">
+                    <form action="" method="POST">
                         <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
                         <input type="hidden" name="aberto" value="3">
                         <div class="form-group">

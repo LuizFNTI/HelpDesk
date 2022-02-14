@@ -77,7 +77,7 @@ if(isset($_POST['novoi'])) {
 
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
-                        <form action="adicionarItem.php" method="POST">
+                        <form action="" method="POST">
                         <h2>Cadastrar Novo Item</h2>
                         <div class="form-group">
                         <label for="tipodemanda">Selecione o Tipo de Demanda</label>
