@@ -8,7 +8,7 @@
         $dados = array();        
                     
         //Faz a consulta no banco
-        $query = $conn->query("SELECT cod_tipo, nome_tipo FROM tipo ORDER BY nome_tipo");
+        $query = $conn->query("SELECT cod_tipo, nome_tipo FROM tipo WHERE ativo = 1 ORDER BY nome_tipo");
                     
         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {

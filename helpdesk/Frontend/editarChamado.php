@@ -153,7 +153,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco onde o status seja diferente de finalizado
-                                    $query = $conn->query("SELECT * FROM status_chamado WHERE cod_status != 3");
+                                    $query = $conn->query("SELECT * FROM status_chamado WHERE cod_status != 3 AND ativo = 1");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -175,7 +175,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco
-                                    $query = $conn->query("SELECT * FROM prioridade_chamado");
+                                    $query = $conn->query("SELECT * FROM prioridade_chamado WHERE ativo = 1");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -197,7 +197,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco
-                                    $query = $conn->query("SELECT * FROM tipo_atendimento");
+                                    $query = $conn->query("SELECT * FROM tipo_atendimento WHERE ativo = 1");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {

@@ -5,13 +5,13 @@
     <?php
         include '../Backend/conexao.php';
 
-        //Usa o POST para atribuir o valor a condição WHERE
+        //Usa o POST eviado por Ajax para atribuir o valor a condição WHERE
         $cd_tipo = $_POST['tipo'];
                     
         $dados = array(); 
                     
         //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
-        $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ?");
+        $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ? AND ativo = 1");
         $query->execute(array($cd_tipo));
 
         //Carrega os dados do array no option

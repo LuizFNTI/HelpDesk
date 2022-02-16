@@ -18,7 +18,16 @@
     $numero_chamado_up = $_GET['nc_up'];
 
     //Faz o select para passar os valores para o form
-    $query = $conn->prepare("SELECT * FROM chamados INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula WHERE numero_chamado = :nc");
+    $query = $conn->prepare("SELECT * FROM chamados
+    INNER JOIN item ON item.cod_item = chamados.item_cod_item
+    INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
+    INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
+    INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
+    INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+    INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status 
+    INNER JOIN departamento ON departamento.cod_departamento = usuarios.departamento
+    WHERE numero_chamado = :nc");
     $query->bindValue(":nc",$numero_chamado_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
