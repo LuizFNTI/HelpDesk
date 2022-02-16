@@ -53,8 +53,20 @@
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
 
+        $para = $resultado['email'];
+        $assunto = "Atualização sobre sua solicitação";
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: <fellippe.nascimento@gmail.com>' . "\r\n";
+
+        include 'emailRespostaAnalista.php';
+
+        mail($para, $assunto, $mensagem, $headers);
+
         echo "<script>window.alert('Atualização realizada com sucesso')</script>";
-        echo "<script>window.location.href = 'listaChamadoUsuario.php'</script>";
+        echo "<script>window.location.href = 'listaChamadoAnalista.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -212,8 +224,8 @@
                     <div class="row">
                         <div class="container-sm">
                             <div class="form-group">
-                                <label for="descricao">Faça uma breve descrição da sua resposta:</label>
-                                <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
+                                <label for="descricao">Descrição Analista</label>
+                                <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"><?php echo $resultado['descricao_analista'] ?></textarea>
                             </div>
                             <input type="submit" value="Guardar" class="btn btn-primary btn-block"></form>
                         </div>

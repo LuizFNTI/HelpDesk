@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 11/02/2022 às 18:26
+-- Tempo de geração: 16/02/2022 às 14:08
 -- Versão do servidor: 8.0.21
 -- Versão do PHP: 8.1.2
 
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `chamados` (
   KEY `fk_chamados_tipo1_idx` (`tipo_cod_tipo`),
   KEY `fk_chamados_categoria1_idx` (`categoria_cod_categoria`),
   KEY `fk_chamados_subcategoria1_idx` (`subcategoria_cod_subcategoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 --
 -- Despejando dados para a tabela `chamados`
@@ -100,16 +100,16 @@ CREATE TABLE IF NOT EXISTS `chamados` (
 INSERT INTO `chamados` (`numero_chamado`, `localizacao`, `descricao`, `descricao_analista`, `data_hora_abertura`, `data_prazo`, `data_hora_fechamento`, `usuarios_matricula`, `analista`, `status_chamado_cod_status`, `prioridade_chamado_cod_prioridade`, `tipo_atendimento_cod_tipo_atendimento`, `tipo_cod_tipo`, `categoria_cod_categoria`, `subcategoria_cod_subcategoria`, `item_cod_item`, `fila_geral`) VALUES
 (8, '', 'Desktop novo', 'dfg', '2021-11-29 09:43:06', '2021-12-08', '2021-12-02 03:10:19', 1010, 'Analista', 1, 2, 1, 2, 7, 7, 5, 0),
 (9, '', 'Não abre não', '', '2021-11-29 09:44:04', '0000-00-00', NULL, 1010, 'analista2', 2, 2, 1, 1, 2, 13, 19, 0),
-(10, '', 'Instalar novo aparelho', NULL, '2021-11-29 09:46:04', '2022-02-17', NULL, 1010, 'Administrador', 5, 4, 4, 2, 10, 35, 47, 0),
+(10, '', 'Instalar novo aparelho', '98776656554444', '2021-11-29 09:46:04', '2022-02-17', NULL, 1010, 'Administrador', 5, 4, 1, 2, 10, 35, 47, 0),
 (11, '', 'Cancela logo', '', '2021-11-29 09:46:59', '2021-11-10', NULL, 1010, 'analista2', 4, 2, 2, 1, 5, 39, 58, 0),
 (12, '', 'teste', '', '2021-11-30 10:45:45', '2022-01-26', NULL, 1111, 'Analista', 5, 1, 1, 2, 8, 22, 31, 0),
 (13, '', 'juhyhy', '', '2021-11-30 11:01:15', '2021-12-24', NULL, 1111, 'analista2', 6, 1, 1, 2, 12, 45, 63, 0),
 (14, '', 'kl.,.ç,p,,p0,p', '', '2021-12-15 15:29:34', '2021-12-26', NULL, 1010, 'Analista', 7, 1, 2, 2, 8, 22, 32, 0),
 (15, '', 'jjjjhjhjhjhhh', '', '2021-12-16 08:14:21', '2021-12-25', NULL, 1010, 'Analista', 8, 2, 1, 1, 2, 14, 23, 0),
 (16, '', 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum earum, delectus numquam eius debitis quas dolor. Vitae asperiores illo laborum earum aspernatur voluptate, dolorem explicabo quidem optio? Similique, esse! Accusamus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima dolorem similique deleniti ea autem qui nemo aspernatur sit labore neque. Autem, quidem nam. Ea laborum deserunt eligendi mollitia aliquam fugiat?locale_accept_from_http Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere reiciendis assumenda tenetur tempore, officiis facilis odit ullam quia voluptatum animi nisi id accusantium laboriosam eveniet doloremque non commodi optio est! Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, temporibus reiciendis quos deserunt fuga recusandae excepturi. Corrupti vitae repudiandae maiores aspernatur ullam, dolores inventore eaque, dignissimos at unde ducimus officiis!', '', '2022-01-04 14:08:45', '2022-01-26', NULL, 1010, 'Administrador', 9, 4, 2, 2, 11, 41, 57, 0),
-(17, 'parede2', ' rtyu222222222222222222222', '', '2022-01-06 13:18:35', '2022-01-27', NULL, 3030, 'Administrador', 10, 2, 2, 2, 8, 20, 25, 0),
+(17, 'parede2', 'teste', 'fechar', '2022-01-06 13:18:35', '2022-01-27', '2022-02-16 11:00:10', 3030, 'Administrador', 3, 2, 2, 2, 8, 20, 25, 0),
 (18, 'Algun lugar', 'Teste status', '', '2022-01-21 09:37:55', '2022-01-22', NULL, 3030, 'Administrador', 11, 3, 4, 1, 2, 13, 19, 0),
-(19, 'Algun lugar', 'test', NULL, '2022-01-21 15:08:44', '0000-00-00', NULL, 3030, 'Administrador', 6, 2, 1, 1, 2, 14, 22, 0),
+(19, 'Algun lugar', 'test', '123445', '2022-01-21 15:08:44', '0000-00-00', NULL, 3030, 'Administrador', 6, 2, 1, 1, 2, 14, 22, 0),
 (20, 'sei la', 't', NULL, '2022-01-21 15:21:22', '0000-00-00', NULL, 3030, 'Administrador', 2, 2, 1, 2, 7, 8, 8, 0),
 (22, 'lll', 'kkkkkk', NULL, '2022-02-03 09:31:03', '0000-00-00', NULL, 3030, 'Administrador', 7, 3, 2, 2, 7, 8, 8, 0),
 (28, 'iukjjjj', 'hhhhhhhhhhhhhhhhhhhh', NULL, '2022-02-11 10:22:56', '2022-02-08', NULL, 3030, 'Administrador', 2, 2, 2, 1, 1, 2, 7, 0),
@@ -124,7 +124,16 @@ INSERT INTO `chamados` (`numero_chamado`, `localizacao`, `descricao`, `descricao
 (37, 'lll', '0PO0000', NULL, '2022-02-11 14:37:25', '2022-02-15', NULL, 3030, 'Administrador', 2, 1, 2, 1, 1, 3, 9, 0),
 (38, 'bbgbbb', 'bbbbghggg', NULL, '2022-02-11 14:42:46', '2022-02-08', NULL, 3030, 'Administrador', 2, 2, 1, 1, 3, 25, 37, 0),
 (39, 'tttttt', 'ttttttt', NULL, '2022-02-11 14:47:15', '2022-02-08', NULL, 3030, 'Administrador', 2, 1, 1, 1, 2, 13, 19, 0),
-(40, '-´p', '´´p´-´-', NULL, '2022-02-11 15:07:33', NULL, NULL, 3030, NULL, 1, 1, 1, 1, 1, 1, 1, 1);
+(40, '-´p', '´´p´-´-', NULL, '2022-02-11 15:07:33', '2022-02-17', NULL, 3030, 'Administrador', 2, 1, 1, 1, 1, 1, 1, 0),
+(41, 'ppopo', 'oklikikikikii', NULL, '2022-02-14 08:29:24', '2022-02-11', NULL, 3030, 'Administrador', 5, 2, 2, 1, 1, 1, 1, 0),
+(42, '0p0o00', '09ooopo', NULL, '2022-02-14 08:40:21', '2022-02-18', NULL, 3030, 'Administrador', 2, 1, 1, 1, 1, 1, 2, 0),
+(43, 'lll', 'i8889i9i9ujnmjnm', NULL, '2022-02-14 09:06:40', '2022-02-10', NULL, 3030, 'Administrador', 2, 2, 3, 1, 2, 15, 27, 0),
+(44, 'ppopo', 'oiukuujjujjhhuyyuyyy', NULL, '2022-02-14 10:05:06', '2022-02-17', NULL, 3030, 'Administrador', 2, 1, 1, 1, 1, 2, 7, 0),
+(45, 'iukjjjj', 'jhhuhuhyy', NULL, '2022-02-14 13:33:10', '2022-02-09', NULL, 3030, 'Administrador', 2, 3, 2, 1, 2, 13, 19, 0),
+(46, 'nnjjjjj', 'uuujjjjjjjjj', NULL, '2022-02-14 13:44:13', '2022-02-15', NULL, 3030, 'Administrador', 1, 1, 2, 1, 1, 1, 1, 0),
+(47, 'klkllllo', 'ioikoikoiii', NULL, '2022-02-14 13:47:40', '2022-02-22', NULL, 3030, 'Administrador', 2, 2, 1, 1, 2, 14, 22, 0),
+(48, 'fff', 'frfffd', NULL, '2022-02-14 14:43:20', '2022-02-24', NULL, 3030, 'Administrador', 2, 1, 1, 1, 2, 13, 19, 0),
+(49, 'ppopo', 'hjhjhhhhh', NULL, '2022-02-14 14:53:18', '2022-02-21', NULL, 3030, 'Administrador', 2, 1, 2, 1, 1, 2, 7, 0);
 
 -- --------------------------------------------------------
 
@@ -435,7 +444,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 INSERT INTO `usuarios` (`matricula`, `nome`, `telefone`, `email`, `departamento`, `senha`, `chave`, `nivel`, `ativo`) VALUES
 (100, 'tdep', '100100100', 'dep@dep.com', '0', '$2y$10$G0.Kzzfkv3ap8LJajAHPWe85Y/JFEq/otS1PLMh4Drzvw9qvYhveS', '$2y$10$25Y/w/FBf5vlNLJjxb3sl.kGUhKZ7FMBzdJuhG5B3pIX2m8xiVMqS', 1, 0),
 (1010, 'Usuário', '11111111', 'usuario@user.com', '0', '$2y$10$jtIZQ/bKD/7Foi7gTwTkOeF8zGqAqMCQjmLbXY/qvQT7LjMKWfjHG', '$2y$10$v3y/N.akS2ibsRrkfUlgduu7t28f4TeaoGXIx0MMhpiNTbtR2lyZ2', 0, 1),
-(1111, 'usuário2', '45454545', 'usuario2@user.com', '1', '$2y$10$ehiuEP5zU0FLOooKZrjQi.tQNxivTblHuFcmQ5VerB3uuJo4ufEZm', '', 0, 0),
+(1111, 'usuário2', '45454545', 'usuario2@user.com', '1', '$2y$10$m9DR3mVh5TkiJckuyTYbDektTkqpMfnsyEkVRvSBK22ltgNw4ifjm', '', 0, 0),
 (2020, 'Analista', '22222222', 'analista@user.com', '1', '$2y$10$.8tIvNKSQZM6WpNRQgEy8uhKtRiQGxyF.heq9qPuKeLV2b9qMUQG.', '$2y$10$Mb/6u.DHsOgtCjLO4m2Pzu1KzuUEVckY4MOSxyN3K6QSJlChzpxbK', 1, 1),
 (2121, 'analista22', '21212121', 'analista2@user.com', '0', '$2y$10$FrciR/9tx8te10yd3s2I2O0/z6mhXwcSsBTWFND0Dho.Qgl8Qf4bO', '', 1, 1),
 (3030, 'Administrador', '33333333', 'adm@user.com', '1', '$2y$10$VUnJc/w3kMERv9nZtEucj.7J.WTC/jhc7Xpt4hg.RbGce1cQGPqMi', '', 2, 1);

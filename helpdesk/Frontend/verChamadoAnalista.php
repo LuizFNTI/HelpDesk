@@ -55,7 +55,7 @@
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
 
-        $para = "fellippe.nascimento@gmail.com";
+        $para = $resultado['email'];
         $assunto = "Atualização sobre sua solicitação";
 
         // Always set content-type when sending HTML email

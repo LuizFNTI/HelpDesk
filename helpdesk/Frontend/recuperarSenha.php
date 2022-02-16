@@ -18,7 +18,8 @@
             $query->bindValue(":m",$matricula);
             $query->execute();
 
-            $para = "fellippe.nascimento@gmail.com";
+            $para = $_POST['email']
+            ;
             $assunto = "Recuperação de senha";
 
             // Always set content-type when sending HTML email
