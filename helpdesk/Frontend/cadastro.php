@@ -117,12 +117,12 @@ if(isset($_POST['nome'])) {
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Digite su senha:" name="senha" id="password" required>
+                                            <input type="password" class="form-control form-control-user" placeholder="Digite su senha:" name="senha" id="password" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Confirme sua senha:" name="csenha" id="confirm_password" required>
+                                            <input type="password" class="form-control form-control-user" placeholder="Confirme sua senha:" name="csenha" id="confirm_password" required>
                                         </div>
                                     </div>
                                 </div>
