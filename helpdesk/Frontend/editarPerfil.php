@@ -49,13 +49,6 @@
         } else {
             echo "<script>window.alert('Senha incorreta!')</script>";
         }
-        if($matricula == null) {
-            header("location: listaChamadoUsuario.php");
-        }
-    }
-    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
-    if($matricula_up == null) {
-        header("location: listaChamadoUsuario.php");
     }
 ?>
 <!DOCTYPE html>
@@ -105,7 +98,8 @@
                     <h1 class="h3 mb-2 text-gray-800">Editar Perfil</h1>
 
                     <div class="row justify-content-center align-items-center" style="margin-top: 100px;">
-                        <form action="editarPerfil.php" method="POST" class="user">
+                        <form method="POST" action="" class="user">
+                        <input type="hidden" name="mat" value="<?php echo $resultado['matricula']; ?>">
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="form-group">
