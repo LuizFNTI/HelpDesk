@@ -80,7 +80,7 @@ if(isset($_POST['nome'])) {
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Seu E-mail:" name="email" id="e-mail" required>
+                                            <input type="email" class="form-control form-control-user" placeholder="Seu E-mail:" name="email" id="e-mail" required>
                                         </div>
                                     </div>
                                 </div>

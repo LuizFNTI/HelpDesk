@@ -84,7 +84,7 @@
                     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE analista = ? AND fila_geral = 0 AND status_chamado_cod_status != 3");
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE analista = ? AND status_chamado_cod_status != 3");
                     $query->execute(array($nome_usuario));
 
                     echo "<tbody>";
@@ -180,6 +180,7 @@
                                             <th>Tipo<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Categoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Subcategoria<i class='fas fa-chevron-right' style='font-size: 12px;'></i>Item</th>
                                             <th>Data Inicio</th>
                                             <th>Usuário</th>
+                                            <th>Analista</th>
                                             <th>Prioridade</th>
                                             <th>Status</th>
                                             <th>Ação</th>
@@ -199,7 +200,7 @@
                     INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
                     INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
                     INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
-                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE fila_geral = 1 AND status_chamado_cod_status != 3");
+                    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status WHERE status_chamado_cod_status != 3");
 
                     echo "<tbody>";
 
@@ -210,6 +211,7 @@
                                 echo "<th>".$dados['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 12px;'></i>".$dados['nome_item']."</th>";
                                 echo "<th>".date('d/m/Y - H:i:s', strtotime($dados['data_hora_abertura']))."</th>";
                                 echo "<th>".$dados['nome']."</th>";
+                                echo "<th>".$dados['analista']."</th>";
                                 switch ($dados['cod_prioridade']) {
                                     case 1:
                                         echo "<th>"."<i class='fas fa-fw fa-square' style='color: green;'></i>".$dados['nome_prioridade']."</th>";

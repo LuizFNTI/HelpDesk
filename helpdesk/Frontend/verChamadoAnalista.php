@@ -42,16 +42,14 @@
         $status = $_POST['status'];
         $prioridade = $_POST['prioridade'];
         $tipo_atendimento = $_POST['tipoa'];
-        $fila_geral = $_POST['fgeral'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
+        $query = $conn->prepare("UPDATE chamados SET data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta WHERE numero_chamado = :nc");
         $query->bindValue(":dp",$data_prazo);
         $query->bindValue(":analista",$nome_analista);
         $query->bindValue(":cs",$status);
         $query->bindValue(":cp",$prioridade);
         $query->bindValue(":cta",$tipo_atendimento);
-        $query->bindValue(":fgeral",$fila_geral);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
 
@@ -137,7 +135,6 @@
                             <form action="" method="POST">
                                 <p><strong style="font-weight: 900">Data e Hora abertura: </strong><?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                                <input type="hidden" name="fgeral" value="0">
                                 <div class="form-group">
                                     <label for="dprazo">Informe a Data Prazo</label>
                                     <input type="date" name="dprazo" id="dp">
