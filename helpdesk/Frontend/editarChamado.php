@@ -130,7 +130,7 @@
                                 <p><strong style="font-weight: 900;">Localização: </strong> <?php echo $resultado['localizacao']; ?></p>
                             </div>
                         </div> <!--col-->
-                        <div style="height: 500px; border-left: 1px solid;"></div>
+                        <div style="height: 400px; border-left: 1px solid;"></div>
                         <div class="col">
                             <div class="container-sm">
                             <form action="" method="POST">
@@ -153,7 +153,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco onde o status seja diferente de finalizado
-                                    $query = $conn->query("SELECT * FROM status_chamado WHERE cod_status != 3 AND ativo = 1");
+                                    $query = $conn->query("SELECT * FROM status_chamado WHERE ativo = 1 ORDER BY nome_status");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -175,7 +175,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco
-                                    $query = $conn->query("SELECT * FROM prioridade_chamado WHERE ativo = 1");
+                                    $query = $conn->query("SELECT * FROM prioridade_chamado WHERE ativo = 1 ORDER BY nome_prioridade");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -197,7 +197,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco
-                                    $query = $conn->query("SELECT * FROM tipo_atendimento WHERE ativo = 1");
+                                    $query = $conn->query("SELECT * FROM tipo_atendimento WHERE ativo = 1 ORDER BY nome_tipo_atendimento");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -215,20 +215,25 @@
                     </div> <!--row-->
                     <hr>
                     <div class="row">
-                        <div class="container-lg">
-                            <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
-                            <p><?php echo $resultado['descricao']; ?></p>
+                        <div class="col">
+                            <div class="container-lg">
+                                <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
+                                <p><?php echo $resultado['descricao']; ?></p>
+                            </div>
+                        </div>
+                        <div style="height: 250px; border-left: 1px solid;"></div>
+                        <div div class="col">
+                            <div class="container-sm">
+                                <div class="form-group">
+                                    <label for="descricao">Descrição Analista</label>
+                                    <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"><?php echo $resultado['descricao_analista'] ?></textarea>
+                                </div>
+                                <input type="submit" value="Guardar" class="btn btn-primary btn-block"></form>
+                            </div>
                         </div>
                     </div>
-                    <hr>
                     <div class="row">
-                        <div class="container-sm">
-                            <div class="form-group">
-                                <label for="descricao">Descrição Analista</label>
-                                <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"><?php echo $resultado['descricao_analista'] ?></textarea>
-                            </div>
-                            <input type="submit" value="Guardar" class="btn btn-primary btn-block"></form>
-                        </div>
+                        
                     </div>
 
                 </div>

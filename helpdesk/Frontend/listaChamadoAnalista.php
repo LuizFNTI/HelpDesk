@@ -150,8 +150,8 @@
                                     default:
                                         echo "<th>"."<i class='fas fa-fw fa-circle' style='color: white;'></i>".$dados['nome_status']."</th>";
                                 }
-                                echo "<th><a href=editarChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
-                                echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-times' style='color: red; font-size: 20px;' title='Encerrar'></i></a>";
+                                echo "<th style='text-align: center'><a href=editarChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
+                                //echo "<a href=fecharChamado.php?nc_up=".$dados['numero_chamado']."<i class='fas fa-fw fa-times' style='color: red; font-size: 20px;' title='Encerrar'></i></a>";
                             echo "</tr>";
                         }
                     ?>

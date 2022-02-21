@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
+    <label for="tipodemanda">Selecione o Tipo de Demanda</label>
     <select class="form-control" id="cdt" name="ctipo" required>
         <option value="">Selecione</option>
     <?php
