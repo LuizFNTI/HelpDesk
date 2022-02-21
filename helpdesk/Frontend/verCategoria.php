@@ -43,7 +43,7 @@
         $query->execute();
 
         echo "<script>window.alert('Atualização realizada com sucesso')</script>";
-        echo "<script>window.location.href = 'gerenciarAberturaChamados.php'</script>";
+        echo "<script>window.location.href = 'gerenciarCategoria.php'</script>";
     }
 ?>
 <!DOCTYPE html>

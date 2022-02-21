@@ -43,7 +43,7 @@
         $query->execute();
 
         echo "<script>window.alert('Atualização realizada com sucesso')</script>";
-        echo "<script>window.location.href = 'gerenciarUsuarios.php'</script>";
+        echo "<script>window.location.href = 'gerenciarDepartamento.php'</script>";
     }
 ?>
 <!DOCTYPE html>
