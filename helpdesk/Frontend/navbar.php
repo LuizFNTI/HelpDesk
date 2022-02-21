@@ -38,7 +38,7 @@
 <!-- Nav Item - Tables -->
 <li class="nav-item" id="meusChamado">
     <a class="nav-link" href="listaChamadoUsuario.php">
-        <i class="fas fa-fw fa-table"></i>
+        <i class="fas fa-fw fa-list"></i>
         <span>Meus Chamados</span></a>
 </li>
 
@@ -60,7 +60,7 @@
 
 <li class="nav-item" id="estatistica">
     <a class="nav-link collapsed" href="estatisticaRelatorios.php">
-        <i class="fas fa-fw fa-list"></i>
+        <i class="fas fa-fw fa-chart-area"></i>
         <span>Estatistica/Relatórios</span>
     </a>
 </li>
@@ -103,18 +103,29 @@
     </div>
 </li>
 
-<li class="nav-item" id="gerenciarAbertura">
-    <a class="nav-link collapsed" href="gerenciarAberturaChamados.php">
-        <i class="fas fa-fw fa-list"></i>
-        <span>Gerenciar Abertura</span>
+<li class="nav-item" id="adicionarOpcoes">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePagesOpc1"
+        aria-expanded="true" aria-controls="collapsePages">
+        <i class="fas fa-fw fa-wrench"></i>
+        <span>Gerenciar Opções</span>
     </a>
-</li>
-
-<li class="nav-item" id="sistemaChamados">
-    <a class="nav-link collapsed" href="gerenciarSistemaChamados.php">
-        <i class="fas fa-fw fa-list"></i>
-        <span>Sistema de Chamados</span>
-    </a>
+    <div id="collapsePagesOpc1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">ABERTURA DE CHAMADOS</h6>
+            <a class="collapse-item" href="gerenciarTipo.php">Gerenciar Tipo</a>
+            <a class="collapse-item" href="gerenciarCategoria.php">Gerenciar Categoria</a>
+            <a class="collapse-item" href="gerenciarSubcategoria.php">Gerenciar Subcategoria</a>
+            <a class="collapse-item" href="gerenciarItem.php">Gerenciar Item</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">ATENDIMENTO</h6>
+            <a class="collapse-item" href="gerenciarStatus.php">Gerenciar Status</a>
+            <a class="collapse-item" href="gerenciarPrioridade.php">Gerenciar Prioridade</a>
+            <a class="collapse-item" href="gerenciarTipoAtendimento.php">Gerenciar Tipo Atendimento</a>
+            <div class="collapse-divider"></div>
+            <h6 class="collapse-header">DEPARTAMENTO</h6>
+            <a class="collapse-item" href="gerenciarDepartamento.php">Gerenciar Departamento</a>
+        </div>
+    </div>
 </li>
 <?php } ?>
 

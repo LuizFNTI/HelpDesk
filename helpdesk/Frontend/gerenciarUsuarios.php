@@ -106,54 +106,6 @@
                 </div>
                 <!-- /.container-fluid -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Departamento</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableDepartamento" width="100%" cellspacing="0" style='font-size: 14px;'>
-                                    <thead>
-                                        <tr>
-                                            <th>Código</th>
-                                            <th>Departamento</th>
-                                            <th>Ativo/Inativo</th>
-                                            <th>Ação</th>
-                                        </tr>
-                                    </thead>
-                    <?php
-                        
-                        include '../Backend/conexao.php';
-
-                        $dados = array();        
-
-                        //Faz a consulta no banco
-                        $query = $conn->query("SELECT * FROM departamento");
-
-                    echo "<tbody>";
-
-                        //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
-                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                            echo "<tr>";
-                                echo "<th>".$dados['cod_departamento']."</th>";//Busca os dados na posiçãom do vetor
-                                echo "<th>".$dados['nome_departamento']."</th>";
-                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                                echo "<th style='text-align: center'><a href=verDepartamento.php?departamento_up=".$dados['cod_departamento']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
-                        }
-                    ?>
-                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
