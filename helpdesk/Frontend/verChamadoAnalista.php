@@ -34,22 +34,14 @@
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
     //Verifica se existe POST
-    if(isset($_POST['status'])) {
+    if(isset($_POST['vnc'])) {
 
         //Pega os POSTs do formularios e atribue a variaveis
         $numero_chamado = $_POST["vnc"];
-        $data_prazo = $_POST['dprazo'];
-        $status = $_POST['status'];
-        $prioridade = $_POST['prioridade'];
-        $tipo_atendimento = $_POST['tipoa'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta WHERE numero_chamado = :nc");
-        $query->bindValue(":dp",$data_prazo);
+        $query = $conn->prepare("UPDATE chamados SET analista = :analista WHERE numero_chamado = :nc");
         $query->bindValue(":analista",$nome_analista);
-        $query->bindValue(":cs",$status);
-        $query->bindValue(":cp",$prioridade);
-        $query->bindValue(":cta",$tipo_atendimento);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
 

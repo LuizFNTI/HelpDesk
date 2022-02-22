@@ -190,6 +190,8 @@
     <!-- Validação de Confirmação de Senha -->
     <script src="js/confirmarSenha.js"></script>
     
+    <!-- Mascara Telefone -->
+    <script src="js/mascTelefone.js"></script>
 </body>
 
 </html>
