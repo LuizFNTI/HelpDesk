@@ -128,7 +128,7 @@
                                 <div class="container-lg">
                                     <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
                                     <p><?php echo $resultado['descricao']; ?></p>
-                                    <input type="submit" value="Mover Param Sua Fila" class="btn btn-primary btn-block">
+                                    <input type="submit" value="Mover para sua fila" class="btn btn-primary btn-block">
                                 </div>
                             </form>
                         </div> <!--col-->
