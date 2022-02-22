@@ -11,7 +11,7 @@
         $dados = array();        
                     
         //Faz a consulta e verifica qual categoria as subcategorias pertence atraves do cod_categoria passado pelo POST
-        $query = $conn->prepare("SELECT * FROM subcategoria WHERE categoria_cod_categoria = ? AND ativo = 1");
+        $query = $conn->prepare("SELECT * FROM subcategoria WHERE categoria_cod_categoria = ? AND ativo = 1 ORDER BY nome_subcategoria");
         $query->execute(array($cod_categoria));
                     
         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition

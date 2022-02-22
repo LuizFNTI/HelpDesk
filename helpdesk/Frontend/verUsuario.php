@@ -102,7 +102,7 @@
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <div class="form-group">
                                 <label for="mat">Número Matricula:</label>
-                                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required value="<?php if(isset($resultado)) {echo $resultado['matricula'];}//passa o valor para o formulario ?>">
+                                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" readonly value="<?php if(isset($resultado)) {echo $resultado['matricula'];}//passa o valor para o formulario ?>">
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">

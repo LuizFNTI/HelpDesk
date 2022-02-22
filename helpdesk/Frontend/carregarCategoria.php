@@ -11,7 +11,7 @@
         $dados = array(); 
                     
         //Faz a consulta e verifica qual tipo as categorias pertence atraves do cod_tipo passado pelo POST
-        $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ? AND ativo = 1");
+        $query = $conn->prepare("SELECT * FROM categoria WHERE tipo_cod_tipo = ? AND ativo = 1 ORDER BY nome_categoria");
         $query->execute(array($cd_tipo));
 
         //Carrega os dados do array no option

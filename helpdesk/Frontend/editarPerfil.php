@@ -104,7 +104,7 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <div class="form-group">
                                         <label for="email">E-mail</label>
-                                        <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="ema" value="<?php echo $resultado['email']; ?>">
+                                        <input type="text" class="form-control" placeholder="Seu E-mail:" name="email" id="ema" readonly value="<?php echo $resultado['email']; ?>">
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
