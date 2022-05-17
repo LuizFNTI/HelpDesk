@@ -49,10 +49,9 @@
         $query->bindValue(":nv",$nivel);
         $query->bindValue(":a",$ativo);
         $query->execute();
-    }
-    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
-    if($matricula_up == null) {
-        header("location: gerenciarUsuarios.php");
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'gerenciarUsuarios.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -97,13 +96,13 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid" style="margin-top: 2%;">
-                    <form method="POST" action="verUsuario.php" class="user">
+                    <form method="POST" action="" class="user">
                     <h2>Editar Usuário</h2>
                     <div class="form-group row">
                         <div class="col-sm-6 mb-3 mb-sm-0">
                             <div class="form-group">
                                 <label for="mat">Número Matricula:</label>
-                                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" required value="<?php if(isset($resultado)) {echo $resultado['matricula'];}//passa o valor para o formulario ?>">
+                                <input type="text" class="form-control" placeholder="Matricula" name="mat" id="matr" readonly value="<?php if(isset($resultado)) {echo $resultado['matricula'];}//passa o valor para o formulario ?>">
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3 mb-sm-0">
@@ -198,6 +197,8 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
 
+    <!-- Mascara Telefone -->
+    <script src="js/mascTelefone.js"></script>
 </body>
 
 </html>

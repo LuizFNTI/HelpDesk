@@ -37,10 +37,9 @@
         $query->bindValue(":stcancelado",$aberto);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        header("location: listaChamadoAnalista.php");
+
+        echo "<script>window.alert('O chamado foi cancelado com sucesso!')</script>";
+        echo "<script>window.location.href = 'listaChamadoUsuario.php'</script>";
     }
 ?>
 <!DOCTYPE html>

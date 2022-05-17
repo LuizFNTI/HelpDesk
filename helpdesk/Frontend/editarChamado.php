@@ -52,10 +52,21 @@
         $query->bindValue(":cta",$tipo_atendimento);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        header("location: listaChamadoAnalista.php");
+
+        $para = $resultado['email'];
+        $assunto = "Atualização sobre sua solicitação";
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: <fellippe.nascimento@gmail.com>' . "\r\n";
+
+        include 'emailRespostaAnalista.php';
+
+        mail($para, $assunto, $mensagem, $headers);
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'listaChamadoAnalista.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -119,10 +130,10 @@
                                 <p><strong style="font-weight: 900;">Localização: </strong> <?php echo $resultado['localizacao']; ?></p>
                             </div>
                         </div> <!--col-->
-                        <div style="height: 500px; border-left: 1px solid;"></div>
+                        <div style="height: 400px; border-left: 1px solid;"></div>
                         <div class="col">
                             <div class="container-sm">
-                            <form action="editarChamado.php" method="POST">
+                            <form action="" method="POST">
                                 <p><strong style="font-weight: 900;">Data e Hora abertura: </strong> <?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <!--Desliga a fila geral para aparecer somente na fila do analista e passa o numero do chamado via POST para o update-->
                                 <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
@@ -142,7 +153,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco onde o status seja diferente de finalizado
-                                    $query = $conn->query("SELECT * FROM status_chamado WHERE cod_status != 3");
+                                    $query = $conn->query("SELECT * FROM status_chamado WHERE ativo = 1 ORDER BY nome_status");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -164,7 +175,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco
-                                    $query = $conn->query("SELECT * FROM prioridade_chamado");
+                                    $query = $conn->query("SELECT * FROM prioridade_chamado WHERE ativo = 1 ORDER BY nome_prioridade");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -186,7 +197,7 @@
                                     $dados = array();        
                                 
                                     //Faz a consulta no banco
-                                    $query = $conn->query("SELECT * FROM tipo_atendimento");
+                                    $query = $conn->query("SELECT * FROM tipo_atendimento WHERE ativo = 1 ORDER BY nome_tipo_atendimento");
                                 
                                     //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                     foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -204,20 +215,25 @@
                     </div> <!--row-->
                     <hr>
                     <div class="row">
-                        <div class="container-lg">
-                            <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
-                            <p><?php echo $resultado['descricao']; ?></p>
+                        <div class="col">
+                            <div class="container-lg">
+                                <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
+                                <p><?php echo $resultado['descricao']; ?></p>
+                            </div>
+                        </div>
+                        <div style="height: 250px; border-left: 1px solid;"></div>
+                        <div div class="col">
+                            <div class="container-sm">
+                                <div class="form-group">
+                                    <label for="descricao">Descrição Analista</label>
+                                    <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"><?php echo $resultado['descricao_analista'] ?></textarea>
+                                </div>
+                                <input type="submit" value="Guardar" class="btn btn-primary btn-block"></form>
+                            </div>
                         </div>
                     </div>
-                    <hr>
                     <div class="row">
-                        <div class="container-sm">
-                            <div class="form-group">
-                                <label for="descricao">Faça uma breve descrição da sua resposta:</label>
-                                <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>
-                            </div>
-                            <input type="submit" value="Guardar" class="btn btn-primary btn-block"></form>
-                        </div>
+                        
                     </div>
 
                 </div>

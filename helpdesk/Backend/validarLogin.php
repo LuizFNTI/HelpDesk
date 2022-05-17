@@ -3,7 +3,7 @@
     //Verifica se existe POST
     if(isset($_POST['mat']) && isset($_POST['senha']) && $conn != null) {
         //Faz o select no banco para comparar a matricula
-        $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = ?");
+        $query = $conn->prepare("SELECT * FROM usuarios WHERE matricula = ? AND ativo = 1");
         $query->execute(array($_POST['mat']));
         //Joga os dados num array
         $usuario = $query->fetch(PDO::FETCH_ASSOC);

@@ -34,45 +34,30 @@
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
 
     //Verifica se existe POST
-    if(isset($_POST['status'])) {
+    if(isset($_POST['vnc'])) {
 
         //Pega os POSTs do formularios e atribue a variaveis
         $numero_chamado = $_POST["vnc"];
-        $descricao_analista = $_POST['descanalista'];
-        $data_prazo = $_POST['dprazo'];
-        $status = $_POST['status'];
-        $prioridade = $_POST['prioridade'];
-        $tipo_atendimento = $_POST['tipoa'];
-        $fila_geral = $_POST['fgeral'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_prazo = :dp, analista = :analista, status_chamado_cod_status = :cs, prioridade_chamado_cod_prioridade = :cp, tipo_atendimento_cod_tipo_atendimento = :cta, fila_geral = :fgeral WHERE numero_chamado = :nc");
-        $query->bindValue(":dn",$descricao_analista);
-        $query->bindValue(":dp",$data_prazo);
+        $query = $conn->prepare("UPDATE chamados SET analista = :analista WHERE numero_chamado = :nc");
         $query->bindValue(":analista",$nome_analista);
-        $query->bindValue(":cs",$status);
-        $query->bindValue(":cp",$prioridade);
-        $query->bindValue(":cta",$tipo_atendimento);
-        $query->bindValue(":fgeral",$fila_geral);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
 
-        $para = "fellippe.nascimento@gmail.com";
+        $para = $resultado['email'];
         $assunto = "Atualização sobre sua solicitação";
 
-            // Always set content-type when sending HTML email
+        // Always set content-type when sending HTML email
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
         $headers .= 'From: <fellippe.nascimento@gmail.com>' . "\r\n";
 
         include 'emailChamadoPegoAnalista.php';
 
-        
         mail($para, $assunto, $mensagem, $headers);
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        //header("location: listaChamadoAnalista.php");
+
+        header("location: listaChamadoAnalista.php");
     }
 ?>
 <!DOCTYPE html>
@@ -122,6 +107,8 @@
                             <div class="sidebar-heading"><strong style="font-weight: 900">Informações do Chamado</strong></div>
                             <div class="container-sm">
                                 <p style="margin-top: 3%;"><strong>Numero Chamado: </strong> <?php echo $resultado['numero_chamado']; ?></p>
+                                <p><strong style="font-weight: 900;">Analista: </strong><?php if($resultado['analista'] == null) {echo "Sem Analista...";} else{echo $resultado['analista'];}?></p>
+                                <p><strong style="font-weight: 900">Data e Hora abertura: </strong><?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
                                 <p><?php echo $resultado['nome_tipo']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_categoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_subcategoria']."<i class='fas fa-chevron-right' style='font-size: 13px;'></i>".$resultado['nome_item']; ?></p>
                             </div>
                             <hr>
@@ -135,90 +122,17 @@
                                 <p><strong style="font-weight: 900;">E-mail: </strong> <?php echo $resultado['email']; ?></p>
                                 <p><strong style="font-weight: 900;">Localização: </strong> <?php echo $resultado['localizacao']; ?></p>
                             </div>
-                        </div> <!--col-->
-                        <div style="height: 500px; border-left: 1px solid;"></div>
-                        <div class="col">
-                            <div class="container-sm">
-                            <form action="" method="POST">
-                                <p><strong style="font-weight: 900">Data e Hora abertura: </strong><?php echo date('d/m/Y - H:i:s', strtotime($resultado['data_hora_abertura'])); ?></p>
-                                <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                                <input type="hidden" name="fgeral" value="0">
-                                <div class="form-group">
-                                    <label for="dprazo">Informe a Data Prazo</label>
-                                    <input type="date" name="dprazo" id="dp">
-                                </div>
-                            </div> 
                             <hr>
-                            <div class="container-sm"> 
-                                <div class="form-group">
-                                    <label for="status">Selrcione o status</label>
-                                    <select class="form-control" id="cds" name="status" required>
-                                    <option value="">Selecione</option>
-                                    <?php
-                                        include '../Backend/conexao.php';
-
-                                        $dados = array();        
-                                        
-                                        //Faz a consulta no banco
-                                        $query = $conn->query("SELECT * FROM status_chamado");
-                                        
-                                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                            echo "<option value=".$dados['cod_status'].">".$dados['nome_status']."</option>";
-                                        }
-                                    ?>
-                                    </select>
+                            <form action="" method="POST">
+                            <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
+                                <div class="container-lg">
+                                    <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
+                                    <p><?php echo $resultado['descricao']; ?></p>
+                                    <input type="submit" value="Mover para sua fila" class="btn btn-primary btn-block">
                                 </div>
-                                <div class="form-group">
-                                    <label for="status">Selrcione a Prioridade</label>
-                                    <select class="form-control" id="cdp" name="prioridade" required>
-                                    <option value="">Selecione</option>
-                                    <?php
-                                        include '../Backend/conexao.php';
-
-                                        $dados = array();        
-                                        
-                                        //Faz a consulta no banco
-                                        $query = $conn->query("SELECT * FROM prioridade_chamado");
-                                        
-                                        //Joga os dados do banco num array e faz a leitura do arrayjogando as informações no opition
-                                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                            echo "<option value=".$dados['cod_prioridade'].">".$dados['nome_prioridade']."</option>";
-                                        }
-                                    ?>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="status">Selrcione o Tipo Atendimento</label>
-                                    <select class="form-control" id="cds" name="tipoa" required>
-                                    <option value="">Selecione</option>
-                                    <?php
-                                        include '../Backend/conexao.php';
-
-                                        $dados = array();        
-                                        
-                                        //Faz a consulta no banco
-                                        $query = $conn->query("SELECT * FROM tipo_atendimento");
-                                        
-                                        //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
-                                        foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
-                                            echo "<option value=".$dados['cod_tipo_atendimento'].">".$dados['nome_tipo_atendimento']."</option>";
-                                        }
-                                    ?>
-                                    </select>       
-                                </div>
-                                <input type="submit" value="Mover Param Sua Fila" class="btn btn-primary btn-block">
-                            </div>
                             </form>
-                        </div>
+                        </div> <!--col-->
                     </div> <!--row-->
-                    <hr>
-                    <div class="row">
-                        <div class="container-lg">
-                            <h4 class="h4 mb-2 text-gray-800">Descrição: </h4>
-                            <p><?php echo $resultado['descricao']; ?></p>
-                        </div>
-                    </div>
                 </div>
                 <!-- /.container-fluid -->
             </div>

@@ -18,7 +18,8 @@
             $query->bindValue(":m",$matricula);
             $query->execute();
 
-            $para = "fellippe.nascimento@gmail.com";
+            $para = $_POST['email']
+            ;
             $assunto = "Recuperação de senha";
 
             // Always set content-type when sending HTML email
@@ -79,7 +80,7 @@
                                         <h1 class="h4 text-gray-900 mb-2">Esqueceu Sua Senha??</h1>
                                         <p class="mb-4"></p>
                                     </div>
-                                    <form action="recuperarSenha.php" method="POST" class="user">
+                                    <form action="" method="POST" class="user">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
                                                 id="Email" name="email" aria-describedby="emailHelp"

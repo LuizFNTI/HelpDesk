@@ -18,7 +18,16 @@
     $numero_chamado_up = $_GET['nc_up'];
 
     //Faz o select para passar os valores para o form
-    $query = $conn->prepare("SELECT * FROM chamados WHERE numero_chamado = :nc");
+    $query = $conn->prepare("SELECT * FROM chamados
+    INNER JOIN item ON item.cod_item = chamados.item_cod_item
+    INNER JOIN subcategoria ON subcategoria.cod_subcategoria = chamados.subcategoria_cod_subcategoria
+    INNER JOIN categoria ON categoria.cod_categoria = chamados.categoria_cod_categoria
+    INNER JOIN tipo ON tipo.cod_tipo = chamados.tipo_cod_tipo
+    INNER JOIN usuarios ON usuarios.matricula = chamados.usuarios_matricula
+    INNER JOIN prioridade_chamado ON prioridade_chamado.cod_prioridade = chamados.prioridade_chamado_cod_prioridade
+    INNER JOIN status_chamado ON status_chamado.cod_status = chamados.status_chamado_cod_status 
+    INNER JOIN departamento ON departamento.cod_departamento = usuarios.departamento
+    WHERE numero_chamado = :nc");
     $query->bindValue(":nc",$numero_chamado_up);
     $query->execute();
     $resultado = $query->fetch(PDO::FETCH_ASSOC);
@@ -29,18 +38,29 @@
         //Pega os POSTs do formularios e atribue a variaveis
         $numero_chamado = $_POST["vnc"];
         $descricao_analista = $_POST['descanalista'];
-        $aberto = $_POST['aberto'];
+        $status = $_POST['status'];
 
         //Faz o update 
-        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_hora_fechamento = NOW(), aberto = :stfinalizado WHERE numero_chamado = :nc");
+        $query = $conn->prepare("UPDATE chamados SET descricao_analista = :dn, data_hora_fechamento = NOW(), status_chamado_cod_status = :cst WHERE numero_chamado = :nc");
         $query->bindValue(":dn",$descricao_analista);
-        $query->bindValue(":stfinalizado",$aberto);
+        $query->bindValue(":cst",$status);
         $query->bindValue(":nc",$numero_chamado);
         $query->execute();
-    }
-    //caso a variavel seja nula, volta para a tela de gerenciamento
-    if($numero_chamado_up == null) {
-        header("location: listaChamadoAnalista.php");
+
+        $para = $resultado['email'];
+        $assunto = "Atualização sobre sua solicitação";
+
+        // Always set content-type when sending HTML email
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: <fellippe.nascimento@gmail.com>' . "\r\n";
+
+        include 'emailFecharChamado.php';
+
+        mail($para, $assunto, $mensagem, $headers);
+
+        echo "<script>window.alert('O chamado foi encerrado com sucesso')</script>";
+        echo "<script>window.location.href = 'listaChamadoAnalista.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -85,9 +105,9 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid" style="margin-top: 2%;">
-                    <form action="fecharChamado.php" method="POST">
+                    <form action="" method="POST">
                         <input type="hidden" name="vnc" value="<?php echo $resultado['numero_chamado']; ?>">
-                        <input type="hidden" name="aberto" value="3">
+                        <input type="hidden" name="status" value="3">
                         <div class="form-group">
                             <label for="descricao">Faça uma breve descrição sobre o encerramento:</label>
                             <textarea class="form-control" rows="5" placeholder="Descrição Analista:" id="descr" name="descanalista"></textarea>

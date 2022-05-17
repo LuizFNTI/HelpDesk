@@ -73,7 +73,7 @@
 
                     <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                         <div id="form1">
-                        <form action="adicionarDepartamento.php" method="POST">
+                        <form action="" method="POST">
                         <h2>Adicionar Novo Departamento</h2>
                         <div class="form-group">
                             <label for="ndepartamento">Digite o Novo Departamento</label>

@@ -2,9 +2,13 @@
     session_start();
 
     if(isset($_SESSION['usuario']) && is_array($_SESSION['usuario'])) {
-        $matricula = $_SESSION['usuario'][0];
-        $nivel = $_SESSION['usuario'][1];
-        $nome_usuario = $_SESSION['usuario'][2];
+        if($_SESSION['usuario'][1] == 2) {
+            $matricula = $_SESSION['usuario'][0];
+            $nivel = $_SESSION['usuario'][1];
+            $nome_usuario = $_SESSION['usuario'][2];
+        } else {
+            header("location: ../index.php");
+        }
     } else {
         header("location: ../index.php");
     }
@@ -18,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Gerenciar Usuários</title>
+    <title>Gerenciar Abertura de Chamados</title>
 
     <!-- Custom fonts for this template -->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -55,20 +59,16 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Usuários</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Gerenciar Tipo</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTableUsuario" width="100%" cellspacing="0" style='font-size: 14px;'>
+                                <table class="table table-bordered" id="dataTableTipo" width="100%" cellspacing="0" style="font-size: 14px;">
                                     <thead>
                                         <tr>
-                                            <th>Matricula</th>
-                                            <th>Nome Usuário</th>
-                                            <th>Telefone</th>
-                                            <th>E-mail</th>
-                                            <th>Departamento</th>
-                                            <th>Nivel de Acesso</th>
-                                            <th>Status no Sistema</th>
+                                            <th>Codigo Tipo</th>
+                                            <th>Nome Tipo</th>
+                                            <th>Ativo/Inativo</th>
                                             <th>Ação</th>
                                         </tr>
                                     </thead>
@@ -79,21 +79,17 @@
                         $dados = array();        
 
                         //Faz a consulta no banco
-                        $query = $conn->query("SELECT * FROM usuarios INNER JOIN departamento ON departamento.cod_departamento = usuarios.departamento");
+                        $query = $conn->query("SELECT * FROM tipo");
 
                     echo "<tbody>";
 
                         //Joga os dados do banco num array e faz a leitura do array, jogando as informações no tabela
                         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
                             echo "<tr>";
-                            echo "<th>".$dados['matricula']."</th>";//Busca os dados na posiçãom do vetor
-                            echo "<th>".$dados['nome']."</th>";
-                            echo "<th>".$dados['telefone']."</th>";
-                            echo "<th>".$dados['email']."</th>";
-                            echo "<th>".$dados['nome_departamento']."</th>";
-                            if($dados['nivel'] == 0) {echo "<th>Usuário</th>";} else if($dados['nivel'] == 1) {echo "<th>Analista</th>";} else {echo "<th>Administrador</th>";}
-                            if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
-                            echo "<th style='text-align: center'><a href=verUsuario.php?matricula_up=".$dados['matricula']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
+                                echo "<th>".$dados['cod_tipo']."</th>";//Busca os dados na posiçãom do vetor
+                                echo "<th>".$dados['nome_tipo']."</th>";
+                                if($dados['ativo'] == 1) {echo "<th>Ativo</th>";} else {echo "<th>Inativo</th>";}
+                                echo "<th style='text-align: center'><a href=verTipo.php?tipo_up=".$dados['cod_tipo']."<i class='fas fa-fw fa-wrench' style='font-size: 20px;' title='Editar'></i></a>";
                             echo "</tr>";
                         }
                     ?>
@@ -102,7 +98,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -139,7 +134,7 @@
     <script src="js/demo/datatables-demo.js"></script>
 
     <!--active navbar-->
-    <script>$("#gerenciarUsuarios").addClass("active")</script>
+    <script>$("#gerenciarAbertura").addClass("active")</script>
 </body>
 
 </html>

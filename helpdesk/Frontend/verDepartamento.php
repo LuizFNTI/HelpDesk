@@ -41,10 +41,9 @@
         $query->bindValue(":a",$ativo);
         $query->bindValue(":cd",$cod_departamento);
         $query->execute();
-    }
-    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
-    if($cod_departamento_up == null) {
-        header("location: gerenciarSistemaChamados.php");
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'gerenciarDepartamento.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -92,7 +91,7 @@
 
                 <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                     <div id="form1">
-                        <form action="verDepartamento.php" method="POST">
+                        <form action="" method="POST">
                         <h2>Editar Departamento</h2>
                             <input type="hidden" name="vercd" value="<?php if(isset($resultado)) {echo $resultado['cod_departamento'];} ?>">
                                 <div class="form-group">

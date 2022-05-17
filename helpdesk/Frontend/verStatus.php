@@ -41,10 +41,9 @@
         $query->bindValue(":a",$ativo);
         $query->bindValue(":cs",$cod_status);
         $query->execute();
-    }
-    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
-    if($cod_status_up == null) {
-        header("location: gerenciarSistemaChamados.php");
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'gerenciarStatus.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -92,7 +91,7 @@
 
                 <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                     <div id="form1">
-                        <form action="verStatus.php" method="POST">
+                        <form action="" method="POST">
                         <h2>Editar Status</h2>
                         <div class="form-group">
                         <!--Passa o codigo via POST para ser possivel realizar o update-->

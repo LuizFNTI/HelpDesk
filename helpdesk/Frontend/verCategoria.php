@@ -41,10 +41,9 @@
         $query->bindValue(":a",$ativo);
         $query->bindValue(":cc",$cod_categoria);
         $query->execute();
-    }
-    //Após o update a variavel passada pela URL fica nula, por isso é feita a verificação para voltar a página
-    if($cod_categoria_up == null) {
-        header("location: gerenciarAberturaChamados.php");
+
+        echo "<script>window.alert('Atualização realizada com sucesso')</script>";
+        echo "<script>window.location.href = 'gerenciarCategoria.php'</script>";
     }
 ?>
 <!DOCTYPE html>
@@ -92,7 +91,7 @@
 
             <div class="row justify-content-center align-items-center" style="margin-top: 120px;">
                 <div id="form1">
-                <form action="verCategoria.php" method="POST">
+                <form action="" method="POST">
                 <h2>Editar Categoria</h2>
                 <?php echo "<strong>"."Tipo Associado: ".$resultado['nome_tipo']."</strong>";?><!--Informa o Tipo associado-->
                 <!--Passa o codigo via POST para ser possivel realizar o update-->

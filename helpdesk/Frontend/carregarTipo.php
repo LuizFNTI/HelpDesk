@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="tipodemanda">Selrcione o Tipo de Demanda</label>
+    <label for="tipodemanda">Selecione o Tipo de Demanda</label>
     <select class="form-control" id="cdt" name="ctipo" required>
         <option value="">Selecione</option>
     <?php
@@ -8,7 +8,7 @@
         $dados = array();        
                     
         //Faz a consulta no banco
-        $query = $conn->query("SELECT cod_tipo, nome_tipo FROM tipo ORDER BY nome_tipo");
+        $query = $conn->query("SELECT * FROM tipo WHERE ativo = 1 ORDER BY nome_tipo");
                     
         //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
         foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {

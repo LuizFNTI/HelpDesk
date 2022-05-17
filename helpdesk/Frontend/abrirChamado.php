@@ -24,10 +24,9 @@ if(isset($_POST['descricao'])) {
     $status = $_POST['status'];
     $prioridade = $_POST['prioridade'];
     $tipo_atendimento = $_POST['tipoa'];
-    $fila_geral = $_POST['fgeral'];
 
     //faz a consulta no banco
-    $query = $conn->prepare("INSERT INTO chamados (localizacao, descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item, fila_geral) VALUES (:locali, :descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item, :fgeral)");
+    $query = $conn->prepare("INSERT INTO chamados (localizacao, descricao, data_hora_abertura, usuarios_matricula, status_chamado_cod_status, prioridade_chamado_cod_prioridade, tipo_atendimento_cod_tipo_atendimento, tipo_cod_tipo, categoria_cod_categoria, subcategoria_cod_subcategoria, item_cod_item) VALUES (:locali, :descr, NOW(), :mat, :sts, :pri, :tpa, :tipo, :categoria, :subcat, :item)");
     $query->bindValue(":locali",$localizacao);
     $query->bindValue(":descr",$descricao);
     $query->bindValue("mat",$matricula);
@@ -38,10 +37,9 @@ if(isset($_POST['descricao'])) {
     $query->bindValue(":categoria",$categoria);
     $query->bindValue(":subcat",$subcategoria);
     $query->bindValue(":item",$item);
-    $query->bindValue(":fgeral",$fila_geral);
     $query->execute();
 
-    echo "<script>window.alert('Seu chamado foi aberto no siste, em breve será atendido por um de nossos analistas!')</script>";
+    echo "<script>window.alert('Seu chamado foi aberto no sistema, em breve será atendido por um de nossos analistas!')</script>";
     echo "<script>window.location.href = 'listaChamadoUsuario.php'</script>";
 }
 ?>
@@ -90,12 +88,11 @@ if(isset($_POST['descricao'])) {
                     <h1 class="h3 mb-2 text-gray-800">Abrir Novo Chamado</h1>
                     <p class="mb-4">Selecione as opções que melhor se encaixão a sua solicitação</p>
 
-                    <form action="abrirChamado.php" method="POST" class="user">
+                    <form action="" method="POST" class="user">
                         <div class="form-group row">
                             <input type="hidden" name="status" value="1">
                             <input type="hidden" name="prioridade" value="1">
                             <input type="hidden" name="tipoa" value="1">
-                            <input type="hidden" name="fgeral" value="1">
                             <div class="col">
                                 <div class="container-sm">
                                     <?php 

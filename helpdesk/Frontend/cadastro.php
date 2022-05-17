@@ -12,19 +12,24 @@ if(isset($_POST['nome'])) {
     $departamento = $_POST['cdepartamento'];
     $senha = $_POST['senha'];
     $confsenha = $_POST['csenha'];
+    $ativo = $_POST['ativo'];
 
     //Criptografa a senha usando om password_hash
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
     //Pega os POSTs das variaveis e insere os dados no banco
-    $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha)VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha)");
+    $query = $conn->prepare("INSERT INTO usuarios (matricula, nome, telefone, email, departamento, senha, ativo)VALUES (:matricula, :nome, :telefone, :email, :departamento, :senha, :ativo)");
     $query->bindValue(":matricula", $matricula);
     $query->bindValue(":nome",$nome);
     $query->bindValue(":telefone",$telefone);
     $query->bindValue(":email",$email);
     $query->bindValue(":departamento",$departamento);
     $query->bindValue(":senha",$senha_hash);
+    $query->bindValue(":ativo",$ativo);
     $query->execute();
+
+    echo "<script>window.alert('O cadastro foi realizado com sucesso no sistema!')</script>";
+    echo "<script>window.location.href = '../index.php'</script>";
 }
 ?>
 <!DOCTYPE html>
@@ -65,7 +70,8 @@ if(isset($_POST['nome'])) {
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Crie Sua Conta!</h1>
                             </div>
-                            <form class="user" action="cadastro.php" method="POST">
+                            <form class="user" action="" method="POST">
+                            <input type="hidden" name="ativo" value="1">
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
@@ -74,7 +80,7 @@ if(isset($_POST['nome'])) {
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Seu E-mail:" name="email" id="e-mail" required>
+                                            <input type="email" class="form-control form-control-user" placeholder="Seu E-mail:" name="email" id="e-mail" required>
                                         </div>
                                     </div>
                                 </div>
@@ -99,7 +105,7 @@ if(isset($_POST['nome'])) {
                                 $dados = array();        
                     
                                 //Faz a consulta no banco
-                                $query = $conn->query("SELECT * FROM departamento ORDER BY nome_departamento");
+                                $query = $conn->query("SELECT * FROM departamento WHERE ativo = 1 ORDER BY nome_departamento");
                     
                                 //Joga os dados do banco num array e faz a leitura do array jogando as informações no opition
                                 foreach($query->fetchAll(PDO::FETCH_ASSOC) as $dados) {
@@ -111,12 +117,12 @@ if(isset($_POST['nome'])) {
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Digite su senha:" name="senha" id="password" required>
+                                            <input type="password" class="form-control form-control-user" placeholder="Digite su senha:" name="senha" id="password" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" placeholder="Confirme sua senha:" name="csenha" id="confirm_password" required>
+                                            <input type="password" class="form-control form-control-user" placeholder="Confirme sua senha:" name="csenha" id="confirm_password" required>
                                         </div>
                                     </div>
                                 </div>
@@ -149,6 +155,8 @@ if(isset($_POST['nome'])) {
     <!-- Validação de Confirmação de Senha -->
     <script src="js/confirmarSenha.js"></script>
 
+    <!-- Mascara Telefone -->
+    <script src="js/mascTelefone.js"></script>
 </body>
 
 </html>
